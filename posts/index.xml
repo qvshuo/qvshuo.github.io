@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>首页</title>
-    <link>http://example.org/</link>
-    <description>Recent content on 首页</description>
+    <title>Posts on 首页</title>
+    <link>http://example.org/posts/</link>
+    <description>Recent content in Posts on 首页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -508,26 +508,6 @@ For example，春晚总导演吕逸涛讲“春晚不能只有欢乐”，我认
  小时候，记得有一集里，大猫与小老鼠激斗正酣，智慧的小老鼠用计剃光了大猫头顶上的毛。我是喜欢猫的，看到猫这么惨很是担心，我担忧地想，下一集，大猫头顶上的毛会不会长不出来了呀，长不出来就不好看了……那时的我哪里知道，动画片嘛，就是娱乐的，下一集，Tom的毛还会长出来的，不然有时候Tom的尾巴被Jerry拿斧子砍掉，骨头都断了也没见长不出来，哈。
 我还会想，动画片嘛，总得有个结局。我爱猫，总希望，猫和老鼠斗了那么多集，最后的大结局怎么地也得让猫猫大饱口福呀，可是《猫和老鼠》每一集的前面并没有表明集号，然后迷惘的我就问妈妈，于是妈妈告诉我，最后机智勇敢的Jerry没有被大猫吃掉，它们在斗了147集后握手言和了。我是多么的开心，内心满怀憧憬地希望有机会可以看到第147集，看看Tom和Jerry和好时是不是像婚礼一样庄重……
 直到后来，我长大了，我看了第147集，Tom和Jerry并没有像妈妈预言的那样和好了，而是一如既往的斗个不停，为我制造无穷的笑料，为童年添一抹明丽的亮色。 但是，了解了动画片是用来娱乐的这个目的，我得到了什么，得到了真相，失去了什么，失去了那最纯的天真。我更大了，但我不敢说我长大了。 好了，就这样吧。时光不回头，我只能淋雨一直走。</description>
-    </item>
-    
-    <item>
-      <title>关于作者</title>
-      <link>http://example.org/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/about/</guid>
-      <description>重新开发了一个Hugo主题hugo-theme-FlowerRr。
-——2020.2.11 21:47
- fork了一个Hugo主题hugo-xmin，基于此重新开发，博客重生。
-——2020.1.6 00:29
- 数度更迭，博客最终迁移到Hugo。
-2018，高考结束
-经历了哪怕许多“很大的量变”，到如今，我的人生，终于质变了。
-——2018.7.20 22:38
- 搭建此博客的目的，主要在于记录灵感，练笔，还有提升自己的计算机水平，爱好嘛。
-此博客然基本上不会有陌生人来访，希望各位朋友为我提出指导性意见，我定虚心接受。
-——2016年2月16日 00:01
-曲朔</description>
     </item>
     
   </channel>
