@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>感想 on 首页</title>
-    <link>http://example.org/tags/%E6%84%9F%E6%83%B3/</link>
+    <link>https://qvshuo.faith/tags/%E6%84%9F%E6%83%B3/</link>
     <description>Recent content in 感想 on 首页</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/%E6%84%9F%E6%83%B3/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://qvshuo.faith/tags/%E6%84%9F%E6%83%B3/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>关于这一年</title>
-      <link>http://example.org/posts/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%80%E5%B9%B4/</link>
+      <link>https://qvshuo.faith/posts/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%80%E5%B9%B4/</link>
       <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%80%E5%B9%B4/</guid>
+      <guid>https://qvshuo.faith/posts/%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%80%E5%B9%B4/</guid>
       <description>《智商二五零》的我，不知道算笨还是算聪明，以至于上方题目都要致敬一下。
 如果把学生时代分成两部分，我觉得可以以高考为界，分为前学生时代和后学生时代。今天是2019年的结束，也是21世纪10年代的结束。所以用一两句话回顾之前也无可厚非。前学生时代，我的轨迹总体上扬，到2017年，不论哪个方面都在一定程度上达到一个顶峰，换句话说，达到一种对于学生而言的理想状态。然而，我的前学生时代是烂尾的，2018年高考的失败及其引发的蝴蝶效应，我的《寻》梦之路遭遇重大挫折，现实已然成了梦想彻头彻尾的《反义词》。
 不过我是一个什么样的人呢，我渴求的是《齐天》大圣那种不羁与强大，骄傲与自由，《我管你》前方多险阻，《我管你》世界多魔性，我没变，我不变，我就是我。我失败过，输过，甚至怕过，怂过，可我却总是一群loser中的那个《异类》，因为我从没放弃过，也没忘记过。我有一个优点：我承诺过的，从来都只有一个结果，那就是跨越《山海》，实现它。我一直很强调“我”这个概念。但是我知道，我就像《烟火里的尘埃》一般渺小——却拒绝卑微；我也知道，我能给这个世界留下的痕迹，就像《蜉蝣》的生命一样短暂——我仍努力不平凡。我很小就读鲁迅，就是那个把世间的话都说尽的男人。“此后如竟没有炬火，我便是唯一的光。”我很喜欢。
@@ -27,10 +27,10 @@
     
     <item>
       <title>我的高考</title>
-      <link>http://example.org/posts/%E6%88%91%E7%9A%84%E9%AB%98%E8%80%83/</link>
+      <link>https://qvshuo.faith/posts/%E6%88%91%E7%9A%84%E9%AB%98%E8%80%83/</link>
       <pubDate>Fri, 21 Dec 2018 17:24:24 +0800</pubDate>
       
-      <guid>http://example.org/posts/%E6%88%91%E7%9A%84%E9%AB%98%E8%80%83/</guid>
+      <guid>https://qvshuo.faith/posts/%E6%88%91%E7%9A%84%E9%AB%98%E8%80%83/</guid>
       <description>那些年，我以为的人生，我以为的全部，现在看来，经历而已。
  非典型 “好学生” 说实话，把“好学生”这顶帽子扣到自己头上来，很是艰难，所以有了前面的修饰词：“非典型”。
 在我看来，中国当下的大多数普通高中——应试教育下的时代产物，对所谓“好学生”的定义，无外乎两个核心标准：高分，和听话。
