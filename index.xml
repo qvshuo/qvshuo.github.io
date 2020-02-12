@@ -26,11 +26,11 @@
     </item>
     
     <item>
-      <title>从《1984》看中国特色社会主义制度的优越性</title>
-      <link>http://example.org/posts/%E4%BB%8E1984%E7%9C%8B%E4%B8%AD%E5%9B%BD%E7%89%B9%E8%89%B2%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E5%88%B6%E5%BA%A6%E7%9A%84%E4%BC%98%E8%B6%8A%E6%80%A7/</link>
+      <title>《1984》</title>
+      <link>http://example.org/posts/1984/</link>
       <pubDate>Sat, 22 Dec 2018 14:20:56 +0800</pubDate>
       
-      <guid>http://example.org/posts/%E4%BB%8E1984%E7%9C%8B%E4%B8%AD%E5%9B%BD%E7%89%B9%E8%89%B2%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E5%88%B6%E5%BA%A6%E7%9A%84%E4%BC%98%E8%B6%8A%E6%80%A7/</guid>
+      <guid>http://example.org/posts/1984/</guid>
       <description>《1984》的世界 注意：此节中提到的“党”，均为《1984》中的虚构的大洋国的统治阶级，并非现实，并非现实，并非现实。
 时间：1984年。
 世界大致分为三个超级大国：大洋国，欧亚国和东亚国。
@@ -516,7 +516,7 @@ For example，春晚总导演吕逸涛讲“春晚不能只有欢乐”，我认
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/about/</guid>
-      <description>重新开发了一个Hugo主题hugo-theme-FlowerRr。
+      <description>从零开发了一个Hugo主题hugo-theme-FlowerRr。
 ——2020.2.11 21:47
  fork了一个Hugo主题hugo-xmin，基于此重新开发，博客重生。
 ——2020.1.6 00:29
