@@ -1,2 +1,1 @@
-# qvshuo.github.io
-曲朔的个人博客。
+曲二花儿Rr的个人博客。
