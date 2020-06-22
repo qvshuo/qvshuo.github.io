@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>交大校园码</title>
+    <link rel="stylesheet" href="https://githubpages-1253944953.cos.ap-chengdu.myqcloud.com/style.css">
+    <script type="text/javascript" charset="utf-8">
+        function displayTime() {
+        var elt = document.getElementById("clock");
+        var now = new Date();
+        elt.innerHTML = now.toLocaleTimeString();
+        setTimeout(displayTime,1000);
+        }
+        window.onload = displayTime;
+    </script>
+
+</head>
+
+<body>
+
+    <div class="top">
+        <div id="photo-border">
+            <img id="photo" src="https://githubpages-1253944953.cos.ap-chengdu.myqcloud.com/qs.jpg"">
+        </div>
+        <div id="xhxm">
+            2183713466 曲朔
+            <span id="bks">本科生</span>
+            <div id="sybj">彭康书院/日语81</div>
+        </div>
+    </div>
+
+    <div class="middle">
+        <div id="dqsj">
+            当前时间：
+        </div>
+        <span id="clock"></span>
+        <div id="bddj">
+            已于 2020-05-24 21:53:56 完成报到登记
+        </div>
+        <div id="wcsj">
+            外出时间 <span id="orange">2020-06-22 18:35:23</span>至 <span id="orange">2020-08-25 00:00:00</span>
+        </div>
+
+        <div id="code-border">
+            <img id="blue" src="https://githubpages-1253944953.cos.ap-chengdu.myqcloud.com/blue.png">
+            <span id="bks2">本科生</span>
+            <div id="code-box">
+                <img id="code" src="https://githubpages-1253944953.cos.ap-chengdu.myqcloud.com/code.png">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bottom">
+        <img id="bottom4" src="https://githubpages-1253944953.cos.ap-chengdu.myqcloud.com/bottom.jpg">
+    </div>
+
+</body>
+
+</html>
+
