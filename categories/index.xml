@@ -5,11 +5,6 @@
     <link>https://qvshuo.faith/categories/</link>
     <description>Recent content in Categories on 首页</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Sat, 22 Dec 2018 14:20:56 +0800</lastBuildDate>
-    
-	<atom:link href="https://qvshuo.faith/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>zh-CN</language><atom:link href="https://qvshuo.faith/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
