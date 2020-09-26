@@ -54,7 +54,8 @@
 <p><code>cat /mnt/etc/fstab</code></p>
 <h2 id="9-进入新系统">9. 进入新系统</h2>
 <p><code>arch-chroot /mnt</code></p>
-<h2 id="10-本地化">10. 本地化</h2>
+<h2 id="10-时区与本地化">10. 时区与本地化</h2>
+<p><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
 <p><code>vim /etc/locale.gen</code></p>
 <pre><code>en_US.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
@@ -77,14 +78,15 @@ ja_JP.UTF-8 UTF-8
 <p><code>exit</code></p>
 <p><code>reboot</code></p>
 <h2 id="15-重新连接网络">15. 重新连接网络</h2>
+<p><code>systemctl enable --now systemd-networkd.service</code>
+<code>systemctl enable --now systemd-resolved.service</code>
+<code>systemctl enable --now iwd.service</code></p>
 <p><code>vim /etc/iwd/main.conf</code></p>
 <pre><code>[General]
 EnableNetworkConfiguration=true
 [Network]
 NameResolvingService=systemd
-</code></pre><p><code>systemctl enable --now systemd-networkd.service</code>
-<code>systemctl enable --now systemd-resolved.service</code>
-<code>systemctl enable --now iwd.service</code></p>
+</code></pre><p><code>reboot</code></p>
 <p><code>iwctl</code></p>
 <h2 id="16-添加新用户">16. 添加新用户</h2>
 <p><code>useradd -m -G wheel huizhi</code></p>
@@ -94,7 +96,7 @@ NameResolvingService=systemd
 <pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
 </code></pre><h1 id="二图形界面安装">二、图形界面安装</h1>
 <h2 id="17-显示">17. 显示</h2>
-<p><code>pacman -S xf86-vedio-intel vulkan-intel xorg-xbacklight</code></p>
+<p><code>pacman -S xf86-video-intel vulkan-intel xorg-xbacklight</code></p>
 <h2 id="18-声音">18. 声音</h2>
 <p><code>pacman -S alsa-utils pulseaudio pulseaudio-alsa</code></p>
 <p><code>alsamixer</code></p>
@@ -183,6 +185,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <h2 id="33-shell">33. Shell</h2>
 <p><code>yay -S fish</code></p>
 <p><code>sudo chsh -s /usr/bin/fish huizhi</code></p>
+<p><code>fish</code></p>
 <p><code>set -U fish_greeting</code></p>
 <h1 id="三软件清单">三、软件清单</h1>
 <h2 id="34-软件分类">34. 软件分类</h2>
@@ -231,8 +234,8 @@ Video Download Helper
 <h3 id="局域网文件共享">局域网文件共享</h3>
 <p><code>yay -S vsftpd</code>
 <code>sudo vim /etc/vsftpd.conf</code></p>
-<pre><code>write_enable=YES
-local_enable=YES
+<pre><code>local_enable=YES
+write_enable=YES
 </code></pre><p><code>sudo systemctl enable --now vsftpd.service</code></p>
 <h3 id="本地文件管理器">本地文件管理器</h3>
 <p><code>yay -S nautilus gvfs-mtp ffmpegthumbnailer</code></p>

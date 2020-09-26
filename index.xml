@@ -32,7 +32,7 @@ mount /dev/sdaY /mnt/boot
 8. 生成fstab genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
 cat /mnt/etc/fstab
 9. 进入新系统 arch-chroot /mnt
-10. 本地化 vim /etc/locale.</description>
+10. 时区与本地化 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</description>
     </item>
     
     <item>
