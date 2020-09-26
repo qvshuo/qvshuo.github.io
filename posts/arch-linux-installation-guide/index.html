@@ -78,9 +78,9 @@ ja_JP.UTF-8 UTF-8
 <p><code>exit</code></p>
 <p><code>reboot</code></p>
 <h2 id="15-重新连接网络">15. 重新连接网络</h2>
-<p><code>systemctl enable --now systemd-networkd.service</code>
-<code>systemctl enable --now systemd-resolved.service</code>
-<code>systemctl enable --now iwd.service</code></p>
+<p><code>systemctl enable --now systemd-networkd.service</code></p>
+<p><code>systemctl enable --now systemd-resolved.service</code></p>
+<p><code>systemctl enable --now iwd.service</code></p>
 <p><code>vim /etc/iwd/main.conf</code></p>
 <pre><code>[General]
 EnableNetworkConfiguration=true
@@ -126,11 +126,8 @@ exec bspwm
 <p><code>cp /usr/share/doc/bspwm/examples/sxhkdrc .config/sxhkd</code></p>
 <p><code>vim .config/sxhkd/sxhkdrc</code></p>
 <pre><code>默认终端
-
 uxrvt ==&gt; alacritty
-
 默认程序启动器
-
 dmenu ==&gt; rofi -show drun
 </code></pre><h2 id="27-字体">27. 字体</h2>
 <p><code>sudo pacman -S ttf-sarasa-gothic noto-fonts-emoji ttf-font-awesome</code></p>
@@ -141,23 +138,14 @@ dmenu ==&gt; rofi -show drun
 <h2 id="30-浏览器">30. 浏览器</h2>
 <p><code>sudo pacman -S firefox firefox-i18n-zh-cn</code></p>
 <pre><code>about:config
-
 退格键返回：（将值由2改成0）
-
 browser.backspace_action
-
 避免默认尝试IPv6：
-
 network.dns.disableIPv6
-
 双击关闭标签页：
-
 browser.tabs.closeTabByDblclick
-
 图形加速：
-
 layers.acceleration.force-enabled
-
 gfx.webrender.all
 </code></pre><h2 id="31-触控板优化">31. 触控板优化</h2>
 <p><code>sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf</code></p>
@@ -166,16 +154,15 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 </code></pre><p><code>reboot</code></p>
 <h2 id="32-软件仓库">32. 软件仓库</h2>
 <p>镜像列表：</p>
-<pre><code>Server = http://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
-Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+<pre><code>Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
 Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
-Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = http://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
+Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 </code></pre><p>Archlinuxcn源：</p>
 <p><code>sudo vim /etc/pacman.conf</code></p>
 <pre><code>[archlinuxcn]
-
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 </code></pre><p><code>sudo pacman -Syu</code></p>
 <p><code>sudo pacman -S archlinuxcn-keyring</code></p>
@@ -268,20 +255,20 @@ write_enable=YES
 <h3 id="图像编辑">图像编辑</h3>
 <p><code>yay -S gimp</code></p>
 <h3 id="视频剪辑下载">视频剪辑&amp;下载</h3>
-<p>复杂视频编辑
-DaVinci Resolve
-reboot
-进Windows
-基本视频编辑&amp;视频下载
-quickcut
-<code>yay -S quickcut </code></p>
+<p>复杂视频编辑</p>
+<p>DaVinci Resolve</p>
+<p><code>reboot</code></p>
+<p>进Windows</p>
+<p>基本视频编辑&amp;视频下载</p>
+<p>quickcut</p>
+<p><code>yay -S quickcut </code></p>
 <h3 id="主题美化">主题美化</h3>
-<p>gtk主题
-<code>yay -S whitesur-gtk-theme-git</code>
-图标包
-<code>yay -S la-capitaine-icon-theme</code>
-美化工具
-<code>yay -S lxappearance</code></p>
+<p>gtk主题</p>
+<p><code>yay -S whitesur-gtk-theme-git</code></p>
+<p>图标包</p>
+<p><code>yay -S la-capitaine-icon-theme</code></p>
+<p>美化工具</p>
+<p><code>yay -S lxappearance</code></p>
 <h3 id="清理优化">清理优化</h3>
 <p><code>yay -S stacer</code></p>
 <h3 id="系统信息">系统信息</h3>
@@ -293,8 +280,8 @@ quickcut
 <h3 id="sxhkd">sxhkd</h3>
 <p>~/.config/sxhkd/sxhdrc</p>
 <h3 id="polybar">polybar</h3>
-<p>~/.config/polybar
-~/.config/polybar/launch.sh</p>
+<p>~/.config/polybar</p>
+<p>~/.config/polybar/launch.sh</p>
 <p><code>chmod +x launch.sh</code></p>
 <h3 id="alacritty">Alacritty</h3>
 <p>~/.config/alacritty/alacritty.yml</p>
