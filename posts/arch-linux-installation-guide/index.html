@@ -96,14 +96,13 @@ NameResolvingService=systemd
 <pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
 </code></pre><h2 id="二图形界面安装">二、图形界面安装</h2>
 <h3 id="17-显示">17. 显示</h3>
-<p><code>pacman -S xf86-video-intel vulkan-intel xorg-xbacklight</code></p>
+<p><code>pacman -S xf86-video-intel vulkan-intel</code></p>
 <h3 id="18-声音">18. 声音</h3>
 <p><code>pacman -S alsa-utils pulseaudio pulseaudio-alsa</code></p>
-<p><code>alsamixer</code></p>
 <h3 id="19-触控板">19. 触控板</h3>
 <p><code>pacman -S xf86-input-libinput</code></p>
 <h3 id="20-x">20. X</h3>
-<p><code>pacman -S xorg-server xorg-xinit xorg-xsetroot</code></p>
+<p><code>pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight</code></p>
 <h3 id="21-窗口管理器">21. 窗口管理器</h3>
 <p><code>pacman -S bspwm sxhkd</code></p>
 <h3 id="22-基础软件">22. 基础软件</h3>
@@ -131,7 +130,7 @@ dmenu ==&gt; rofi -show drun
 </code></pre><h3 id="27-字体">27. 字体</h3>
 <p><code>sudo pacman -S ttf-sarasa-gothic noto-fonts-emoji ttf-font-awesome</code></p>
 <h3 id="28-重启">28. 重启</h3>
-<p><code>reboot</code></p>
+<p><code>sudo reboot</code></p>
 <h3 id="29-启动图形界面">29. 启动图形界面</h3>
 <p><code>startx</code></p>
 <h3 id="30-浏览器">30. 浏览器</h3>
@@ -238,13 +237,15 @@ write_enable=YES
 <p><code>yay -S scrot</code></p>
 <h4 id="录屏">录屏</h4>
 <p><code>yay -S obs-studio</code></p>
+<h4 id="剪贴板">剪贴板</h4>
+<p><code>yay -S rof--greenclip</code></p>
 <h4 id="闹钟">闹钟</h4>
 <p><code>yay -S gnome-clocks</code></p>
 <h4 id="计算器">计算器</h4>
 <p><code>yay -S gnome-calculator</code></p>
 <h4 id="天气">天气</h4>
 <p><code>yay -S ttf-weather-icons jq</code></p>
-<p><code>chmod +x ~/.config/polybar/polybar-scripts/openweathermap-forecast.sh</code></p>
+<p><code>chmod +x ~/.config/polybar/polybar-scripts/openweathermap-simple.sh</code></p>
 <h4 id="笔记">笔记</h4>
 <p><code>yay -S typora</code></p>
 <h4 id="办公软件">办公软件</h4>
