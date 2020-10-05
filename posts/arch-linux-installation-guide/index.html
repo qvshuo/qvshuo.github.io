@@ -191,7 +191,6 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p>输入法皮肤：</p>
 <p><code>pacman -S fcitx5-material-color</code></p>
 <p>关闭垂直候选列表，开启按屏幕 DPI 使用，开启可用时在应用程序中显示预编辑文本。</p>
-<h1 id="按屏幕-dpi-使用">按屏幕 DPI 使用</h1>
 <h4 id="代理">代理</h4>
 <p><code>yay -S clash</code></p>
 <h4 id="通讯">通讯</h4>
@@ -260,6 +259,11 @@ write_enable=YES
 <p><code>git config --global user.email qvshuo@foxmail.com</code></p>
 <h4 id="博客">博客</h4>
 <p><code>yay -S hugo</code></p>
+<h4 id="android投屏工具">Android投屏工具</h4>
+<p><code>yay -S scrcpy</code></p>
+<p><code>sudo adb devices</code></p>
+<p><code>sudo adb tcpip 5556</code></p>
+<p><code>sudo adb connect 192.168.3.120:5556</code></p>
 <h4 id="音频编辑">音频编辑</h4>
 <p><code>yay -S audacity</code></p>
 <h4 id="图像编辑">图像编辑</h4>
@@ -319,7 +323,7 @@ XMODIFIERS    DEFAULT=\@im=fcitx5
 <p><code>sudo mkdir /media/System</code></p>
 <p><code>sudo mkdir /media/Data</code></p>
 <p><code>sudo vim /etc/fstab</code></p>
-<pre><code>/dev/sda3       /media/System    ntfs-3g         uid=huizhi,gid=wheel    0       0
+<pre><code>/dev/sda4       /media/System    ntfs-3g         uid=huizhi,gid=wheel    0       0
 /dev/sdb2       /media/Data    ntfs-3g         uid=huizhi,gid=wheel    0       0
 </code></pre><h3 id="39-禁用独立显卡">39. 禁用独立显卡</h3>
 <p>安装bbswitch：</p>
