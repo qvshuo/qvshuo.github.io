@@ -347,6 +347,13 @@ XMODIFIERS    DEFAULT=\@im=fcitx5
 <p>执行：</p>
 <p><code>lspci | grep NVIDIA</code></p>
 <p>如有 (rev ff)字样 ，则表示独显已成功禁用</p>
+<h3 id="从windows安装字体">从Windows安装字体</h3>
+<p>将Windows的字体复制到/usr/share/fonts:</p>
+<p><code>sudo mkdir /usr/share/fonts/WindowsFonts</code></p>
+<p><code>sudo cp /media/System/Windows/Fonts/* /usr/share/fonts/WindowsFonts</code></p>
+<p><code>sudo chmod 755 /usr/share/fonts/WindowsFonts/*</code></p>
+<p>然后重新生成字体缓存：</p>
+<p><code>fc-cache -f</code></p>
 
     </div>
 
