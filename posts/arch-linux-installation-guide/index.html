@@ -106,7 +106,7 @@ NameResolvingService=systemd
 <h3 id="21-窗口管理器">21. 窗口管理器</h3>
 <p><code>pacman -S bspwm sxhkd</code></p>
 <h3 id="22-基础软件">22. 基础软件</h3>
-<p><code>pacman -S alacritty rofi</code></p>
+<p><code>pacman -S fish alacritty rofi</code></p>
 <h3 id="23-切换用户">23. 切换用户</h3>
 <p><code>su huizhi</code></p>
 <h3 id="24-hidpi">24. HiDPI</h3>
@@ -124,7 +124,7 @@ exec bspwm
 <p><code>cp /usr/share/doc/bspwm/examples/sxhkdrc .config/sxhkd</code></p>
 <p><code>vim .config/sxhkd/sxhkdrc</code></p>
 <pre><code>默认终端
-uxrvt ==&gt; alacritty
+uxrvt ==&gt; alacritty -e fish
 默认程序启动器
 dmenu ==&gt; rofi -show drun
 </code></pre><h3 id="27-字体">27. 字体</h3>
@@ -169,10 +169,6 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p><code>sudo pacman -S yay base-devel</code></p>
 <p><code>yay --aururl &quot;https://aur.tuna.tsinghua.edu.cn&quot; --save</code></p>
 <h3 id="33-shell">33. Shell</h3>
-<p><code>yay -S fish</code></p>
-<p>设置fish为默认shell</p>
-<p><code>sudo chsh -s /usr/bin/fish huizhi</code></p>
-<p>取消默认问候语</p>
 <p><code>fish</code></p>
 <p><code>set -U fish_greeting</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
