@@ -105,7 +105,7 @@ NameResolvingService=systemd
 <p><code>pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight xdg-user-dirs</code></p>
 <h3 id="21-窗口管理器">21. 窗口管理器</h3>
 <p><code>pacman -S bspwm sxhkd</code></p>
-<h3 id="22-基础软件">22. 基础软件</h3>
+<h3 id="22-shell--基础软件">22. Shell &amp; 基础软件</h3>
 <p><code>pacman -S fish alacritty rofi</code></p>
 <h3 id="23-切换用户">23. 切换用户</h3>
 <p><code>su huizhi</code></p>
@@ -131,6 +131,10 @@ dmenu ==&gt; rofi -show drun
 <p><code>sudo pacman -S ttf-sarasa-gothic adobe-source-han-serif-otc-fonts noto-fonts-emoji ttf-font-awesome</code></p>
 <h3 id="28-重启">28. 重启</h3>
 <p><code>sudo reboot</code></p>
+<p>使用普通用户登陆</p>
+<p>取消fish欢迎语：</p>
+<p><code>fish</code></p>
+<p><code>set -U fish_greeting</code></p>
 <h3 id="29-启动图形界面">29. 启动图形界面</h3>
 <p><code>startx</code></p>
 <h3 id="30-浏览器">30. 浏览器</h3>
@@ -168,11 +172,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p>AUR：</p>
 <p><code>sudo pacman -S yay base-devel</code></p>
 <p><code>yay --aururl &quot;https://aur.tuna.tsinghua.edu.cn&quot; --save</code></p>
-<h3 id="33-shell">33. Shell</h3>
-<p><code>fish</code></p>
-<p><code>set -U fish_greeting</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
-<h3 id="34-软件分类">34. 软件分类</h3>
+<h3 id="33-软件分类">33. 软件分类</h3>
 <h4 id="壁纸">壁纸</h4>
 <p><code>yay -S feh</code></p>
 <h4 id="面板">面板</h4>
@@ -246,7 +247,6 @@ write_enable=YES
 <p><code>yay -S gnome-sound-recorder</code></p>
 <h4 id="天气">天气</h4>
 <p><code>yay -S ttf-weather-icons jq</code></p>
-<p><code>chmod +x ~/.config/polybar/polybar-scripts/openweathermap-simple.sh</code></p>
 <h4 id="笔记">笔记</h4>
 <p><code>yay -S typora</code></p>
 <h4 id="办公软件">办公软件</h4>
@@ -259,7 +259,7 @@ write_enable=YES
 <p><code>git config --global user.email qvshuo@foxmail.com</code></p>
 <h4 id="博客">博客</h4>
 <p><code>yay -S hugo</code></p>
-<h4 id="android投屏工具">Android投屏工具</h4>
+<h4 id="android投屏">Android投屏</h4>
 <p><code>yay -S scrcpy</code></p>
 <p><code>sudo adb devices</code></p>
 <p><code>sudo adb tcpip 5556</code></p>
@@ -284,6 +284,11 @@ write_enable=YES
 <h4 id="系统信息">系统信息</h4>
 <p><code>yay -S neofetch</code></p>
 <h2 id="四完善配置">四、完善配置</h2>
+<h3 id="34-恢复配置文件">34. 恢复配置文件</h3>
+<p>git clone <a href="https://github.com/qvshuo/dotfiles.git">https://github.com/qvshuo/dotfiles.git</a></p>
+<p>cp -rf ~/dotfiles/* ~</p>
+<p><code>chmod +x .config/polybar/launch.sh</code></p>
+<p><code>chmod +x ~/.config/polybar/polybar-scripts/openweathermap-simple.sh</code></p>
 <h3 id="35-软件配置文件目录">35. 软件配置文件目录</h3>
 <h4 id="bspwm">bspwm</h4>
 <p>~/.config/bspwm/bspwmrc</p>
@@ -291,8 +296,6 @@ write_enable=YES
 <p>~/.config/sxhkd/sxhdrc</p>
 <h4 id="polybar">polybar</h4>
 <p>~/.config/polybar</p>
-<p>~/.config/polybar/launch.sh</p>
-<p><code>chmod +x launch.sh</code></p>
 <h4 id="alacritty">Alacritty</h4>
 <p>~/.config/alacritty/alacritty.yml</p>
 <h4 id="rofi">rofi</h4>
@@ -301,11 +304,7 @@ write_enable=YES
 <p>~/.config/dunst/dunstrc</p>
 <h4 id="fcitx">fcitx</h4>
 <p>~/.pam_environment</p>
-<pre><code>INPUT_METHOD  DEFAULT=fcitx5
-GTK_IM_MODULE DEFAULT=fcitx5
-QT_IM_MODULE  DEFAULT=fcitx5
-XMODIFIERS    DEFAULT=\@im=fcitx5
-</code></pre><h4 id="aria2">aria2</h4>
+<h4 id="aria2">aria2</h4>
 <p>~/.config/aria2</p>
 <h4 id="字体">字体</h4>
 <p>~/.config/fontconfig/fonts.conf</p>
@@ -347,11 +346,9 @@ XMODIFIERS    DEFAULT=\@im=fcitx5
 <p><code>lspci | grep NVIDIA</code></p>
 <p>如有 (rev ff)字样 ，则表示独显已成功禁用</p>
 <h3 id="40从windows安装字体">40.从Windows安装字体</h3>
-<p>将Windows的字体复制到/usr/share/fonts:</p>
 <p><code>sudo mkdir /usr/share/fonts/WindowsFonts</code></p>
 <p><code>sudo cp /media/System/Windows/Fonts/* /usr/share/fonts/WindowsFonts</code></p>
 <p><code>sudo chmod 755 /usr/share/fonts/WindowsFonts/*</code></p>
-<p>然后重新生成字体缓存：</p>
 <p><code>fc-cache -f</code></p>
 
     </div>
