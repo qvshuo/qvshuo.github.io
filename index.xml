@@ -28,7 +28,7 @@ mkfs.ext4 /dev/sdaX
 mount /dev/sdaX /mnt
 mkdir /mnt/boot
 mount /dev/sdaY /mnt/boot
-7. 安装必需软件包 pacstrap /mnt base linux linux-firmware iwd vim fish
+7. 安装必需软件包 pacstrap /mnt base linux linux-firmware iwd vim
 8. 生成fstab genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
 cat /mnt/etc/fstab
 9. 进入新系统 arch-chroot /mnt

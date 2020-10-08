@@ -48,7 +48,7 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
 <h3 id="7-安装必需软件包">7. 安装必需软件包</h3>
-<p><code>pacstrap /mnt base linux linux-firmware iwd vim fish</code></p>
+<p><code>pacstrap /mnt base linux linux-firmware iwd vim</code></p>
 <h3 id="8-生成fstab">8. 生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -89,7 +89,7 @@ NameResolvingService=systemd
 </code></pre><p><code>reboot</code></p>
 <p><code>iwctl</code></p>
 <h3 id="16-添加新用户">16. 添加新用户</h3>
-<p><code>useradd -m -G wheel -s /bin/fish huizhi</code></p>
+<p><code>useradd -m -G wheel -s huizhi</code></p>
 <p><code>passwd huizhi</code></p>
 <p><code>pacman -S sudo</code></p>
 <p><code>vim /etc/sudoers</code></p>
@@ -109,12 +109,6 @@ NameResolvingService=systemd
 <p><code>pacman -S alacritty rofi</code></p>
 <h3 id="23-切换用户">23. 切换用户</h3>
 <p><code>su huizhi</code></p>
-<h3 id="24-取消fish问候语">24. 取消fish问候语</h3>
-<p><code>yay -S fish</code></p>
-<p>设置fish为默认shell</p>
-<p><code>sudo chsh -s /usr/bin/fish huizhi</code></p>
-<p><code>fish</code></p>
-<p><code>set -U fish_greeting</code></p>
 <h3 id="24-hidpi">24. HiDPI</h3>
 <p><code>vim ~/.Xresources</code></p>
 <pre><code>Xft.dpi: 120
@@ -174,6 +168,13 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p>AUR：</p>
 <p><code>sudo pacman -S yay base-devel</code></p>
 <p><code>yay --aururl &quot;https://aur.tuna.tsinghua.edu.cn&quot; --save</code></p>
+<h3 id="33-shell">33. Shell</h3>
+<p><code>yay -S fish</code></p>
+<p>设置fish为默认shell</p>
+<p><code>sudo chsh -s /usr/bin/fish huizhi</code></p>
+<p>取消默认问候语</p>
+<p><code>fish</code></p>
+<p><code>set -U fish_greeting</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
 <h3 id="34-软件分类">34. 软件分类</h3>
 <h4 id="壁纸">壁纸</h4>
@@ -356,13 +357,6 @@ XMODIFIERS    DEFAULT=\@im=fcitx5
 <p><code>sudo chmod 755 /usr/share/fonts/WindowsFonts/*</code></p>
 <p>然后重新生成字体缓存：</p>
 <p><code>fc-cache -f</code></p>
-<h3 id="41点文件管理">41.点文件管理</h3>
-<p>mkdir $HOME/.dotfiles</p>
-<p>git init &ndash;bare $HOME/.dotfiles</p>
-<p>vim ~/.config/fish/config.fish</p>
-<pre><code>alias dotfiles='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-</code></pre><p><code>dotfiles config --local status.showUntrackedFiles no</code></p>
-<p><code>dotfiles remote add origin https://github.com/qvshuo/backup.git</code></p>
 
     </div>
 
