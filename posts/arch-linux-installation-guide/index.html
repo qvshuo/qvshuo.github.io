@@ -264,6 +264,7 @@ write_enable=YES
 <p><code>sudo adb devices</code></p>
 <p><code>sudo adb tcpip 5556</code></p>
 <p><code>sudo adb connect 192.168.3.120:5556</code></p>
+<p><code>scrcpy -b 6M --window-title 'MEIZU 16s' --stay-awake</code></p>
 <h4 id="图像编辑">图像编辑</h4>
 <p><code>yay -S gimp</code></p>
 <h4 id="视频剪辑下载">视频剪辑&amp;下载</h4>
@@ -285,9 +286,9 @@ write_enable=YES
 <p><code>yay -S neofetch</code></p>
 <h2 id="四完善配置">四、完善配置</h2>
 <h3 id="34-恢复配置文件">34. 恢复配置文件</h3>
-<p>git clone <a href="https://github.com/qvshuo/dotfiles.git">https://github.com/qvshuo/dotfiles.git</a></p>
-<p>cp -rf ~/dotfiles/* ~</p>
-<p><code>chmod +x .config/polybar/launch.sh</code></p>
+<p><code>git clone https://github.com/qvshuo/dotfiles.git</code></p>
+<p><code>cp -rf ~/dotfiles/* ~</code></p>
+<p><code>chmod +x ~/.config/polybar/launch.sh</code></p>
 <p><code>chmod +x ~/.config/polybar/polybar-scripts/openweathermap-simple.sh</code></p>
 <h3 id="35-软件配置文件目录">35. 软件配置文件目录</h3>
 <h4 id="bspwm">bspwm</h4>
