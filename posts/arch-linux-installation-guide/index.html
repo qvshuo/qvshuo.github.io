@@ -129,7 +129,7 @@ uxrvt ==&gt; alacritty -e fish
 默认程序启动器
 dmenu ==&gt; rofi -show drun
 </code></pre><h3 id="27-字体">27. 字体</h3>
-<p><code>sudo pacman -S ttf-sarasa-gothic adobe-source-han-serif-otc-fonts noto-fonts-emoji ttf-font-awesome</code></p>
+<p><code>sudo pacman -S ttf-sarasa-gothic noto-fonts-emoji ttf-font-awesome</code></p>
 <h3 id="28-重启">28. 重启</h3>
 <p><code>sudo reboot</code></p>
 <p>使用普通用户登陆</p>
@@ -280,11 +280,13 @@ write_enable=YES
 <p><code>yay -S quickcut </code></p>
 <h4 id="主题美化">主题美化</h4>
 <p>gtk主题</p>
-<p><code>yay -S qogir-gtk-theme</code></p>
+<p><code>yay -S materia-gtk-theme</code></p>
 <p>图标包</p>
 <p><code>yay -S qogir-icon-theme</code></p>
-<p>美化工具</p>
-<p><code>yay -S lxappearance</code></p>
+<p>应用gtk3主题</p>
+<p><code>gsettings set org.gnome.desktop.interface gtk-theme Materia-light</code></p>
+<p>应用光标主题</p>
+<p><code>gsettings set org.gnome.desktop.interface cursor-theme Qogir</code></p>
 <h4 id="系统信息">系统信息</h4>
 <p><code>yay -S neofetch</code></p>
 <h2 id="四完善配置">四、完善配置</h2>
@@ -318,7 +320,6 @@ write_enable=YES
 <h3 id="37-获取字体列表">37. 获取字体列表</h3>
 <p><code>fc-list :lang=zh</code></p>
 <p>Sarasa Gothic SC</p>
-<p>Source Han Serif SC</p>
 <p>Sarasa Mono SC</p>
 <h3 id="38-自动挂载windows分区">38. 自动挂载windows分区</h3>
 <p><code>sudo mkdir /media</code></p>
