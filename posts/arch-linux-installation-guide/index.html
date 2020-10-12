@@ -43,7 +43,7 @@
 <p><code>timedatectl set-local-rtc 1</code></p>
 <h3 id="6-格式化并挂载分区">6. 格式化并挂载分区</h3>
 <p><code>fdisk -l</code></p>
-<p><code>mkfs.ext4 /dev/sdaX</code></p>
+<p><code>mkfs.ext4 -L Arch /dev/sdaX</code></p>
 <p><code>mount /dev/sdaX /mnt</code></p>
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
@@ -200,7 +200,15 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p>电报</p>
 <p><code>yay -S telegram-desktop</code></p>
 <h4 id="电子邮件">电子邮件</h4>
-<p><code>yay -S mailspring gnome-keyring</code></p>
+<p>利用polybar脚本inbox-imap-pythongpg实现收件箱计数</p>
+<p><code>yay -S gnupg</code></p>
+<p><code>gpg</code></p>
+<p><code>gpg --full-gen-key</code></p>
+<p><code>echo 'your password' &gt; /tmp/imappass</code></p>
+<p><code>gpg -er 'your gpg keyid' /tmp/imappass</code></p>
+<p><code>mv /tmp/imappass.gpg ~/.imappass.gpg</code></p>
+<p><code>shred /tmp/imappass &amp;&amp; rm /tmp/imappass</code></p>
+<p><code>chmod +x ~/.config/polybar/polybar-scripts/inbox-imap-pythongpg.sh</code></p>
 <h4 id="在线音乐">在线音乐</h4>
 <p><code>yay -S netease-cloud-music-gtk</code></p>
 <h4 id="下载工具">下载工具</h4>

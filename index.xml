@@ -24,15 +24,14 @@ station wlan0 connect SSID
 quit
 5. 设置系统时间 timedatectl set-local-rtc 1
 6. 格式化并挂载分区 fdisk -l
-mkfs.ext4 /dev/sdaX
+mkfs.ext4 -L Arch /dev/sdaX
 mount /dev/sdaX /mnt
 mkdir /mnt/boot
 mount /dev/sdaY /mnt/boot
 7. 安装必需软件包 pacstrap /mnt base linux linux-firmware iwd vim
 8. 生成fstab genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
 cat /mnt/etc/fstab
-9. 进入新系统 arch-chroot /mnt
-10. 时区与本地化 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</description>
+9. 进入新系统 arch-chroot /mnt</description>
     </item>
     
     <item>
