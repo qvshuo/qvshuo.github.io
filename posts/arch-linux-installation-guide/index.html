@@ -339,8 +339,8 @@ write_enable=YES
 <p><code>sudo mkdir /media/System</code></p>
 <p><code>sudo mkdir /media/Data</code></p>
 <p><code>sudo vim /etc/fstab</code></p>
-<pre><code>/dev/sda4       /media/System    ntfs-3g         uid=huizhi,gid=wheel    0       0
-/dev/sdb2       /media/Data    ntfs-3g         uid=huizhi,gid=wheel    0       0
+<pre><code>/dev/sda4       /media/System    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
+/dev/sdb2       /media/Data    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
 </code></pre><h3 id="39-从windows安装字体">39. 从Windows安装字体</h3>
 <p><code>sudo mkdir /usr/share/fonts/WindowsFonts</code></p>
 <p><code>sudo cp /media/System/Windows/Fonts/* /usr/share/fonts/WindowsFonts</code></p>
