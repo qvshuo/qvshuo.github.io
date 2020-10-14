@@ -96,7 +96,10 @@ NameResolvingService=systemd
 <pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
 </code></pre><h2 id="二图形界面安装">二、图形界面安装</h2>
 <h3 id="17-显示">17. 显示</h3>
+<p>Intel</p>
 <p><code>pacman -S xf86-video-intel vulkan-intel intel-media-driver</code></p>
+<p>Nvidia</p>
+<p><code>pacman -S nvidia nvidia-prime</code></p>
 <h3 id="18-声音">18. 声音</h3>
 <p><code>pacman -S alsa-utils pulseaudio pulseaudio-alsa</code></p>
 <h3 id="19-触控板">19. 触控板</h3>
@@ -215,18 +218,17 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p>通用下载工具</p>
 <p><code>yay -S aria2</code></p>
 <p>视频下载工具</p>
-<p>Video Download Helper</p>
-<p><code>yay vdhcoapp</code></p>
+<p><code>yay -S youtube-dl</code></p>
 <p>种子&amp;网盘下载工具</p>
 <p>迅雷 &amp; 闪电下载（Windows虚拟机）</p>
 <h4 id="网盘">网盘</h4>
 <p>百度网盘</p>
-<p><code>yay -S baidunetdisk</code></p>
+<p><code>yay -S baidunetdisk-bin</code></p>
 <p>坚果云</p>
 <p><code>yay -S nutstore</code></p>
 <h4 id="在线会议">在线会议</h4>
 <p>zoom</p>
-<p><code>yay -S zoom</code></p>
+<p><code>yay -S zoom</code>（代理）</p>
 <p>腾讯会议（Windows虚拟机）</p>
 <h4 id="局域网文件共享">局域网文件共享</h4>
 <p><code>yay -S vsftpd</code></p>
@@ -251,13 +253,14 @@ write_enable=YES
 <h4 id="录屏">录屏</h4>
 <p><code>yay -S obs-studio</code></p>
 <h4 id="剪贴板">剪贴板</h4>
-<p><code>yay -S rofi-greenclip</code></p>
+<p><code>yay -S rofi-greenclip</code>（代理）</p>
 <h4 id="计算器">计算器</h4>
 <p><code>yay -S gnome-calculator</code></p>
 <h4 id="录音机">录音机</h4>
 <p><code>yay -S gnome-sound-recorder</code></p>
 <h4 id="天气">天气</h4>
-<p><code>yay -S ttf-weather-icons jq</code></p>
+<p><code>yay -S jq</code></p>
+<p><code>yay -S ttf-weather-icons</code>（代理）</p>
 <h4 id="笔记">笔记</h4>
 <p><code>yay -S typora</code></p>
 <h4 id="办公软件">办公软件</h4>
@@ -278,19 +281,18 @@ write_enable=YES
 <p><code>scrcpy -b 6M --window-title 'MEIZU 16s' --stay-awake</code></p>
 <h4 id="图像编辑">图像编辑</h4>
 <p><code>yay -S gimp</code></p>
-<h4 id="视频剪辑下载">视频剪辑&amp;下载</h4>
-<p>复杂视频编辑</p>
+<h4 id="视频剪辑">视频剪辑</h4>
 <p>DaVinci Resolve</p>
-<p><code>reboot</code></p>
-<p>进Windows</p>
-<p>基本视频编辑&amp;视频下载</p>
-<p>quickcut</p>
-<p><code>yay -S quickcut </code></p>
-<h4 id="主题美化">主题美化</h4>
+<p><code>sudo vim /etc/pacman.conf</code></p>
+<p>取消<code>multilib</code>前的注释</p>
+<p><code>yay -S davinci-resolve</code>（代理）</p>
+<p><code>sudo vim /usr/share/applications/com.blackmagicdesign.resolve.desktop</code></p>
+<pre><code>Exec=prime-run /opt/resolve/bin/resolve %U
+</code></pre><h4 id="主题美化">主题美化</h4>
 <p>gtk主题</p>
 <p><code>yay -S materia-gtk-theme</code></p>
 <p>图标包</p>
-<p><code>yay -S qogir-icon-theme</code></p>
+<p><code>yay -S qogir-icon-theme</code>（代理）</p>
 <p>应用gtk3主题</p>
 <p><code>gsettings set org.gnome.desktop.interface gtk-theme Materia-light</code></p>
 <p>应用光标主题</p>
@@ -300,13 +302,12 @@ write_enable=YES
 <h4 id="自动化">自动化</h4>
 <p><code>yay -S cronie</code></p>
 <p><code>sudo systemctl enable --now cronie.service</code></p>
-<p><code>chmod +x /home/huizhi/dotfiles/Desktop/script/*</code></p>
 <h2 id="四完善配置">四、完善配置</h2>
 <h3 id="34-恢复配置文件">34. 恢复配置文件</h3>
 <p><code>git clone https://github.com/qvshuo/dotfiles.git</code></p>
-<p><code>cp -rf ~/dotfiles/* ~</code></p>
 <p><code>chmod +x ~/.config/polybar/launch.sh</code></p>
-<p><code>chmod +x ~/.config/polybar/polybar-scripts/openweathermap-simple.sh</code></p>
+<p><code>chmod +x ~/.config/polybar/polybar-scripts/*</code></p>
+<p><code>chmod +x /home/huizhi/dotfiles/Desktop/script/*</code></p>
 <h3 id="35-软件配置文件目录">35. 软件配置文件目录</h3>
 <h4 id="bspwm">bspwm</h4>
 <p>~/.config/bspwm/bspwmrc</p>
@@ -340,29 +341,7 @@ write_enable=YES
 <p><code>sudo vim /etc/fstab</code></p>
 <pre><code>/dev/sda4       /media/System    ntfs-3g         uid=huizhi,gid=wheel    0       0
 /dev/sdb2       /media/Data    ntfs-3g         uid=huizhi,gid=wheel    0       0
-</code></pre><h3 id="39-禁用独立显卡">39. 禁用独立显卡</h3>
-<p>安装bbswitch：</p>
-<p><code>sudo pacman -S bbswitch</code></p>
-<p>开机加载bbswitch模块：</p>
-<p><code>sudo vim /etc/modules-load.d/bbswitch.conf</code></p>
-<p>键入：</p>
-<pre><code>bbswitch
-</code></pre><p>设置bbswitch加载参数，实现开机时关闭独显，关机时开启独显，避免重启进入Windows时找不到独显：</p>
-<p><code>sudo vim /etc/modprobe.d/bbswitch.conf</code></p>
-<p>键入：</p>
-<pre><code>options bbswitch load_state=0 unload_state=1
-</code></pre><p>屏蔽nouveau驱动:</p>
-<p><code>sudo vim /etc/modprobe.d/fucknvidia.conf</code></p>
-<p>键入：</p>
-<pre><code>blacklist nouveau
-</code></pre><p>重建 initrd：</p>
-<p><code>sudo mkinitcpio -p linux</code></p>
-<p>重启：</p>
-<p><code>reboot</code></p>
-<p>执行：</p>
-<p><code>lspci | grep NVIDIA</code></p>
-<p>如有 (rev ff)字样 ，则表示独显已成功禁用</p>
-<h3 id="40从windows安装字体">40.从Windows安装字体</h3>
+</code></pre><h3 id="39-从windows安装字体">39. 从Windows安装字体</h3>
 <p><code>sudo mkdir /usr/share/fonts/WindowsFonts</code></p>
 <p><code>sudo cp /media/System/Windows/Fonts/* /usr/share/fonts/WindowsFonts</code></p>
 <p><code>sudo chmod 755 /usr/share/fonts/WindowsFonts/*</code></p>
