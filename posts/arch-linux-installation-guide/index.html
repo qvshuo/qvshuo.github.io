@@ -26,58 +26,85 @@
     
     <div id="content">
         <h2 id="一基本系统安装">一、基本系统安装</h2>
-<h3 id="1-修改bios设置">1. 修改BIOS设置</h3>
+<h3 id="修改bios设置">修改BIOS设置</h3>
 <p>关闭安全启动</p>
-<h3 id="2-设置windows">2. 设置Windows</h3>
+<h3 id="设置windows">设置Windows</h3>
 <p>关闭Windows快速启动</p>
-<h3 id="3-设置tty字体">3. 设置tty字体</h3>
+<h3 id="设置tty字体">设置tty字体</h3>
 <p><code>setfont ter-132n</code></p>
-<h3 id="4-首次连接网络">4. 首次连接网络</h3>
+<h3 id="首次连接网络">首次连接网络</h3>
 <p><code>iwctl</code></p>
 <p><code>device list</code></p>
 <p><code>station wlan0 scan</code></p>
 <p><code>station wlan0 get-networks</code></p>
 <p><code>station wlan0 connect SSID</code></p>
 <p><code>quit</code></p>
-<h3 id="5-设置系统时间">5. 设置系统时间</h3>
+<h3 id="设置系统时间">设置系统时间</h3>
 <p><code>timedatectl set-local-rtc 1</code></p>
-<h3 id="6-格式化并挂载分区">6. 格式化并挂载分区</h3>
+<h3 id="格式化并挂载分区">格式化并挂载分区</h3>
 <p><code>fdisk -l</code></p>
 <p><code>mkfs.ext4 -L Arch /dev/sdaX</code></p>
 <p><code>mount /dev/sdaX /mnt</code></p>
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
-<h3 id="7-安装必需软件包">7. 安装必需软件包</h3>
-<p><code>pacstrap /mnt base linux linux-firmware iwd vim</code></p>
-<h3 id="8-生成fstab">8. 生成fstab</h3>
+<p>btrfs用下面的：</p>
+<p><code>lsblk</code></p>
+<p>格式化根分区：</p>
+<p><code>mkfs.btrfs -L arch/dev/sdaX</code></p>
+<p>挂载根分区：</p>
+<p><code>mount /dev/sdaX /mnt</code></p>
+<p>创建子卷：</p>
+<p><code>btrfs su cr /mnt/@</code></p>
+<p><code>btrfs su cr /mnt/@home</code></p>
+<p>卸载根分区：</p>
+<p><code>unmount /mnt</code></p>
+<p>挂载子卷：
+<code>mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt</code></p>
+<p><code>mkdir /mnt/home</code></p>
+<p><code>mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@home /dev/sdaX /mnt/home</code></p>
+<p>挂载ESP分区：</p>
+<p><code>mkdir /mnt/boot</code></p>
+<p><code>monut /dev/sdaY /boot</code></p>
+<h3 id="安装必需软件包">安装必需软件包</h3>
+<p><code>pacstrap /mnt base linux linux-firmware btrfs-progs intel-ucode dosfstools ntfs-3g grub efibootmgr os-prober sudo fish iwd vim</code></p>
+<h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
-<h3 id="9-进入新系统">9. 进入新系统</h3>
+<h3 id="进入新系统">进入新系统</h3>
 <p><code>arch-chroot /mnt</code></p>
-<h3 id="10-时区与本地化">10. 时区与本地化</h3>
+<h3 id="时区">时区</h3>
+<p><code>timedatectl set-timezone Asia/Shanghai</code></p>
+<p>或者：</p>
 <p><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
+<h3 id="本地化">本地化</h3>
 <p><code>vim /etc/locale.gen</code></p>
 <pre><code>en_US.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
 ja_JP.UTF-8 UTF-8
 </code></pre><p><code>locale-gen</code></p>
 <p><code>echo LANG=en_US.UTF-8 &gt; /etc/locale.conf</code></p>
-<h3 id="11-主机名">11. 主机名</h3>
+<h3 id="主机名">主机名</h3>
 <p><code>echo Matebook &gt; /etc/hostname</code></p>
+<h3 id="hosts">hosts</h3>
 <p><code>vim /etc/hosts</code></p>
 <pre><code>127.0.0.1 localhost
 ::1  localhost
 127.0.0.1	huizhi.localdomain	huizhi
-</code></pre><h3 id="12-设置root密码">12. 设置root密码</h3>
+::1	huizhi.localdomain	huizhi
+</code></pre><h3 id="设置root密码">设置root密码</h3>
 <p><code>passwd</code></p>
-<h3 id="13-安装引导程序">13. 安装引导程序</h3>
-<p><code>pacman -S intel-ucode ntfs-3g grub efibootmgr os-prober</code></p>
+<h3 id="配置initramfs参数">配置initramfs参数</h3>
+<p><code>vim /etc/mkinitcpio.conf</code></p>
+<pre><code>HOOKS=(添加btrfs，去掉fsck)
+</code></pre><p><code>mkinitcpio -p linux</code></p>
+<h3 id="安装引导程序">安装引导程序</h3>
 <p><code>grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch</code></p>
 <p><code>grub-mkconfig -o /boot/grub/grub.cfg</code></p>
-<h3 id="14-重启">14. 重启</h3>
+<h3 id="重启">重启</h3>
 <p><code>exit</code></p>
 <p><code>reboot</code></p>
-<h3 id="15-重新连接网络">15. 重新连接网络</h3>
+<h3 id="重新连接网络">重新连接网络</h3>
+<p>方案一：</p>
 <p><code>systemctl enable --now systemd-networkd.service</code></p>
 <p><code>systemctl enable --now systemd-resolved.service</code></p>
 <p><code>systemctl enable --now iwd.service</code></p>
@@ -88,40 +115,50 @@ EnableNetworkConfiguration=true
 NameResolvingService=systemd
 </code></pre><p><code>reboot</code></p>
 <p><code>iwctl</code></p>
-<h3 id="16-添加新用户">16. 添加新用户</h3>
+<p>方案二：</p>
+<p><code>vim /etc/systemd/network/config.network</code></p>
+<pre><code>[Match]
+Name=interface
+
+[Network]
+DHCP=yes
+</code></pre><p><code>systemctl enable --now systemd-networkd.service</code></p>
+<p><code>ln -s /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf</code></p>
+<p><code>systemctl enable --now systemd-resolved.service</code></p>
+<p><code>systemctl enable --now iwd.service</code></p>
+<h3 id="添加新用户">添加新用户</h3>
 <p><code>useradd -m -G wheel huizhi</code></p>
 <p><code>passwd huizhi</code></p>
-<p><code>pacman -S sudo</code></p>
 <p><code>vim /etc/sudoers</code></p>
 <pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
 </code></pre><h2 id="二图形界面安装">二、图形界面安装</h2>
-<h3 id="17-显示">17. 显示</h3>
+<h3 id="显示">显示</h3>
 <p>Intel</p>
-<p><code>pacman -S xf86-video-intel vulkan-intel intel-media-driver</code></p>
+<p><code>pacman -S xf86-video-intel vulkan-intel libva-intel-driver</code></p>
 <p>Nvidia</p>
 <p><code>pacman -S nvidia nvidia-prime</code></p>
-<h3 id="18-声音">18. 声音</h3>
+<h3 id="声音">声音</h3>
 <p><code>pacman -S alsa-utils pulseaudio pulseaudio-alsa</code></p>
-<h3 id="19-触控板">19. 触控板</h3>
+<h3 id="触控板">触控板</h3>
 <p><code>pacman -S xf86-input-libinput</code></p>
-<h3 id="20-x">20. X</h3>
+<h3 id="x">X</h3>
 <p><code>pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight xdg-user-dirs</code></p>
-<h3 id="21-窗口管理器">21. 窗口管理器</h3>
+<h3 id="窗口管理器">窗口管理器</h3>
 <p><code>pacman -S bspwm sxhkd</code></p>
-<h3 id="22-shell--基础软件">22. Shell &amp; 基础软件</h3>
-<p><code>pacman -S fish alacritty rofi</code></p>
-<h3 id="23-切换用户">23. 切换用户</h3>
+<h3 id="基础软件">基础软件</h3>
+<p><code>pacman -S alacritty rofi</code></p>
+<h3 id="切换用户">切换用户</h3>
 <p><code>su huizhi</code></p>
 <p><code>cd ~</code></p>
-<h3 id="24-hidpi">24. HiDPI</h3>
+<h3 id="hidpi">HiDPI</h3>
 <p><code>vim ~/.Xresources</code></p>
 <pre><code>Xft.dpi: 120
-</code></pre><h3 id="25-xinitrc">25. xinitrc</h3>
+</code></pre><h3 id="xinitrc">xinitrc</h3>
 <p><code>cp /etc/X11/xinit/xinitrc ~/.xinitrc</code></p>
 <p><code>vim .xinitrc</code></p>
 <pre><code>export LANG=zh_CN.UTF-8
 exec bspwm
-</code></pre><h3 id="26-bspwm配置文件">26. bspwm配置文件</h3>
+</code></pre><h3 id="基础配置文件">基础配置文件</h3>
 <p><code>mkdir .config/bspwm</code></p>
 <p><code>cp /usr/share/doc/bspwm/examples/bspwmrc .config/bspwm</code></p>
 <p><code>mkdir .config/sxhkd</code></p>
@@ -131,17 +168,17 @@ exec bspwm
 uxrvt ==&gt; alacritty -e fish
 默认程序启动器
 dmenu ==&gt; rofi -show drun
-</code></pre><h3 id="27-字体">27. 字体</h3>
+</code></pre><h3 id="字体">字体</h3>
 <p><code>sudo pacman -S ttf-sarasa-gothic adobe-source-han-serif-otc-fonts noto-fonts-emoji ttf-font-awesome</code></p>
-<h3 id="28-重启">28. 重启</h3>
+<h3 id="重启-1">重启</h3>
 <p><code>sudo reboot</code></p>
 <p>使用普通用户登陆</p>
 <p>取消fish欢迎语：</p>
 <p><code>fish</code></p>
 <p><code>set -U fish_greeting</code></p>
-<h3 id="29-启动图形界面">29. 启动图形界面</h3>
+<h3 id="启动图形界面">启动图形界面</h3>
 <p><code>startx</code></p>
-<h3 id="30-浏览器">30. 浏览器</h3>
+<h3 id="浏览器">浏览器</h3>
 <p><code>sudo pacman -S firefox firefox-i18n-zh-cn</code></p>
 <pre><code>about:config
 退格键返回：（将值由2改成0）
@@ -156,20 +193,25 @@ true:
 media.ffmpeg.vaapi.enabled
 false:
 media.ffvpx.enabled
-</code></pre><h3 id="31-触控板优化">31. 触控板优化</h3>
+</code></pre><h3 id="触控板优化">触控板优化</h3>
 <p><code>sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf</code></p>
 <pre><code>Option &quot;Tapping&quot; &quot;on&quot;
 Option &quot;NaturalScrolling&quot; &quot;true&quot;
 </code></pre><p><code>reboot</code></p>
-<h3 id="32-软件仓库">32. 软件仓库</h3>
+<h3 id="软件仓库">软件仓库</h3>
 <p>修改镜像列表：</p>
 <p><code>sudo vim /etc/pacman.d/mirrorlist</code></p>
 <pre><code>Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
-Server = http://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
-Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
-Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.cqu.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.dgut.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirror.redrock.team/archlinux/$repo/os/$arch
+Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch
+
 </code></pre><p>Archlinuxcn源：</p>
 <p><code>sudo vim /etc/pacman.conf</code></p>
 <pre><code>[archlinuxcn]
@@ -180,7 +222,11 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p><code>sudo pacman -S yay base-devel</code></p>
 <p><code>yay --aururl &quot;https://aur.tuna.tsinghua.edu.cn&quot; --save</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
-<h3 id="33-软件分类">33. 软件分类</h3>
+<h3 id="一条命令安装">一条命令安装</h3>
+<p><code>yay -S feh polybar picom redshift dunst ibus ibus-rime ibus-mozc clash virtualbox telegram-desktop mailspring gnome-keyring netease-cloud-music-gtk youtube-dl baidunetdisk-bin nutstore vsftpd nautilus gvfs-mtp ffmpegthumbnailer file-roller p7zip unrar nomacs deadbeef celluloid scrot obs-studio gnome-calculator gnome-sound-recorder jq typora wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts calibre gedit gedit-plugins git android-tools hugo scrcpy gimp materia-gtk-theme neofetch cronie tlp</code></p>
+<p><code>export https_proxy=127.0.0.1:7890</code></p>
+<p><code>yay -S zoom rofi-greenclip ttf-weather-icons davinci-resolve qogir-icon-theme</code></p>
+<h3 id="软件分类">软件分类</h3>
 <h4 id="壁纸">壁纸</h4>
 <p><code>yay -S feh</code></p>
 <h4 id="面板">面板</h4>
@@ -268,7 +314,7 @@ write_enable=YES
 <h4 id="电子书">电子书</h4>
 <p><code>yay -S calibre</code></p>
 <h4 id="开发工具">开发工具</h4>
-<p><code>yay -S vscode git android-tools</code></p>
+<p><code>yay -S gedit gedit-plugins git android-tools</code></p>
 <p><code>git config --global user.name &quot;qvshuo&quot;</code></p>
 <p><code>git config --global user.email qvshuo@foxmail.com</code></p>
 <h4 id="博客">博客</h4>
@@ -283,11 +329,11 @@ write_enable=YES
 <p><code>yay -S gimp</code></p>
 <h4 id="视频剪辑">视频剪辑</h4>
 <p>DaVinci Resolve</p>
-<p><code>sudo vim /etc/pacman.conf</code></p>
+<p><code>sudo vim /etc/</code></p>
 <p>取消<code>multilib</code>前的注释</p>
 <p><code>yay -S davinci-resolve</code>（代理）</p>
 <p><code>sudo vim /usr/share/applications/com.blackmagicdesign.resolve.desktop</code></p>
-<pre><code>Exec=prime-run /opt/resolve/bin/resolve %U
+<pre><code>Exec=bash -c &quot;prime-run /opt/resolve/bin/resolve %U&quot;
 </code></pre><h4 id="主题美化">主题美化</h4>
 <p>gtk主题</p>
 <p><code>yay -S materia-gtk-theme</code></p>
@@ -302,6 +348,9 @@ write_enable=YES
 <h4 id="自动化">自动化</h4>
 <p><code>yay -S cronie</code></p>
 <p><code>sudo systemctl enable --now cronie.service</code></p>
+<h4 id="电池优化">电池优化</h4>
+<p><code>yay -S tlp</code></p>
+<p><code>sudo systemctl enable --now tlp.service</code></p>
 <h2 id="四完善配置">四、完善配置</h2>
 <h3 id="34-恢复配置文件">34. 恢复配置文件</h3>
 <p><code>git clone https://github.com/qvshuo/dotfiles.git</code></p>
@@ -325,7 +374,7 @@ write_enable=YES
 <p>~/.config/ibus/rime</p>
 <h4 id="aria2">aria2</h4>
 <p>~/.config/aria2</p>
-<h4 id="字体">字体</h4>
+<h4 id="字体-1">字体</h4>
 <p>~/.config/fontconfig/fonts.conf</p>
 <h3 id="36-获取程序名称">36. 获取程序名称</h3>
 <p><code>xprop | grep WM_CLASS</code></p>
@@ -333,17 +382,18 @@ write_enable=YES
 <h3 id="37-获取字体列表">37. 获取字体列表</h3>
 <p><code>fc-list :lang=zh</code></p>
 <p>Sarasa Gothic SC</p>
+<p>Source Han Serif SC</p>
 <p>Sarasa Mono SC</p>
 <h3 id="38-自动挂载windows分区">38. 自动挂载windows分区</h3>
 <p><code>sudo mkdir /media</code></p>
-<p><code>sudo mkdir /media/System</code></p>
+<p><code>sudo mkdir /media/Windows</code></p>
 <p><code>sudo mkdir /media/Data</code></p>
 <p><code>sudo vim /etc/fstab</code></p>
-<pre><code>/dev/sda4       /media/System    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
+<pre><code>/dev/sda4       /media/Windows    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
 /dev/sdb2       /media/Data    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
 </code></pre><h3 id="39-从windows安装字体">39. 从Windows安装字体</h3>
 <p><code>sudo mkdir /usr/share/fonts/WindowsFonts</code></p>
-<p><code>sudo cp /media/System/Windows/Fonts/* /usr/share/fonts/WindowsFonts</code></p>
+<p><code>sudo cp /media/Windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts</code></p>
 <p><code>sudo chmod 755 /usr/share/fonts/WindowsFonts/*</code></p>
 <p><code>fc-cache -f</code></p>
 

@@ -13,25 +13,33 @@
       <pubDate>Fri, 25 Sep 2020 20:05:25 +0800</pubDate>
       
       <guid>https://qvshuo.faith/posts/arch-linux-installation-guide/</guid>
-      <description>一、基本系统安装 1. 修改BIOS设置 关闭安全启动
-2. 设置Windows 关闭Windows快速启动
-3. 设置tty字体 setfont ter-132n
-4. 首次连接网络 iwctl
+      <description>一、基本系统安装 修改BIOS设置 关闭安全启动
+设置Windows 关闭Windows快速启动
+设置tty字体 setfont ter-132n
+首次连接网络 iwctl
 device list
 station wlan0 scan
 station wlan0 get-networks
 station wlan0 connect SSID
 quit
-5. 设置系统时间 timedatectl set-local-rtc 1
-6. 格式化并挂载分区 fdisk -l
+设置系统时间 timedatectl set-local-rtc 1
+格式化并挂载分区 fdisk -l
 mkfs.ext4 -L Arch /dev/sdaX
 mount /dev/sdaX /mnt
 mkdir /mnt/boot
 mount /dev/sdaY /mnt/boot
-7. 安装必需软件包 pacstrap /mnt base linux linux-firmware iwd vim
-8. 生成fstab genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
-cat /mnt/etc/fstab
-9. 进入新系统 arch-chroot /mnt</description>
+btrfs用下面的：
+lsblk
+格式化根分区：
+mkfs.btrfs -L arch/dev/sdaX
+挂载根分区：
+mount /dev/sdaX /mnt
+创建子卷：
+btrfs su cr /mnt/@
+btrfs su cr /mnt/@home
+卸载根分区：
+unmount /mnt
+挂载子卷： mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt</description>
     </item>
     
     <item>
