@@ -58,15 +58,15 @@
 <p><code>btrfs su cr /mnt/@home</code></p>
 <p>卸载根分区：</p>
 <p><code>unmount /mnt</code></p>
-<p>挂载子卷：
-<code>mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt</code></p>
+<p>挂载子卷：</p>
+<p><code>mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt</code></p>
 <p><code>mkdir /mnt/home</code></p>
 <p><code>mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@home /dev/sdaX /mnt/home</code></p>
 <p>挂载ESP分区：</p>
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>monut /dev/sdaY /boot</code></p>
 <h3 id="安装必需软件包">安装必需软件包</h3>
-<p><code>pacstrap /mnt base linux linux-firmware btrfs-progs intel-ucode dosfstools ntfs-3g grub efibootmgr os-prober sudo fish iwd vim</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs intel-ucode dosfstools ntfs-3g grub efibootmgr os-prober sudo fish iwd vim</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -87,15 +87,15 @@ ja_JP.UTF-8 UTF-8
 <p><code>echo Matebook &gt; /etc/hostname</code></p>
 <h3 id="hosts">hosts</h3>
 <p><code>vim /etc/hosts</code></p>
-<pre><code>127.0.0.1 localhost
-::1  localhost
+<pre><code>127.0.0.1	localhost
+::1	localhost
 127.0.0.1	huizhi.localdomain	huizhi
 ::1	huizhi.localdomain	huizhi
 </code></pre><h3 id="设置root密码">设置root密码</h3>
 <p><code>passwd</code></p>
 <h3 id="配置initramfs参数">配置initramfs参数</h3>
 <p><code>vim /etc/mkinitcpio.conf</code></p>
-<pre><code>HOOKS=(添加btrfs，去掉fsck)
+<pre><code>HOOKS=(add btrfs，rm fsck)
 </code></pre><p><code>mkinitcpio -p linux</code></p>
 <h3 id="安装引导程序">安装引导程序</h3>
 <p><code>grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch</code></p>
@@ -119,7 +119,6 @@ NameResolvingService=systemd
 <p><code>vim /etc/systemd/network/config.network</code></p>
 <pre><code>[Match]
 Name=interface
-
 [Network]
 DHCP=yes
 </code></pre><p><code>systemctl enable --now systemd-networkd.service</code></p>
@@ -219,7 +218,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 </code></pre><p><code>sudo pacman -Syu</code></p>
 <p><code>sudo pacman -S archlinuxcn-keyring</code></p>
 <p>AUR：</p>
-<p><code>sudo pacman -S yay base-devel</code></p>
+<p><code>sudo pacman -S yay</code></p>
 <p><code>yay --aururl &quot;https://aur.tuna.tsinghua.edu.cn&quot; --save</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
 <h3 id="一条命令安装">一条命令安装</h3>

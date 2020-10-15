@@ -39,7 +39,8 @@ btrfs su cr /mnt/@
 btrfs su cr /mnt/@home
 卸载根分区：
 unmount /mnt
-挂载子卷： mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt</description>
+挂载子卷：
+mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt</description>
     </item>
     
     <item>
