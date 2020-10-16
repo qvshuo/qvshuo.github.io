@@ -22,7 +22,7 @@ station wlan0 scan
 station wlan0 get-networks
 station wlan0 connect SSID
 quit
-设置系统时间 timedatectl set-local-rtc 1
+设置系统时间 timedatectl set-ntp true
 格式化并挂载分区 lsblk
 格式化根分区：
 mkfs.btrfs -L Arch /dev/sdaX
@@ -40,7 +40,7 @@ mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@home /dev/sdaX /mn
 挂载ESP分区：
 mkdir /mnt/boot
 monut /dev/sdaY /mnt/boot
-安装必需软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs intel-ucode dosfstools ntfs-3g grub efibootmgr os-prober sudo fish iwd vim</description>
+安装必需软件包 pacstrap /mnt base base-devel linux linux-firmware iwd vim man-db man-pages btrfs-progs intel-ucode dosfstools ntfs-3g grub efibootmgr os-prober sudo fish</description>
     </item>
     
     <item>

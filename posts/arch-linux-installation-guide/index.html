@@ -40,7 +40,7 @@
 <p><code>station wlan0 connect SSID</code></p>
 <p><code>quit</code></p>
 <h3 id="设置系统时间">设置系统时间</h3>
-<p><code>timedatectl set-local-rtc 1</code></p>
+<p><code>timedatectl set-ntp true</code></p>
 <h3 id="格式化并挂载分区">格式化并挂载分区</h3>
 <p><code>lsblk</code></p>
 <p>格式化根分区：</p>
@@ -60,14 +60,15 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>monut /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装必需软件包">安装必需软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs intel-ucode dosfstools ntfs-3g grub efibootmgr os-prober sudo fish iwd vim</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware iwd vim man-db man-pages btrfs-progs intel-ucode dosfstools ntfs-3g grub efibootmgr os-prober sudo fish</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
 <h3 id="进入新系统">进入新系统</h3>
 <p><code>arch-chroot /mnt</code></p>
 <h3 id="时区">时区</h3>
-<p><code>timedatectl set-timezone Asia/Shanghai</code></p>
+<p><code>sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
+<p><code>hwclock --systohc</code></p>
 <h3 id="本地化">本地化</h3>
 <p><code>vim /etc/locale.gen</code></p>
 <pre><code>en_US.UTF-8 UTF-8
@@ -76,19 +77,18 @@ ja_JP.UTF-8 UTF-8
 </code></pre><p><code>locale-gen</code></p>
 <p><code>echo LANG=en_US.UTF-8 &gt; /etc/locale.conf</code></p>
 <h3 id="主机名">主机名</h3>
-<p><code>echo Matebook &gt; /etc/hostname</code></p>
+<p><code>echo matebook &gt; /etc/hostname</code></p>
 <h3 id="hosts">hosts</h3>
 <p><code>vim /etc/hosts</code></p>
 <pre><code>127.0.0.1	localhost
 ::1	localhost
-127.0.0.1	huizhi.localdomain	huizhi
-::1	huizhi.localdomain	huizhi
-</code></pre><h3 id="设置root密码">设置root密码</h3>
-<p><code>passwd</code></p>
-<h3 id="配置initramfs参数">配置initramfs参数</h3>
+127.0.0.1	matebook.localdomain	matebook
+</code></pre><h3 id="配置initramfs参数">配置initramfs参数</h3>
 <p><code>vim /etc/mkinitcpio.conf</code></p>
 <pre><code>HOOKS=(add btrfs)
 </code></pre><p><code>mkinitcpio -p linux</code></p>
+<h3 id="设置root密码">设置root密码</h3>
+<p><code>passwd</code></p>
 <h3 id="安装引导程序">安装引导程序</h3>
 <p><code>grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch</code></p>
 <p><code>grub-mkconfig -o /boot/grub/grub.cfg</code></p>
@@ -203,9 +203,8 @@ Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
 Server = https://mirror.redrock.team/archlinux/$repo/os/$arch
 Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch
 
-</code></pre><p>源：</p>
+</code></pre><p>Archlinuxcn源：</p>
 <p><code>sudo vim /etc/pacman.conf</code></p>
-<p>取消multilib前的注释</p>
 <pre><code>[archlinuxcn]
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 </code></pre><p><code>sudo pacman -Syu</code></p>
@@ -215,9 +214,9 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p><code>yay --aururl &quot;https://aur.tuna.tsinghua.edu.cn&quot; --save</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
 <h3 id="一条命令安装">一条命令安装</h3>
-<p><code>yay -S feh polybar picom redshift dunst ibus ibus-rime ibus-mozc clash virtualbox telegram-desktop mailspring gnome-keyring netease-cloud-music-gtk aria2 youtube-dl baidunetdisk-bin nutstore vsftpd nautilus gvfs-mtp ffmpegthumbnailer file-roller p7zip unrar nomacs deadbeef celluloid scrot obs-studio gnome-calculator gnome-sound-recorder jq typora wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts calibre gedit gedit-plugins git android-tools hugo scrcpy gimp materia-gtk-theme neofetch cronie tlp</code></p>
+<p><code>yay -S feh polybar picom redshift dunst ibus ibus-rime ibus-mozc clash virtualbox telegram-desktop mailspring gnome-keyring netease-cloud-music-gtk aria2 youtube-dl baidunetdisk-bin nutstore vsftpd nautilus gvfs-mtp ffmpegthumbnailer file-roller p7zip unrar nomacs deadbeef celluloid scrot obs-studio gnome-calculator gnome-sound-recorder jq typora wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts calibre gedit gedit-plugins git android-tools hugo scrcpy gimp materia-gtk-theme qogir-icon-theme-git lxappearance-gtk3 neofetch cronie tlp</code></p>
 <p><code>export https_proxy=127.0.0.1:7890</code></p>
-<p><code>yay -S zoom rofi-greenclip ttf-weather-icons davinci-resolve qogir-icon-theme</code></p>
+<p><code>yay -S zoom rofi-greenclip ttf-weather-icons olive</code></p>
 <h3 id="软件分类">软件分类</h3>
 <h4 id="壁纸">壁纸</h4>
 <p><code>yay -S feh</code></p>
@@ -320,21 +319,14 @@ write_enable=YES
 <h4 id="图像编辑">图像编辑</h4>
 <p><code>yay -S gimp</code></p>
 <h4 id="视频剪辑">视频剪辑</h4>
-<p>DaVinci Resolve</p>
-<p><code>sudo vim /etc/</code></p>
-<p>取消<code>multilib</code>前的注释</p>
-<p><code>yay -S davinci-resolve</code>（代理）</p>
-<p><code>sudo vim /usr/share/applications/com.blackmagicdesign.resolve.desktop</code></p>
-<pre><code>Exec=bash -c &quot;prime-run /opt/resolve/bin/resolve %U&quot;
-</code></pre><h4 id="主题美化">主题美化</h4>
+<p>Olive</p>
+<h4 id="主题美化">主题美化</h4>
 <p>gtk主题</p>
 <p><code>yay -S materia-gtk-theme</code></p>
 <p>图标包</p>
 <p><code>yay -S qogir-icon-theme</code>（代理）</p>
-<p>应用gtk3主题</p>
-<p><code>gsettings set org.gnome.desktop.interface gtk-theme Materia-light</code></p>
-<p>应用光标主题</p>
-<p><code>gsettings set org.gnome.desktop.interface cursor-theme Qogir</code></p>
+<p>调整工具</p>
+<p><code>yay -S lxappearance-gtk3</code></p>
 <h4 id="系统信息">系统信息</h4>
 <p><code>yay -S neofetch</code></p>
 <h4 id="自动化">自动化</h4>
@@ -344,12 +336,29 @@ write_enable=YES
 <p><code>yay -S tlp</code></p>
 <p><code>sudo systemctl enable --now tlp.service</code></p>
 <h2 id="四完善配置">四、完善配置</h2>
-<h3 id="34-恢复配置文件">34. 恢复配置文件</h3>
+<h3 id="自动挂载windows分区">自动挂载windows分区</h3>
+<p><code>sudo mkdir /media</code></p>
+<p><code>sudo mkdir /media/Windows</code></p>
+<p><code>sudo mkdir /media/Data</code></p>
+<p><code>sudo vim /etc/fstab</code></p>
+<pre><code>/dev/sda4       /media/Windows    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
+/dev/sdb2       /media/Data    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
+</code></pre><h3 id="建立常用目录的软链接">建立常用目录的软链接</h3>
+<p><code>ln -s /media/Data/Hugo ~/Hugo</code></p>
+<p><code>rm -r ~/Movies &amp;&amp; ln -s /media/Data/Movies ~/Movies</code></p>
+<p><code>rm -r ~/Music &amp;&amp; ln -s /media/Data/Music ~/Music</code></p>
+<p><code>rm -r ~/Pictures &amp;&amp; ln -s /media/Data/Pictures ~/Pictures</code></p>
+<h3 id="从windows安装字体">从Windows安装字体</h3>
+<p><code>sudo mkdir /usr/share/fonts/WindowsFonts</code></p>
+<p><code>sudo cp /media/Windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts</code></p>
+<p><code>sudo chmod 755 /usr/share/fonts/WindowsFonts/*</code></p>
+<p><code>fc-cache -f</code></p>
+<h3 id="恢复配置文件">恢复配置文件</h3>
 <p><code>git clone https://github.com/qvshuo/dotfiles.git</code></p>
 <p><code>chmod +x ~/.config/polybar/launch.sh</code></p>
 <p><code>chmod +x ~/.config/polybar/polybar-scripts/*</code></p>
 <p><code>chmod +x /home/huizhi/dotfiles/Desktop/script/*</code></p>
-<h3 id="35-软件配置文件目录">35. 软件配置文件目录</h3>
+<h3 id="软件配置文件目录">软件配置文件目录</h3>
 <h4 id="bspwm">bspwm</h4>
 <p>~/.config/bspwm/bspwmrc</p>
 <h4 id="sxhkd">sxhkd</h4>
@@ -368,26 +377,17 @@ write_enable=YES
 <p>~/.config/aria2</p>
 <h4 id="字体-1">字体</h4>
 <p>~/.config/fontconfig/fonts.conf</p>
-<h3 id="36-获取程序名称">36. 获取程序名称</h3>
+<h3 id="获取程序名称">获取程序名称</h3>
 <p><code>xprop | grep WM_CLASS</code></p>
 <p>点击窗口</p>
-<h3 id="37-获取字体列表">37. 获取字体列表</h3>
+<h3 id="获取字体列表">获取字体列表</h3>
 <p><code>fc-list :lang=zh</code></p>
 <p>Sarasa Gothic SC</p>
 <p>Source Han Serif SC</p>
 <p>Sarasa Mono SC</p>
-<h3 id="38-自动挂载windows分区">38. 自动挂载windows分区</h3>
-<p><code>sudo mkdir /media</code></p>
-<p><code>sudo mkdir /media/Windows</code></p>
-<p><code>sudo mkdir /media/Data</code></p>
-<p><code>sudo vim /etc/fstab</code></p>
-<pre><code>/dev/sda4       /media/Windows    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
-/dev/sdb2       /media/Data    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
-</code></pre><h3 id="39-从windows安装字体">39. 从Windows安装字体</h3>
-<p><code>sudo mkdir /usr/share/fonts/WindowsFonts</code></p>
-<p><code>sudo cp /media/Windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts</code></p>
-<p><code>sudo chmod 755 /usr/share/fonts/WindowsFonts/*</code></p>
-<p><code>fc-cache -f</code></p>
+<h3 id="修正windows时间">修正Windows时间</h3>
+<p>以管理员权限运行：</p>
+<p><code>reg add &quot;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation&quot; /v RealTimeIsUniversal /d 1 /t REG_QWORD /f</code></p>
 
     </div>
 
