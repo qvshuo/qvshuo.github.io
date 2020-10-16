@@ -51,7 +51,7 @@
 <p><code>btrfs su cr /mnt/@</code></p>
 <p><code>btrfs su cr /mnt/@home</code></p>
 <p>卸载根分区：</p>
-<p><code>unmount /mnt</code></p>
+<p><code>umount /mnt</code></p>
 <p>挂载子卷：</p>
 <p><code>mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt</code></p>
 <p><code>mkdir /mnt/home</code></p>
@@ -60,14 +60,14 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>monut /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装必需软件包">安装必需软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware iwd vim man-db man-pages btrfs-progs intel-ucode dosfstools ntfs-3g grub efibootmgr os-prober sudo fish</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode grub efibootmgr os-prober sudo fish iwd vim man-db man-pages</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
 <h3 id="进入新系统">进入新系统</h3>
 <p><code>arch-chroot /mnt</code></p>
 <h3 id="时区">时区</h3>
-<p><code>sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
+<p><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
 <p><code>hwclock --systohc</code></p>
 <h3 id="本地化">本地化</h3>
 <p><code>vim /etc/locale.gen</code></p>
@@ -105,7 +105,7 @@ ja_JP.UTF-8 UTF-8
 EnableNetworkConfiguration=true
 [Network]
 NameResolvingService=systemd
-</code></pre><p><code>reboot</code></p>
+</code></pre><p><code>systemctl restart iwd.service</code></p>
 <p><code>iwctl</code></p>
 <p>方案二：</p>
 <p><code>vim /etc/systemd/network/config.network</code></p>
@@ -214,7 +214,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p><code>yay --aururl &quot;https://aur.tuna.tsinghua.edu.cn&quot; --save</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
 <h3 id="一条命令安装">一条命令安装</h3>
-<p><code>yay -S feh polybar picom redshift dunst ibus ibus-rime ibus-mozc clash virtualbox telegram-desktop mailspring gnome-keyring netease-cloud-music-gtk aria2 youtube-dl baidunetdisk-bin nutstore vsftpd nautilus gvfs-mtp ffmpegthumbnailer file-roller p7zip unrar nomacs deadbeef celluloid scrot obs-studio gnome-calculator gnome-sound-recorder jq typora wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts calibre gedit gedit-plugins git android-tools hugo scrcpy gimp materia-gtk-theme qogir-icon-theme-git lxappearance-gtk3 neofetch cronie tlp</code></p>
+<p><code>yay -S feh polybar picom redshift dunst ibus ibus-rime ibus-mozc clash virtualbox telegram-desktop mailspring gnome-keyring netease-cloud-music-gtk aria2 youtube-dl baidunetdisk-bin nutstore vsftpd nautilus gvfs-mtp ffmpegthumbnailer file-roller p7zip unrar eog deadbeef celluloid scrot obs-studio gnome-calculator gnome-sound-recorder jq typora wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts calibre gedit gedit-plugins git android-tools hugo scrcpy gimp materia-gtk-theme qogir-icon-theme-git lxappearance-gtk3 neofetch cronie tlp</code></p>
 <p><code>export https_proxy=127.0.0.1:7890</code></p>
 <p><code>yay -S zoom rofi-greenclip ttf-weather-icons olive</code></p>
 <h3 id="软件分类">软件分类</h3>
@@ -240,15 +240,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p>电报</p>
 <p><code>yay -S telegram-desktop</code></p>
 <h4 id="电子邮件">电子邮件</h4>
-<p>利用polybar脚本inbox-imap-pythongpg实现收件箱计数</p>
-<p><code>yay -S gnupg</code></p>
-<p><code>gpg</code></p>
-<p><code>gpg --full-gen-key</code></p>
-<p><code>echo 'your password' &gt; /tmp/imappass</code></p>
-<p><code>gpg -er 'your gpg keyid' /tmp/imappass</code></p>
-<p><code>mv /tmp/imappass.gpg ~/.imappass.gpg</code></p>
-<p><code>shred /tmp/imappass &amp;&amp; rm /tmp/imappass</code></p>
-<p><code>chmod +x ~/.config/polybar/polybar-scripts/inbox-imap-pythongpg.sh</code></p>
+<p>Mailspring</p>
+<p><code>yay -S mailspring gnome-keyring</code></p>
 <h4 id="在线音乐">在线音乐</h4>
 <p><code>yay -S netease-cloud-music-gtk</code></p>
 <h4 id="下载工具">下载工具</h4>
@@ -278,7 +271,7 @@ write_enable=YES
 <h4 id="压缩软件">压缩软件</h4>
 <p><code>yay -S file-roller p7zip unrar</code></p>
 <h4 id="本地图片浏览器">本地图片浏览器</h4>
-<p><code>yay -S nomacs</code></p>
+<p><code>yay -S eog</code></p>
 <h4 id="本地音乐播放器">本地音乐播放器</h4>
 <p><code>yay -S deadbeef</code></p>
 <h4 id="本地视频播放器">本地视频播放器</h4>
@@ -349,7 +342,7 @@ write_enable=YES
 /dev/sdb2       /media/Data    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
 </code></pre><h3 id="建立常用目录的软链接">建立常用目录的软链接</h3>
 <p><code>ln -s /media/Data/Hugo ~/Hugo</code></p>
-<p><code>rm -r ~/Movies &amp;&amp; ln -s /media/Data/Movies ~/Movies</code></p>
+<p><code>rm -r ~/Movies &amp;&amp; ln -s /media/Data/Videos ~/Videos</code></p>
 <p><code>rm -r ~/Music &amp;&amp; ln -s /media/Data/Music ~/Music</code></p>
 <p><code>rm -r ~/Pictures &amp;&amp; ln -s /media/Data/Pictures ~/Pictures</code></p>
 <h3 id="从windows安装字体">从Windows安装字体</h3>

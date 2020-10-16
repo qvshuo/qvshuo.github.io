@@ -32,7 +32,7 @@ mount /dev/sdaX /mnt
 btrfs su cr /mnt/@
 btrfs su cr /mnt/@home
 卸载根分区：
-unmount /mnt
+umount /mnt
 挂载子卷：
 mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt
 mkdir /mnt/home
@@ -40,7 +40,7 @@ mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@home /dev/sdaX /mn
 挂载ESP分区：
 mkdir /mnt/boot
 monut /dev/sdaY /mnt/boot
-安装必需软件包 pacstrap /mnt base base-devel linux linux-firmware iwd vim man-db man-pages btrfs-progs intel-ucode dosfstools ntfs-3g grub efibootmgr os-prober sudo fish</description>
+安装必需软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode grub efibootmgr os-prober sudo fish iwd vim man-db man-pages</description>
     </item>
     
     <item>
