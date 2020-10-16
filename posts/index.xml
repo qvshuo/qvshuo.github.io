@@ -23,15 +23,9 @@ station wlan0 get-networks
 station wlan0 connect SSID
 quit
 设置系统时间 timedatectl set-local-rtc 1
-格式化并挂载分区 fdisk -l
-mkfs.ext4 -L Arch /dev/sdaX
-mount /dev/sdaX /mnt
-mkdir /mnt/boot
-mount /dev/sdaY /mnt/boot
-btrfs用下面的：
-lsblk
+格式化并挂载分区 lsblk
 格式化根分区：
-mkfs.btrfs -L arch/dev/sdaX
+mkfs.btrfs -L Arch /dev/sdaX
 挂载根分区：
 mount /dev/sdaX /mnt
 创建子卷：
@@ -40,7 +34,13 @@ btrfs su cr /mnt/@home
 卸载根分区：
 unmount /mnt
 挂载子卷：
-mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt</description>
+mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt
+mkdir /mnt/home
+mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@home /dev/sdaX /mnt/home
+挂载ESP分区：
+mkdir /mnt/boot
+monut /dev/sdaY /mnt/boot
+安装必需软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs intel-ucode dosfstools ntfs-3g grub efibootmgr os-prober sudo fish iwd vim</description>
     </item>
     
     <item>
