@@ -332,7 +332,11 @@ write_enable=YES
 <h4 id="自动化">自动化</h4>
 <p><code>yay -S cronie</code></p>
 <p><code>sudo systemctl enable --now cronie.service</code></p>
-<h4 id="电池优化">电池优化</h4>
+<p><code>crontab -e</code></p>
+<pre><code>0 * * * * /home/huizhi/Desktop/scripts/autofeh.sh
+55 23 * * * /home/huizhi/Desktop/scripts/goodnight.sh
+45 6 * * * /home/huizhi/Desktop/scripts/alarm.sh
+</code></pre><h4 id="电池优化">电池优化</h4>
 <p><code>yay -S tlp</code></p>
 <p><code>sudo systemctl enable --now tlp.service</code></p>
 <h2 id="四完善配置">四、完善配置</h2>
@@ -357,7 +361,7 @@ write_enable=YES
 <p><code>git clone https://github.com/qvshuo/dotfiles.git</code></p>
 <p><code>chmod +x ~/.config/polybar/launch.sh</code></p>
 <p><code>chmod +x ~/.config/polybar/polybar-scripts/*</code></p>
-<p><code>chmod +x /home/huizhi/dotfiles/Desktop/script/*</code></p>
+<p><code>chmod +x /home/huizhi/dotfiles/Desktop/scripts/*</code></p>
 <h3 id="软件配置文件目录">软件配置文件目录</h3>
 <h4 id="bspwm">bspwm</h4>
 <p>~/.config/bspwm/bspwmrc</p>
