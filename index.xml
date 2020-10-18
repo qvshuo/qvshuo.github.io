@@ -40,7 +40,7 @@ mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@home /dev/sdaX /mn
 挂载ESP分区：
 mkdir /mnt/boot
 monut /dev/sdaY /mnt/boot
-安装必需软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode grub efibootmgr os-prober sudo fish iwd vim man-db man-pages</description>
+安装系统基础软件包 pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode grub efibootmgr os-prober sudo fish iwd vim man-db man-pages</description>
     </item>
     
     <item>

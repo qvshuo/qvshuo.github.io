@@ -59,8 +59,8 @@
 <p>挂载ESP分区：</p>
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>monut /dev/sdaY /mnt/boot</code></p>
-<h3 id="安装必需软件包">安装必需软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode grub efibootmgr os-prober sudo fish iwd vim man-db man-pages</code></p>
+<h3 id="安装系统基础软件包">安装系统基础软件包</h3>
+<p><code>pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode grub efibootmgr os-prober sudo fish iwd vim man-db man-pages</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -214,7 +214,7 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <p><code>yay --aururl &quot;https://aur.tuna.tsinghua.edu.cn&quot; --save</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
 <h3 id="一条命令安装">一条命令安装</h3>
-<p><code>yay -S feh polybar picom redshift dunst ibus ibus-rime ibus-mozc clash virtualbox telegram-desktop sylpheed netease-cloud-music-gtk aria2 youtube-dl baidunetdisk-bin nutstore vsftpd nginx nautilus gvfs-mtp ffmpegthumbnailer file-roller p7zip unrar eog deadbeef celluloid scrot obs-studio gnome-calculator gnome-sound-recorder jq typora wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts calibre gedit gedit-plugins git android-tools hugo scrcpy gimp materia-gtk-theme qogir-icon-theme-git lxappearance-gtk3 neofetch cronie tlp</code></p>
+<p><code>yay -S feh polybar picom redshift dunst ibus ibus-rime ibus-mozc clash virtualbox telegram-desktop netease-cloud-music-gtk aria2 youtube-dl baidunetdisk-bin nutstore vsftpd nginx nautilus gvfs-mtp ffmpegthumbnailer file-roller p7zip unrar eog deadbeef celluloid scrot obs-studio gnome-calculator gnome-sound-recorder jq typora wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts calibre gedit gedit-plugins git android-tools hugo scrcpy gimp materia-gtk-theme qogir-icon-theme-git lxappearance-gtk3 neofetch cronie tlp</code></p>
 <p><code>export https_proxy=127.0.0.1:7890</code></p>
 <p><code>yay -S zoom rofi-greenclip ttf-weather-icons olive</code></p>
 <h3 id="软件分类">软件分类</h3>
@@ -236,12 +236,12 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <h4 id="通讯">通讯</h4>
 <p>微信 &amp; QQ（Windows虚拟机）</p>
 <p><code>yay -S  virtualbox</code></p>
-<p>如果在用默认的 linux 内核，内核模块建议安装<code>virtualbox-host-modules-arch</code></p>
+<p>如果在用默认的 linux 内核，内核模块建议安装<code>virtualbox-host-modules-arch</code>，如果用了其它的内核，需要安装<code>virtualbox-host-dkms</code>，为了能基于<code>virtualbox-host-dkms</code>编译内核模块，你还要安装与内核对应的内核头文件（例如<code>linux-lts</code>内核的头文件是<code>linux-lts-headers</code>）。</p>
 <p>电报</p>
 <p><code>yay -S telegram-desktop</code></p>
 <h4 id="电子邮件">电子邮件</h4>
-<p>Sylpheed</p>
-<p><code>yay -S sylpheed</code></p>
+<p><code>cd ~/.config/polybar/polybar-scripts</code></p>
+<p><code>git clone https://github.com/qvshuo/polybar-inbox-imap-python.git</code></p>
 <h4 id="在线音乐">在线音乐</h4>
 <p><code>yay -S netease-cloud-music-gtk</code></p>
 <h4 id="下载工具">下载工具</h4>
