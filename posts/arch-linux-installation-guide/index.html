@@ -231,6 +231,8 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 <h4 id="输入法">输入法</h4>
 <p><code>yay -S ibus ibus-rime ibus-mozc</code></p>
 <p><code>ibus-setup</code></p>
+<p>ibus配色方案：</p>
+<p><code>git clone https://github.com/qvshuo/ibus-custom-theme.git</code></p>
 <h4 id="代理">代理</h4>
 <p><code>yay -S clash</code></p>
 <h4 id="通讯">通讯</h4>
@@ -331,6 +333,7 @@ write_enable=YES
 <p><code>yay -S gimp</code></p>
 <h4 id="视频剪辑">视频剪辑</h4>
 <p>Olive</p>
+<p><code>yay -S olive</code></p>
 <h4 id="主题美化">主题美化</h4>
 <p>gtk主题</p>
 <p><code>yay -S materia-gtk-theme</code></p>
@@ -362,6 +365,7 @@ write_enable=YES
 <p><code>rm -r ~/Movies &amp;&amp; ln -s /media/Data/Videos ~/Videos</code></p>
 <p><code>rm -r ~/Music &amp;&amp; ln -s /media/Data/Music ~/Music</code></p>
 <p><code>rm -r ~/Pictures &amp;&amp; ln -s /media/Data/Pictures ~/Pictures</code></p>
+<p><code>rm -r ~/Documents &amp;&amp; ln -s /media/Data/Documents ~/Documents</code></p>
 <h3 id="从windows安装字体">从Windows安装字体</h3>
 <p><code>sudo mkdir /usr/share/fonts/WindowsFonts</code></p>
 <p><code>sudo cp /media/Windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts</code></p>
@@ -369,28 +373,6 @@ write_enable=YES
 <p><code>fc-cache -f</code></p>
 <h3 id="恢复配置文件">恢复配置文件</h3>
 <p><code>git clone https://github.com/qvshuo/dotfiles.git</code></p>
-<p><code>chmod +x ~/.config/polybar/launch.sh</code></p>
-<p><code>chmod +x ~/.config/polybar/polybar-scripts/*</code></p>
-<p><code>chmod +x /home/huizhi/dotfiles/Desktop/scripts/*</code></p>
-<h3 id="软件配置文件目录">软件配置文件目录</h3>
-<h4 id="bspwm">bspwm</h4>
-<p>~/.config/bspwm/bspwmrc</p>
-<h4 id="sxhkd">sxhkd</h4>
-<p>~/.config/sxhkd/sxhdrc</p>
-<h4 id="polybar">polybar</h4>
-<p>~/.config/polybar</p>
-<h4 id="alacritty">Alacritty</h4>
-<p>~/.config/alacritty/alacritty.yml</p>
-<h4 id="rofi">rofi</h4>
-<p>~/.config/rofi</p>
-<h4 id="dunst">dunst</h4>
-<p>~/.config/dunst/dunstrc</p>
-<h4 id="ibus-rime">ibus-rime</h4>
-<p>~/.config/ibus/rime</p>
-<h4 id="aria2">aria2</h4>
-<p>~/.config/aria2</p>
-<h4 id="字体-1">字体</h4>
-<p>~/.config/fontconfig/fonts.conf</p>
 <h3 id="获取程序名称">获取程序名称</h3>
 <p><code>xprop | grep WM_CLASS</code></p>
 <p>点击窗口</p>
@@ -400,7 +382,7 @@ write_enable=YES
 <p>Source Han Serif SC</p>
 <p>Sarasa Mono SC</p>
 <h3 id="修正windows时间">修正Windows时间</h3>
-<p>以管理员权限运行：</p>
+<p>Windows下以管理员权限运行：</p>
 <p><code>reg add &quot;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation&quot; /v RealTimeIsUniversal /d 1 /t REG_QWORD /f</code></p>
 
     </div>
