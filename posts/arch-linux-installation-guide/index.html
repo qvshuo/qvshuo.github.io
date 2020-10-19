@@ -118,14 +118,15 @@ DHCP=yes
 <p><code>systemctl enable --now systemd-resolved.service</code></p>
 <p><code>systemctl enable --now iwd.service</code></p>
 <h3 id="添加新用户">添加新用户</h3>
-<p><code>useradd -m -G wheel huizhi</code></p>
+<p><code>useradd -m -G wheel,video huizhi</code></p>
 <p><code>passwd huizhi</code></p>
 <p><code>vim /etc/sudoers</code></p>
 <pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
 </code></pre><h2 id="二图形界面安装">二、图形界面安装</h2>
 <h3 id="显示">显示</h3>
+<p><code>pacman -S light</code></p>
 <p>Intel</p>
-<p><code>pacman -S xf86-video-intel vulkan-intel libva-intel-driver</code></p>
+<p><code>pacman -S mesa vulkan-intel libva-intel-driver</code></p>
 <p>Nvidia</p>
 <p><code>pacman -S nvidia nvidia-prime</code></p>
 <h3 id="声音">声音</h3>
@@ -133,7 +134,7 @@ DHCP=yes
 <h3 id="触控板">触控板</h3>
 <p><code>pacman -S xf86-input-libinput</code></p>
 <h3 id="x">X</h3>
-<p><code>pacman -S xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight xdg-user-dirs</code></p>
+<p><code>pacman -S xorg-server xorg-xinit xorg-xsetroot xdg-user-dirs</code></p>
 <h3 id="窗口管理器">窗口管理器</h3>
 <p><code>pacman -S bspwm sxhkd</code></p>
 <h3 id="基础软件">基础软件</h3>
