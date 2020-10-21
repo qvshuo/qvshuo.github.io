@@ -25,7 +25,7 @@ quit
 设置系统时间 timedatectl set-ntp true
 格式化并挂载分区 lsblk
 格式化根分区：
-mkfs.btrfs -L Arch /dev/sdaX
+mkfs.btrfs -f -L Arch /dev/sdaX
 挂载根分区：
 mount /dev/sdaX /mnt
 创建子卷：
@@ -39,8 +39,7 @@ mkdir /mnt/home
 mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@home /dev/sdaX /mnt/home
 挂载ESP分区：
 mkdir /mnt/boot
-monut /dev/sdaY /mnt/boot
-安装系统基础软件包 pacstrap /mnt base base-devel linux-lts linux-lts-headers linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode grub efibootmgr os-prober sudo fish iwd vim man-db man-pages</description>
+mount /dev/sdaY /mnt/boot</description>
     </item>
     
     <item>
