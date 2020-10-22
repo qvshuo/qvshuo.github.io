@@ -219,15 +219,9 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <p>修改镜像列表：</p>
 <p><code>sudo vim /etc/pacman.d/mirrorlist</code></p>
 <pre><code>Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.cqu.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.dgut.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirror.redrock.team/archlinux/$repo/os/$arch
 Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 </code></pre><p>Archlinuxcn源：</p>
 <p><code>sudo vim /etc/pacman.conf</code></p>
 <pre><code>[archlinuxcn]
@@ -237,7 +231,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>sudo pacman -S yay</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
 <h3 id="一条命令安装">一条命令安装</h3>
-<p><code>yay -S nitrogen polybar picom redshift dunst ibus ibus-rime ibus-mozc clash virtualbox telegram-desktop netease-cloud-music-gtk aria2 youtube-dl baidunetdisk-bin nutstore vsftpd nginx nautilus gvfs-mtp ffmpegthumbnailer file-roller p7zip unrar viewnior cmus mpv scrot obs-studio jq typora wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts git android-tools hugo scrcpy gimp materia-gtk-theme lxappearance-gtk3 neofetch cronie tlp xsecurelock</code></p>
+<p><code>yay -S nitrogen polybar picom redshift dunst ibus ibus-rime ibus-mozc clash virtualbox telegram-desktop netease-cloud-music-gtk aria2 youtube-dl baidunetdisk-bin nutstore vsftpd nginx nautilus gvfs-mtp ffmpegthumbnailer file-roller p7zip unrar viewnior deadbeef celluloid scrot obs-studio jq typora wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts git android-tools hugo scrcpy gimp materia-gtk-theme lxappearance-gtk3 neofetch cronie tlp xsecurelock</code></p>
 <p><code>export https_proxy=127.0.0.1:7890</code></p>
 <p><code>yay -S zoom rofi-greenclip ttf-weather-icons olive qogir-icon-theme</code></p>
 <h3 id="软件分类">软件分类</h3>
@@ -313,9 +307,9 @@ write_enable=YES
 <h4 id="本地图片浏览器">本地图片浏览器</h4>
 <p><code>yay -S viewnior</code></p>
 <h4 id="本地音乐播放器">本地音乐播放器</h4>
-<p><code>yay -S cmus</code></p>
+<p><code>yay -S deadbeef</code></p>
 <h4 id="本地视频播放器">本地视频播放器</h4>
-<p><code>yay -S mpv</code></p>
+<p><code>yay -S celluloid</code></p>
 <h4 id="截图">截图</h4>
 <p><code>yay -S scrot</code></p>
 <h4 id="录屏">录屏</h4>
