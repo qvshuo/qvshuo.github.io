@@ -34,9 +34,9 @@ btrfs su cr /mnt/@home
 卸载根分区：
 umount /mnt
 挂载子卷：
-mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@ /dev/sdaX /mnt
+mount -o compress=lzo,subvol=@ /dev/sdaX /mnt
 mkdir /mnt/home
-mount -o noatime,discard,ssd,space_cache,compress=lzo,subvol=@home /dev/sdaX /mnt/home
+mount -o compress=lzo,subvol=@home /dev/sdaX /mnt/home
 挂载ESP分区：
 mkdir /mnt/boot
 mount /dev/sdaY /mnt/boot</description>
