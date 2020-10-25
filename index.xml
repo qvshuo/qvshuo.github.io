@@ -15,7 +15,7 @@
       <guid>https://qvshuo.faith/posts/ranger%E7%AC%94%E8%AE%B0/</guid>
       <description>配置文件 ~/.config/ranger 用户配置文件目录
 ranger --copy-config=all 复制默认配置文件至上述目录
-对于 rc.conf 和 commands.py ，Ranger会按顺序加载默认配置和用户配置，因而可最小化配置。 对于 scope.sh 和 rifle.conf，Ranger会加载默认配置或默认配置。
+对于 rc.conf 和 commands.py ，Ranger会按顺序加载默认配置和用户配置，因而可最小化配置。 对于 scope.sh 和 rifle.conf，Ranger会加载默认配置或用户配置。
 export RANGER_LOAD_DEFAULT_RC=FALSE 避免加载默认配置。
 文件打开方式 nvim ~/.config/ranger/rifle.conf
 # Documents ext wps|wpt|doc|dot|docx, has wps, X, flag f = wps &amp;quot;$@&amp;quot; ext et|ett|xls|xlt|xlsx, has et, X, flag f = et &amp;quot;$@&amp;quot; ext dps|dpt|ppt|pot|pptx|pps, has wpp, X, flag f = wpp &amp;quot;$@&amp;quot; ext pdf, has wpspdf, X, flag f = wpspdf &amp;quot;$@&amp;quot; # Images mime ^image, has viewnior, X, flag f = viewnior -- &amp;quot;$@&amp;quot; 自定义快捷键 nvim ~/.</description>

@@ -29,7 +29,7 @@
 <p><code>~/.config/ranger</code> 用户配置文件目录</p>
 <p><code>ranger --copy-config=all</code> 复制默认配置文件至上述目录</p>
 <p>对于 <code>rc.conf</code> 和 <code>commands.py</code> ，Ranger会按顺序加载默认配置和用户配置，因而可最小化配置。
-对于 <code>scope.sh</code> 和 <code>rifle.conf</code>，Ranger会加载默认配置或默认配置。</p>
+对于 <code>scope.sh</code> 和 <code>rifle.conf</code>，Ranger会加载默认配置或用户配置。</p>
 <p><code>export RANGER_LOAD_DEFAULT_RC=FALSE</code> 避免加载默认配置。</p>
 <h2 id="文件打开方式">文件打开方式</h2>
 <p><code>nvim ~/.config/ranger/rifle.conf</code></p>
@@ -139,7 +139,7 @@ makedirs(dirname)
 <ol>
 <li>图标支持</li>
 </ol>
-<p><code>yay -S nerd-fonts-complete</code></p>
+<p><code>yay -S nerd-fonts-roboto-mono</code></p>
 <p><code>git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons</code></p>
 <p><code>nvim ~/.config/ranger/rc.conf</code></p>
 <pre><code># 图标支持
@@ -160,13 +160,13 @@ map ec compress
 <p><code>nvim ~/.config/ranger/rc.conf</code></p>
 <pre><code>set preview_images true
 set preview_images_method ueberzug
-</code></pre><h1 id="视频预览">视频预览</h1>
+</code></pre><h2 id="视频预览">视频预览</h2>
 <p><code>sudo pacman -S ffmpegthumbnailer</code></p>
 <p><code>nvim ~/.config/ranger/scope.sh</code></p>
 <p>搜索<code>ffmpegthumbnailer</code>并取消video部分注释</p>
 <p><code>nvim ~/.config/ranger/rc.conf</code></p>
 <p>搜索<code>set preview_script</code></p>
-<h1 id="vcs集成">VCS集成</h1>
+<h2 id="vcs集成">VCS集成</h2>
 <p><code>nvim ~/.config/ranger/rc.conf</code></p>
 <pre><code>set vcs_aware true
 </code></pre>
