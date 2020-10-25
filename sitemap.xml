@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://qvshuo.faith/posts/</loc>
-    <lastmod>2020-10-25T19:43:30+08:00</lastmod>
+    <loc>https://qvshuo.faith/posts/arch-linux-configuration-guide/</loc>
+    <lastmod>2020-10-25T20:48:55+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://qvshuo.faith/posts/ranger%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2020-10-25T19:43:30+08:00</lastmod>
+    <loc>https://qvshuo.faith/posts/</loc>
+    <lastmod>2020-10-25T20:48:55+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://qvshuo.faith/</loc>
+    <lastmod>2020-10-25T20:48:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://qvshuo.faith/posts/ranger%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2020-10-25T19:43:30+08:00</lastmod>
   </url>
   
