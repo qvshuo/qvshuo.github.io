@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Ranger笔记 | yhz</title>
+    <link rel="shortcut icon" href="https://githubpages-1253944953.cos.ap-chengdu.myqcloud.com/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+    <body>
+        <div id="header">
+    <span id="home">
+        <a href="/">首页</a> 
+    </span>
+    <span id="about">
+        <a href="/about/">关于</a>
+    </span>
+    <hr>
+</div>
+        <div class="main">
+        
+    <h1 id="singletitle">Ranger笔记</h1>
+    
+        <div id="singledate">
+            2020/10/25
+        </div>
+    
+    <div id="content">
+        <h2 id="配置文件">配置文件</h2>
+<p><code>~/.config/ranger</code> 用户配置文件目录</p>
+<p><code>ranger --copy-config=all</code> 复制默认配置文件至上述目录</p>
+<p>对于 <code>rc.conf</code> 和 <code>commands.py</code> ，Ranger会按顺序加载默认配置和用户配置，因而可最小化配置。
+对于 <code>scope.sh</code> 和 <code>rifle.conf</code>，Ranger会加载默认配置或默认配置。</p>
+<p><code>export RANGER_LOAD_DEFAULT_RC=FALSE</code> 避免加载默认配置。</p>
+<h2 id="文件打开方式">文件打开方式</h2>
+<p><code>nvim ~/.config/ranger/rifle.conf</code></p>
+<pre><code># Documents
+ext wps|wpt|doc|dot|docx, has wps, X, flag f = wps &quot;$@&quot;
+ext et|ett|xls|xlt|xlsx, has et, X, flag f = et &quot;$@&quot;
+ext dps|dpt|ppt|pot|pptx|pps, has wpp, X, flag f = wpp &quot;$@&quot;
+ext pdf, has wpspdf, X, flag f = wpspdf &quot;$@&quot;
+
+# Images
+mime ^image, has viewnior, X, flag f = viewnior -- &quot;$@&quot;
+</code></pre><h2 id="自定义快捷键">自定义快捷键</h2>
+<p><code>nvim ~/.config/ranger/rc.conf</code></p>
+<pre><code># 智能重命名
+
+map cw eval fm.execute_console(&quot;bulkrename&quot;) if fm.thisdir.marked_items else fm.open_console(&quot;rename &quot;)
+
+# 启用回收站
+
+map DD shell mv -i %s ~/.local/share/Trash/files/ &amp;&amp; echo &quot;trashed %s        from_dir $(pwd)&quot; &gt;&gt; /.config/ranger/trash_history 
+map uD shell fileToRestore=$(cat ~/.config/ranger/trash_history | grep &quot;^trashed&quot; | tail -n 1 | cut -c10- | awk -F&quot;from_dir &quot; '{print $1}' | rev | cut -c10- | rev) &amp;&amp; mv -i ~/.local/share/Trash/files/$fileToRestore $fileToRestore &amp;&amp; echo &quot;         untrashed $(pwd)/$fileToRestore&quot; &gt;&gt; ~/.config/ranger/trash_history &amp;&amp; unset $fileToRestore
+map Dh shell less ~/.config/ranger/trash_history
+
+# `DD` 将文件移动至回收站
+# `uD` 恢复最近删除的文件至当前文件夹
+# `Dh` 查看回收历史
+
+# 快速过滤文件
+
+map f console scout -ftsea%space
+
+</code></pre><h2 id="自定义命令">自定义命令</h2>
+<ol>
+<li>mkcd</li>
+</ol>
+<p><code>nvim .config/ranger/commands.py</code></p>
+<pre><code>class mkcd(Command):
+    &quot;&quot;&quot;
+    :mkcd &lt;dirname&gt;
+
+    Creates a directory with the name &lt;dirname&gt; and enters it.
+    &quot;&quot;&quot;
+
+    def execute(self):
+        from os.path import join, expanduser, lexists
+        from os import makedirs
+        import re
+
+        dirname = join(self.fm.thisdir.path, expanduser(self.rest(1)))
+        if not lexists(dirname):
+
+makedirs(dirname)
+
+            match = re.search('^/|^~[^/]*/', dirname)
+            if match:
+                self.fm.cd(match.group(0))
+                dirname = dirname[match.end(0):]
+
+            for m in re.finditer('[^/]+', dirname):
+                s = m.group(0)
+                if s == '..' or (s.startswith('.') and not self.fm.settings['show_hidden']):
+                    self.fm.cd(s)
+                else:
+                    ## We force ranger to load content before calling `scout`.
+                    self.fm.thisdir.load_content(schedule=False)
+                    self.fm.execute_console('scout -ae ^{}$'.format(s))
+        else:
+            self.fm.notify(&quot;file/directory exists!&quot;, bad=True)
+</code></pre><ol start="2">
+<li>fzf集成</li>
+</ol>
+<p><code>yay -S fzf</code></p>
+<p><code>nvim .config/ranger/commands.py</code></p>
+<pre><code>class fzf_select(Command):
+    &quot;&quot;&quot;
+    :fzf_select
+
+    Find a file using fzf.
+
+    With a prefix argument select only directories.
+
+    See: https://github.com/junegunn/fzf
+    &quot;&quot;&quot;
+    def execute(self):
+        import subprocess
+        import os.path
+        if self.quantifier:
+            # match only directories
+            command=&quot;find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            -o -type d -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;
+        else:
+            # match files and directories
+            command=&quot;find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            -o -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;
+        fzf = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
+        stdout, stderr = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.rstrip('\n'))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
+</code></pre><p><code>nvim ~/.config/ranger/rc.conf</code></p>
+<p>绑定fzf集成快捷键</p>
+<p><code>map &lt;C-f&gt; fzf_select</code></p>
+<h2 id="插件">插件</h2>
+<ol>
+<li>图标支持</li>
+</ol>
+<p><code>yay -S nerd-fonts-complete</code></p>
+<p><code>git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons</code></p>
+<p><code>nvim ~/.config/ranger/rc.conf</code></p>
+<pre><code># 图标支持
+default_linemode devicons
+</code></pre><ol start="2">
+<li>压缩与解压缩</li>
+</ol>
+<p><code>yay -S atool</code></p>
+<p><code>git clone https://github.com/maximtrp/ranger-archives.git</code></p>
+<p>将<code>compress.py</code>和<code>extract.py</code>复制至<code>~/.config/ranger/plugins</code></p>
+<p>绑定快捷键：</p>
+<p><code>nvim ~/.config/ranger/rc.conf</code></p>
+<pre><code># 压缩与解压缩
+map ex extract
+map ec compress
+</code></pre><h2 id="图像预览">图像预览</h2>
+<p><code>sudo pacman -S ueberzug</code></p>
+<p><code>nvim ~/.config/ranger/rc.conf</code></p>
+<pre><code>set preview_images true
+set preview_images_method ueberzug
+</code></pre><h1 id="视频预览">视频预览</h1>
+<p><code>sudo pacman -S ffmpegthumbnailer</code></p>
+<p><code>nvim ~/.config/ranger/scope.sh</code></p>
+<p>搜索<code>ffmpegthumbnailer</code>并取消video部分注释</p>
+<p><code>nvim ~/.config/ranger/rc.conf</code></p>
+<p>搜索<code>set preview_script</code></p>
+<h1 id="vcs集成">VCS集成</h1>
+<p><code>nvim ~/.config/ranger/rc.conf</code></p>
+<pre><code>set vcs_aware true
+</code></pre>
+    </div>
+
+        </div>
+        <div id="footer">
+    <hr>
+    <div><span style="color: #555;">&copy 2016-2020 </span><a href="https://qvshuo.faith/">yhz</a></div>
+    <div><span style="color: #555;">Powered by </span><a href="https://gohugo.io/">Hugo</a> <span style="color: #f6f6f6;">| </span><span style="color: #555;">Theme by </span><a href="https://github.com/qvshuo/hugo-theme-flower">qvshuo</a></div>
+</div>
+
+    </body>
+</html>
