@@ -166,22 +166,6 @@ mime ^image, has viewnior, X, flag f = viewnior -- &quot;$@&quot;
 <pre><code># 智能重命名
 
 map cw eval fm.execute_console(&quot;bulkrename&quot;) if fm.thisdir.marked_items else fm.open_console(&quot;rename &quot;)
-
-# 启用回收站
-# `DD` 将文件移动至回收站
-# `uD` 恢复最近删除的文件至当前文件夹
-# `Dh` 查看回收历史
-
-map DD shell mv -i %s ~/.local/share/Trash/files/ &amp;&amp; echo &quot;trashed %s        from_dir $(pwd)&quot; &gt;&gt; /.config/ranger/trash_history
-
-map uD shell fileToRestore=$(cat ~/.config/ranger/trash_history | grep &quot;^trashed&quot; | tail -n 1 | cut -c10- | awk -F&quot;from_dir &quot; '{print $1}' | rev | cut -c10- | rev) &amp;&amp; mv -i ~/.local/share/Trash/files/$fileToRestore $fileToRestore &amp;&amp; echo &quot;         untrashed $(pwd)/$fileToRestore&quot; &gt;&gt; ~/.config/ranger/trash_history &amp;&amp; unset $fileToRestore
-
-map Dh shell less ~/.config/ranger/trash_history
-
-# 快速过滤文件
-
-map f console scout -ftsea%space
-
 </code></pre><h4 id="自定义命令">自定义命令</h4>
 <ol>
 <li>mkcd</li>
@@ -222,7 +206,7 @@ makedirs(dirname)
 </code></pre><ol start="2">
 <li>fzf集成</li>
 </ol>
-<p><code>yay -S fzf</code></p>
+<p><code>yay -S fzf the_silver_searcher</code></p>
 <p><code>vim .config/ranger/commands.py</code></p>
 <pre><code>class fzf_select(Command):
     &quot;&quot;&quot;
