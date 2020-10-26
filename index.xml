@@ -8,63 +8,12 @@
     <language>zh-CN</language>
     <lastBuildDate>Sun, 25 Oct 2020 20:48:55 +0800</lastBuildDate><atom:link href="https://qvshuo.faith/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Arch Linux Configuration Guide.md</title>
-      <link>https://qvshuo.faith/posts/arch-linux-configuration-guide/</link>
-      <pubDate>Sun, 25 Oct 2020 20:48:55 +0800</pubDate>
-      
-      <guid>https://qvshuo.faith/posts/arch-linux-configuration-guide/</guid>
-      <description>硬件 触控板优化 sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf
-Option &amp;quot;Tapping&amp;quot; &amp;quot;on&amp;quot; Option &amp;quot;NaturalScrolling&amp;quot; &amp;quot;true&amp;quot; reboot
-电池优化 sudo systemctl enable --now tlp.service
-Nvidia显卡 方案一：
-prime方案
-pacman -S nvidia nvidia-prime
-方案二：
-禁用Nvidia显卡
-安装bbswitch：
-sudo pacman -S bbswitch
-开机加载bbswitch模块：
-sudo vim /etc/modules-load.d/bbswitch.conf
-键入：
-bbswitch
-设置bbswitch加载参数，实现开机时关闭独显，关机时开启独显，避免重启进入Windows时找不到独显：
-sudo vim /etc/modprobe.d/bbswitch.conf
-键入：
-options bbswitch load_state=0 unload_state=1
-屏蔽nouveau驱动:
-sudo vim /etc/modprobe.d/blacklistnvidia.conf
-键入：
-blacklist nouveau
-重建 initrd：
-sudo mkinitcpio -p linux
-重启：
-reboot
-执行：
-lspci | grep NVIDIA
-如有 (rev ff)字样 ，则表示独显已成功禁用。</description>
-    </item>
-    
-    <item>
-      <title>Ranger笔记</title>
-      <link>https://qvshuo.faith/posts/ranger%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Sun, 25 Oct 2020 19:43:30 +0800</pubDate>
-      
-      <guid>https://qvshuo.faith/posts/ranger%E7%AC%94%E8%AE%B0/</guid>
-      <description>配置文件 ~/.config/ranger 用户配置文件目录
-ranger --copy-config=all 复制默认配置文件至上述目录
-对于 rc.conf 和 commands.py ，Ranger会按顺序加载默认配置和用户配置，因而可最小化配置。 对于 scope.sh 和 rifle.conf，Ranger会加载默认配置或用户配置。
-export RANGER_LOAD_DEFAULT_RC=FALSE 避免加载默认配置。
-文件打开方式 nvim ~/.config/ranger/rifle.conf
-# Documents ext wps|wpt|doc|dot|docx, has wps, X, flag f = wps &amp;quot;$@&amp;quot; ext et|ett|xls|xlt|xlsx, has et, X, flag f = et &amp;quot;$@&amp;quot; ext dps|dpt|ppt|pot|pptx|pps, has wpp, X, flag f = wpp &amp;quot;$@&amp;quot; ext pdf, has wpspdf, X, flag f = wpspdf &amp;quot;$@&amp;quot; # Images mime ^image, has viewnior, X, flag f = viewnior -- &amp;quot;$@&amp;quot; 自定义快捷键 nvim ~/.</description>
-    </item>
-    
-    <item>
       <title>Arch Linux Installation Guide</title>
       <link>https://qvshuo.faith/posts/arch-linux-installation-guide/</link>
-      <pubDate>Fri, 25 Sep 2020 20:05:25 +0800</pubDate>
+      <pubDate>Sun, 25 Oct 2020 20:48:55 +0800</pubDate>
       
       <guid>https://qvshuo.faith/posts/arch-linux-installation-guide/</guid>
-      <description>一、基本系统安装 前期设置 关闭BIOS安全启动 &amp;amp; 关闭Windows快速启动
+      <description>一、基本系统安装 前置准备 关闭BIOS安全启动 &amp;amp; 关闭Windows快速启动
 设置tty字体 setfont ter-132n
 首次连接网络 iwctl
 device list
@@ -90,6 +39,51 @@ mount -o compress=lzo,subvol=@home /dev/sdaX /mnt/home
 挂载ESP分区：
 mkdir /mnt/boot
 mount /dev/sdaY /mnt/boot</description>
+    </item>
+    
+    <item>
+      <title>Ranger笔记</title>
+      <link>https://qvshuo.faith/posts/ranger%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 25 Oct 2020 19:43:30 +0800</pubDate>
+      
+      <guid>https://qvshuo.faith/posts/ranger%E7%AC%94%E8%AE%B0/</guid>
+      <description>配置文件 ~/.config/ranger 用户配置文件目录
+ranger --copy-config=all 复制默认配置文件至上述目录
+对于 rc.conf 和 commands.py ，Ranger会按顺序加载默认配置和用户配置，因而可最小化配置。 对于 scope.sh 和 rifle.conf，Ranger会加载默认配置或用户配置。
+export RANGER_LOAD_DEFAULT_RC=FALSE 避免加载默认配置。
+文件打开方式 nvim ~/.config/ranger/rifle.conf
+# Documents ext wps|wpt|doc|dot|docx, has wps, X, flag f = wps &amp;quot;$@&amp;quot; ext et|ett|xls|xlt|xlsx, has et, X, flag f = et &amp;quot;$@&amp;quot; ext dps|dpt|ppt|pot|pptx|pps, has wpp, X, flag f = wpp &amp;quot;$@&amp;quot; ext pdf, has wpspdf, X, flag f = wpspdf &amp;quot;$@&amp;quot; # Images mime ^image, has viewnior, X, flag f = viewnior -- &amp;quot;$@&amp;quot; 自定义快捷键 nvim ~/.</description>
+    </item>
+    
+    <item>
+      <title>Arch Linux Configuration Guide.md</title>
+      <link>https://qvshuo.faith/posts/arch-linux-configuration-guide/</link>
+      <pubDate>Fri, 25 Sep 2020 20:05:25 +0800</pubDate>
+      
+      <guid>https://qvshuo.faith/posts/arch-linux-configuration-guide/</guid>
+      <description>硬件 触控板优化 sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf
+Option &amp;quot;Tapping&amp;quot; &amp;quot;on&amp;quot; Option &amp;quot;NaturalScrolling&amp;quot; &amp;quot;true&amp;quot; reboot
+自动挂载windows分区 sudo mkdir /media
+sudo mkdir /media/Windows
+sudo mkdir /media/Data
+sudo vim /etc/fstab
+/dev/sda4 /media/Windows ntfs-3g uid=huizhi,gid=users,dmask=022,fmask=133 0 0 /dev/sdb2 /media/Data ntfs-3g uid=huizhi,gid=users,dmask=022,fmask=133 0 0 Nvidia显卡 方案一：
+prime方案
+pacman -S nvidia nvidia-prime
+方案二：
+禁用Nvidia显卡
+安装bbswitch：
+sudo pacman -S bbswitch
+开机加载bbswitch模块：
+sudo vim /etc/modules-load.d/bbswitch.conf
+键入：
+bbswitch
+设置bbswitch加载参数，实现开机时关闭独显，关机时开启独显，避免重启进入Windows时找不到独显：
+sudo vim /etc/modprobe.d/bbswitch.conf
+键入：
+options bbswitch load_state=0 unload_state=1
+屏蔽nouveau驱动:
+sudo vim /etc/modprobe.d/blacklistnvidia.conf</description>
     </item>
     
     <item>

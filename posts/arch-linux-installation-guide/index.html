@@ -21,12 +21,12 @@
     <h1 id="singletitle">Arch Linux Installation Guide</h1>
     
         <div id="singledate">
-            2020/09/25
+            2020/10/25
         </div>
     
     <div id="content">
         <h2 id="一基本系统安装">一、基本系统安装</h2>
-<h3 id="前期设置">前期设置</h3>
+<h3 id="前置准备">前置准备</h3>
 <p>关闭BIOS安全启动 &amp; 关闭Windows快速启动</p>
 <h3 id="设置tty字体">设置tty字体</h3>
 <p><code>setfont ter-132n</code></p>
@@ -58,7 +58,7 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装系统基础软件包">安装系统基础软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode grub efibootmgr os-prober sudo fish iwd neovim man-db man-pages</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode grub efibootmgr os-prober sudo fish iwd vim man-db man-pages</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -68,7 +68,7 @@
 <p><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
 <p><code>hwclock --systohc</code></p>
 <h3 id="本地化">本地化</h3>
-<p><code>nvim /etc/locale.gen</code></p>
+<p><code>vim /etc/locale.gen</code></p>
 <pre><code>en_US.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
 ja_JP.UTF-8 UTF-8
@@ -77,12 +77,12 @@ ja_JP.UTF-8 UTF-8
 <h3 id="主机名">主机名</h3>
 <p><code>echo matebook &gt; /etc/hostname</code></p>
 <h3 id="hosts">hosts</h3>
-<p><code>nvim /etc/hosts</code></p>
+<p><code>vim /etc/hosts</code></p>
 <pre><code>127.0.0.1	localhost
 ::1	localhost
 127.0.0.1	matebook.localdomain	matebook
 </code></pre><h3 id="配置initramfs参数">配置initramfs参数</h3>
-<p><code>nvim /etc/mkinitcpio.conf</code></p>
+<p><code>vim /etc/mkinitcpio.conf</code></p>
 <pre><code>HOOKS=(添加 btrfs)
 </code></pre><p><code>mkinitcpio -p linux</code></p>
 <h3 id="设置root密码">设置root密码</h3>
@@ -98,7 +98,7 @@ ja_JP.UTF-8 UTF-8
 <p><code>systemctl enable --now systemd-networkd.service</code></p>
 <p><code>systemctl enable --now systemd-resolved.service</code></p>
 <p><code>systemctl enable --now iwd.service</code></p>
-<p><code>nvim /etc/iwd/main.conf</code></p>
+<p><code>vim /etc/iwd/main.conf</code></p>
 <pre><code>[General]
 EnableNetworkConfiguration=true
 [Network]
@@ -106,7 +106,7 @@ NameResolvingService=systemd
 </code></pre><p><code>systemctl restart iwd.service</code></p>
 <p><code>iwctl</code></p>
 <p>方案二：</p>
-<p><code>nvim /etc/systemd/network/config.network</code></p>
+<p><code>vim /etc/systemd/network/config.network</code></p>
 <pre><code>[Match]
 Name=interface
 [Network]
@@ -118,7 +118,7 @@ DHCP=yes
 <h3 id="添加新用户">添加新用户</h3>
 <p><code>useradd -m -G wheel,video huizhi</code></p>
 <p><code>passwd huizhi</code></p>
-<p><code>nvim /etc/sudoers</code></p>
+<p><code>vim /etc/sudoers</code></p>
 <pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
 </code></pre><h2 id="二图形界面安装">二、图形界面安装</h2>
 <h3 id="显示">显示</h3>
@@ -128,20 +128,20 @@ DHCP=yes
 <h3 id="触控板">触控板</h3>
 <p><code>pacman -S xf86-input-libinput</code></p>
 <h3 id="x">X</h3>
-<p><code>pacman -S xorg-server xorg-xinit xorg-xsetroot xclip xdg-user-dirs</code></p>
+<p><code>pacman -S xorg-server xorg-xinit xorg-xsetroot</code></p>
 <h3 id="窗口管理器">窗口管理器</h3>
 <p><code>pacman -S bspwm sxhkd</code></p>
-<h3 id="基础软件">基础软件</h3>
+<h3 id="终端--启动器">终端 &amp; 启动器</h3>
 <p><code>pacman -S alacritty rofi</code></p>
 <h3 id="切换用户">切换用户</h3>
 <p><code>su huizhi</code></p>
 <p><code>cd</code></p>
 <h3 id="hidpi">HiDPI</h3>
-<p><code>nvim ~/.Xresources</code></p>
+<p><code>vim ~/.Xresources</code></p>
 <pre><code>Xft.dpi: 120
 </code></pre><h3 id="xinitrc">xinitrc</h3>
 <p><code>cp /etc/X11/xinit/xinitrc ~/.xinitrc</code></p>
-<p><code>nvim .xinitrc</code></p>
+<p><code>vim ~/.xinitrc</code></p>
 <pre><code>export LANG=zh_CN.UTF-8
 exec bspwm
 </code></pre><h3 id="基础配置文件">基础配置文件</h3>
@@ -149,10 +149,8 @@ exec bspwm
 <p><code>cp /usr/share/doc/bspwm/examples/bspwmrc .config/bspwm</code></p>
 <p><code>mkdir .config/sxhkd</code></p>
 <p><code>cp /usr/share/doc/bspwm/examples/sxhkdrc .config/sxhkd</code></p>
-<p><code>nvim .config/sxhkd/sxhkdrc</code></p>
-<pre><code>默认终端
-uxrvt ==&gt; alacritty -e fish
-默认程序启动器
+<p><code>vim .config/sxhkd/sxhkdrc</code></p>
+<pre><code>uxrvt ==&gt; alacritty -e fish
 dmenu ==&gt; rofi -show drun
 </code></pre><h3 id="字体">字体</h3>
 <p><code>sudo pacman -S ttf-sarasa-gothic adobe-source-han-serif-otc-fonts noto-fonts-emoji ttf-font-awesome</code></p>
@@ -162,9 +160,26 @@ dmenu ==&gt; rofi -show drun
 <h3 id="启动图形界面">启动图形界面</h3>
 <p><code>startx</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
-<h3 id="软件分类">软件分类</h3>
 <h4 id="浏览器">浏览器</h4>
 <p><code>firefox firefox-i18n-zh-cn</code></p>
+<h3 id="源">源</h3>
+<p><a href="https://qvshuo.faith/posts/arch-linux-configuration-guide/">Arch Linux Configuration Guide</a></p>
+<h4 id="代理">代理</h4>
+<p><code>clash</code></p>
+<h4 id="通讯">通讯</h4>
+<p><code>telegram-desktop</code></p>
+<h4 id="在线音乐">在线音乐</h4>
+<p>VSC Netease Music</p>
+<h4 id="在线会议">在线会议</h4>
+<p><code>zoom</code>（代理）</p>
+<h4 id="下载工具">下载工具</h4>
+<p><code>aria2 youtube-dl</code></p>
+<h4 id="网盘">网盘</h4>
+<p><code>baidunetdisk-bin nutstore</code></p>
+<h4 id="局域网ftp文件共享">局域网ftp文件共享</h4>
+<p><code>vsftpd</code></p>
+<h4 id="局域网http媒体中心">局域网http媒体中心</h4>
+<p><code>nginx</code></p>
 <h4 id="壁纸">壁纸</h4>
 <p><code>nitrogen</code></p>
 <h4 id="面板">面板</h4>
@@ -173,57 +188,39 @@ dmenu ==&gt; rofi -show drun
 <p><code>picom</code></p>
 <h4 id="屏幕色温调节">屏幕色温调节</h4>
 <p><code>redshift</code></p>
+<h4 id="锁屏">锁屏</h4>
+<p><code>xsecurelock</code></p>
 <h4 id="通知">通知</h4>
 <p><code>dunst</code></p>
 <h4 id="输入法">输入法</h4>
 <p><code>ibus ibus-rime ibus-mozc</code></p>
-<h4 id="代理">代理</h4>
-<p><code>clash</code></p>
-<h4 id="通讯">通讯</h4>
-<p><code>telegram-desktop</code></p>
-<h4 id="在线音乐">在线音乐</h4>
-<p><code>yay -S netease-cloud-music-gtk</code></p>
-<h4 id="下载工具">下载工具</h4>
-<p><code>aria2 youtube-dl</code></p>
-<h4 id="网盘">网盘</h4>
-<p><code>baidunetdisk-bin nutstore</code></p>
-<h4 id="在线会议">在线会议</h4>
-<p><code>zoom</code>（代理）</p>
-<h4 id="局域网ftp文件共享">局域网ftp文件共享</h4>
-<p><code>vsftpd</code></p>
-<h4 id="局域网http媒体中心">局域网http媒体中心</h4>
-<p><code>nginx</code></p>
-<h4 id="本地文件管理器">本地文件管理器</h4>
+<h4 id="文件管理器">文件管理器</h4>
 <p><code>ranger</code></p>
-<h4 id="本地图片浏览器">本地图片浏览器</h4>
+<h4 id="图片浏览器">图片浏览器</h4>
 <p><code>viewnior</code></p>
-<h4 id="本地音乐播放器">本地音乐播放器</h4>
+<h4 id="音乐播放器">音乐播放器</h4>
 <p>``</p>
-<h4 id="本地视频播放器">本地视频播放器</h4>
+<h4 id="视频播放器">视频播放器</h4>
 <p><code>mpv</code></p>
 <h4 id="截图">截图</h4>
 <p><code>scrot</code></p>
 <h4 id="录屏">录屏</h4>
 <p><code>obs-studio</code></p>
-<h4 id="剪贴板管理器">剪贴板管理器</h4>
-<p><code>rofi-greenclip</code>（代理）</p>
-<h4 id="笔记">笔记</h4>
-<p><code>typora</code></p>
-<h4 id="办公软件">办公软件</h4>
-<p><code>wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts</code></p>
-<h4 id="博客">博客</h4>
-<p><code>hugo</code></p>
-<h4 id="adb">adb</h4>
-<p><code>android-tools</code></p>
-<h4 id="android投屏">Android投屏</h4>
-<p><code>scrcpy</code></p>
 <h4 id="图像编辑">图像编辑</h4>
 <p><code>gimp</code></p>
 <h4 id="视频剪辑">视频剪辑</h4>
 <p><code>olive</code></p>
-<h4 id="主题美化">主题美化</h4>
-<p><code>materia-gtk-theme lxappearance-gtk3</code></p>
-<p><code>qogir-icon-theme</code>（代理）</p>
+<h4 id="剪贴板管理器">剪贴板管理器</h4>
+<p><code>xclip</code></p>
+<p><code>rofi-greenclip</code>（代理）</p>
+<h4 id="办公软件">办公软件</h4>
+<p><code>wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts</code></p>
+<h4 id="博客">博客</h4>
+<p><code>hugo</code></p>
+<h4 id="开发">开发</h4>
+<p><code>git visual-studio-code-bin</code></p>
+<h4 id="android">Android</h4>
+<p><code>android-tools scrcpy</code></p>
 <h4 id="虚拟机">虚拟机</h4>
 <p><code>virtualbox</code></p>
 <p>如内核为<code>linux</code> ，内核模块应安装<code>virtualbox-host-modules-arch</code></p>
@@ -233,8 +230,9 @@ dmenu ==&gt; rofi -show drun
 <p><code>cronie</code></p>
 <h4 id="电池优化">电池优化</h4>
 <p><code>tlp</code></p>
-<h4 id="锁屏">锁屏</h4>
-<p><code>xsecurelock</code></p>
+<h4 id="主题美化">主题美化</h4>
+<p><code>materia-gtk-theme lxappearance-gtk3</code></p>
+<p><code>qogir-icon-theme</code>（代理）</p>
 
     </div>
 
