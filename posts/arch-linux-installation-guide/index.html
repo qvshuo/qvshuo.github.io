@@ -58,7 +58,7 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装系统基础软件包">安装系统基础软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode grub efibootmgr os-prober sudo fish iwd vim man-db man-pages</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode efibootmgr sudo fish iwd vim man-db man-pages</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -88,9 +88,20 @@ ja_JP.UTF-8 UTF-8
 <h3 id="设置root密码">设置root密码</h3>
 <p><code>passwd</code></p>
 <h3 id="安装引导程序">安装引导程序</h3>
-<p><code>grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch</code></p>
-<p><code>grub-mkconfig -o /boot/grub/grub.cfg</code></p>
-<h3 id="重启">重启</h3>
+<blockquote>
+<p><code>blkid -s PARTUUID -o value /dev/sdaX</code> 用以获取根分区PARTUUID</p>
+</blockquote>
+<p><code>bootctl --path=/boot install</code></p>
+<p><code>vim /boot/loader/loader.conf</code></p>
+<pre><code>default  arch
+timeout  3
+</code></pre><p><code>vim /boot/loader/entries/arch.conf </code></p>
+<pre><code>title    Arch Linux
+linux    /vmlinuz-linux
+initrd   /intel-ucode.img
+initrd   /initramfs-linux.img
+options  root=PARTUUID=d22644f6-8d53-44d6-80cf-4990db6e532c rw rootflags=subvol=@
+</code></pre><h3 id="重启">重启</h3>
 <p><code>exit</code></p>
 <p><code>reboot</code></p>
 <h3 id="重新连接网络">重新连接网络</h3>
