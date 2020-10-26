@@ -41,7 +41,7 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 </code></pre><h3 id="nvidia显卡">Nvidia显卡</h3>
 <p>方案一：</p>
 <p>prime方案</p>
-<p><code>pacman -S nvidia nvidia-prime</code></p>
+<p><code>yay -S nvidia nvidia-prime</code></p>
 <p>方案二：</p>
 <p>禁用Nvidia显卡</p>
 <p>安装bbswitch：</p>
@@ -92,28 +92,11 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>fc-cache -f</code></p>
 <h3 id="恢复配置文件">恢复配置文件</h3>
 <p><code>git clone https://github.com/qvshuo/dotfiles.git</code></p>
-<h3 id="获取程序名称">获取程序名称</h3>
-<p><code>xprop | grep WM_CLASS</code></p>
-<p>点击窗口</p>
-<h3 id="获取字体列表">获取字体列表</h3>
-<p><code>fc-list :lang=zh</code></p>
-<p>Sarasa Gothic SC</p>
-<p>Source Han Serif SC</p>
-<p>Sarasa Mono SC</p>
-<h3 id="使windows使用utc时间">使Windows使用UTC时间</h3>
-<p>Windows下以管理员权限运行：</p>
-<p><code>reg add &quot;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation&quot; /v RealTimeIsUniversal /d 1 /t REG_QWORD /f</code></p>
 <h3 id="fish">fish</h3>
 <p>取消欢迎语：</p>
 <p><code>fish</code></p>
 <p><code>set -U fish_greeting</code></p>
-<h3 id="polybar">polybar</h3>
-<p>天气</p>
-<p><code>yay -S jq</code></p>
-<p><code>yay -S ttf-weather-icons</code>（代理）</p>
-<h3 id="ibus">ibus</h3>
-<p><code>ibus-setup</code></p>
-<h3 id="firefox">firefox</h3>
+<h3 id="firefox">Firefox</h3>
 <p><code>about:config</code></p>
 <pre><code>退格键返回：（将值由2改成0）
 browser.backspace_action
@@ -133,14 +116,15 @@ media.ffmpeg.vaapi.enabled
 false:
 media.ffvpx.enabled
 </code></pre><h3 id="vsc-netease-music">VSC Netease Music</h3>
-<p>curl <a href="https://gist.githubusercontent.com/nondanee/f157bbbccecfe29e48d87273cd02e213/raw">https://gist.githubusercontent.com/nondanee/f157bbbccecfe29e48d87273cd02e213/raw</a> | python</p>
+<p><code>su</code></p>
+<p><code>curl https://gist.githubusercontent.com/nondanee/f157bbbccecfe29e48d87273cd02e213/raw | python</code></p>
 <h3 id="vsftpd">vsftpd</h3>
-<p><code>sudo nvim /etc/vsftpd.conf</code></p>
+<p><code>sudo vim /etc/vsftpd.conf</code></p>
 <pre><code>local_enable=YES
 write_enable=YES
 </code></pre><p><code>sudo systemctl enable --now vsftpd.service</code></p>
 <h3 id="nginx">nginx</h3>
-<p><code>sudo nvim /etc/nginx/nginx.conf</code></p>
+<p><code>sudo vim /etc/nginx/nginx.conf</code></p>
 <pre><code>http {
 	server
 		listen	8765;
@@ -156,7 +140,158 @@ write_enable=YES
         }
 }
 </code></pre><p><code>sudo systemctl enable --now nginx.service</code></p>
-<h3 id="git">git</h3>
+<h3 id="polybar">polybar</h3>
+<p>天气</p>
+<p><code>yay -S jq</code></p>
+<p><code>yay -S ttf-weather-icons</code>（代理）</p>
+<h3 id="ibus">ibus</h3>
+<p><code>ibus-setup</code></p>
+<h3 id="ranger">Ranger</h3>
+<h4 id="配置文件">配置文件</h4>
+<p><code>~/.config/ranger</code> 用户配置文件目录</p>
+<p><code>ranger --copy-config=all</code> 复制默认配置文件至上述目录</p>
+<p><code>export RANGER_LOAD_DEFAULT_RC=FALSE</code> 避免加载默认配置。</p>
+<h4 id="文件打开方式">文件打开方式</h4>
+<p><code>vim ~/.config/ranger/rifle.conf</code></p>
+<pre><code># Documents
+ext wps|wpt|doc|dot|docx, has wps, X, flag f = wps &quot;$@&quot;
+ext et|ett|xls|xlt|xlsx, has et, X, flag f = et &quot;$@&quot;
+ext dps|dpt|ppt|pot|pptx|pps, has wpp, X, flag f = wpp &quot;$@&quot;
+ext pdf, has wpspdf, X, flag f = wpspdf &quot;$@&quot;
+
+# Images
+mime ^image, has viewnior, X, flag f = viewnior -- &quot;$@&quot;
+</code></pre><h4 id="自定义快捷键">自定义快捷键</h4>
+<p><code>vim ~/.config/ranger/rc.conf</code></p>
+<pre><code># 智能重命名
+
+map cw eval fm.execute_console(&quot;bulkrename&quot;) if fm.thisdir.marked_items else fm.open_console(&quot;rename &quot;)
+
+# 启用回收站
+# `DD` 将文件移动至回收站
+# `uD` 恢复最近删除的文件至当前文件夹
+# `Dh` 查看回收历史
+
+map DD shell mv -i %s ~/.local/share/Trash/files/ &amp;&amp; echo &quot;trashed %s        from_dir $(pwd)&quot; &gt;&gt; /.config/ranger/trash_history
+
+map uD shell fileToRestore=$(cat ~/.config/ranger/trash_history | grep &quot;^trashed&quot; | tail -n 1 | cut -c10- | awk -F&quot;from_dir &quot; '{print $1}' | rev | cut -c10- | rev) &amp;&amp; mv -i ~/.local/share/Trash/files/$fileToRestore $fileToRestore &amp;&amp; echo &quot;         untrashed $(pwd)/$fileToRestore&quot; &gt;&gt; ~/.config/ranger/trash_history &amp;&amp; unset $fileToRestore
+
+map Dh shell less ~/.config/ranger/trash_history
+
+# 快速过滤文件
+
+map f console scout -ftsea%space
+
+</code></pre><h4 id="自定义命令">自定义命令</h4>
+<ol>
+<li>mkcd</li>
+</ol>
+<p><code>vim .config/ranger/commands.py</code></p>
+<pre><code>class mkcd(Command):
+    &quot;&quot;&quot;
+    :mkcd &lt;dirname&gt;
+
+    Creates a directory with the name &lt;dirname&gt; and enters it.
+    &quot;&quot;&quot;
+
+    def execute(self):
+        from os.path import join, expanduser, lexists
+        from os import makedirs
+        import re
+
+        dirname = join(self.fm.thisdir.path, expanduser(self.rest(1)))
+        if not lexists(dirname):
+
+makedirs(dirname)
+
+            match = re.search('^/|^~[^/]*/', dirname)
+            if match:
+                self.fm.cd(match.group(0))
+                dirname = dirname[match.end(0):]
+
+            for m in re.finditer('[^/]+', dirname):
+                s = m.group(0)
+                if s == '..' or (s.startswith('.') and not self.fm.settings['show_hidden']):
+                    self.fm.cd(s)
+                else:
+                    ## We force ranger to load content before calling `scout`.
+                    self.fm.thisdir.load_content(schedule=False)
+                    self.fm.execute_console('scout -ae ^{}$'.format(s))
+        else:
+            self.fm.notify(&quot;file/directory exists!&quot;, bad=True)
+</code></pre><ol start="2">
+<li>fzf集成</li>
+</ol>
+<p><code>yay -S fzf</code></p>
+<p><code>vim .config/ranger/commands.py</code></p>
+<pre><code>class fzf_select(Command):
+    &quot;&quot;&quot;
+    :fzf_select
+
+    Find a file using fzf.
+
+    With a prefix argument select only directories.
+
+    See: https://github.com/junegunn/fzf
+    &quot;&quot;&quot;
+    def execute(self):
+        import subprocess
+        import os.path
+        if self.quantifier:
+            # match only directories
+            command=&quot;find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            -o -type d -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;
+        else:
+            # match files and directories
+            command=&quot;find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            -o -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;
+        fzf = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
+        stdout, stderr = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.rstrip('\n'))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
+</code></pre><p><code>vim ~/.config/ranger/rc.conf</code></p>
+<p>绑定其快捷键</p>
+<p><code>map &lt;C-f&gt; fzf_select</code></p>
+<h4 id="插件">插件</h4>
+<ol>
+<li>图标支持</li>
+</ol>
+<p><code>yay -S nerd-fonts-roboto-mono</code>（代理）</p>
+<p><code>git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons</code></p>
+<p><code>vim ~/.config/ranger/rc.conf</code></p>
+<pre><code># 图标支持
+
+default_linemode devicons
+</code></pre><ol start="2">
+<li>压缩与解压缩</li>
+</ol>
+<p><code>yay -S atool</code></p>
+<p><code>git clone https://github.com/maximtrp/ranger-archives.git</code></p>
+<p>将<code>compress.py</code>和<code>extract.py</code>复制至<code>~/.config/ranger/plugins</code></p>
+<p>绑定快捷键：</p>
+<p><code>vim ~/.config/ranger/rc.conf</code></p>
+<pre><code># 压缩与解压缩
+map ex extract
+map ec compress
+</code></pre><h4 id="图像预览">图像预览</h4>
+<p><code>sudo pacman -S ueberzug</code></p>
+<p><code>vim ~/.config/ranger/rc.conf</code></p>
+<pre><code>set preview_images true
+set preview_images_method ueberzug
+</code></pre><h4 id="视频预览">视频预览</h4>
+<p><code>sudo pacman -S ffmpegthumbnailer</code></p>
+<p><code>vim ~/.config/ranger/scope.sh</code></p>
+<p>搜索<code>ffmpegthumbnailer</code>并取消video部分注释</p>
+<p><code>vim ~/.config/ranger/rc.conf</code></p>
+<p>搜索<code>set preview_script</code></p>
+<h4 id="vcs集成">VCS集成</h4>
+<p><code>vim ~/.config/ranger/rc.conf</code></p>
+<pre><code>set vcs_aware true
+</code></pre><h3 id="git">git</h3>
 <p><code>git config --global user.name &quot;qvshuo&quot;</code></p>
 <p><code>git config --global user.email qvshuo@foxmail.com</code></p>
 <h3 id="scrcpy">scrcpy</h3>
@@ -168,8 +303,26 @@ write_enable=YES
 <p><code>sudo systemctl enable --now cronie.service</code></p>
 <p><code>crontab -e</code></p>
 <pre><code>0 * * * * /home/huizhi/Desktop/scripts/autonitrogen.sh
-45 6 * * * /home/huizhi/Desktop/scripts/alarm.sh
-</code></pre>
+0 7 * * * /home/huizhi/Desktop/scripts/alarm.sh
+</code></pre><h3 id="获取程序名称">获取程序名称</h3>
+<p><code>xprop | grep WM_CLASS</code></p>
+<h3 id="获取中文字体列表">获取中文字体列表</h3>
+<p><code>fc-list :lang=zh</code></p>
+<pre><code>Sarasa Gothic SC
+
+Source Han Serif SC
+
+Sarasa Mono SC
+
+Font Awesome 5 Free Solid
+
+Weather Icons
+
+RobotoMono Nerd Font
+</code></pre><h3 id="使windows使用utc时间">使Windows使用UTC时间</h3>
+<p>Windows下以管理员权限运行：</p>
+<p><code>reg add &quot;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation&quot; /v RealTimeIsUniversal /d 1 /t REG_QWORD /f</code></p>
+
     </div>
 
         </div>
