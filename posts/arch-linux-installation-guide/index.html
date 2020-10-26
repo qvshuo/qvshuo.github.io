@@ -89,12 +89,12 @@ ja_JP.UTF-8 UTF-8
 <p><code>passwd</code></p>
 <h3 id="安装引导程序">安装引导程序</h3>
 <blockquote>
-<p><code>blkid -s PARTUUID -o value /dev/sdaX</code> 用以获取根分区PARTUUID</p>
+<p>可在vim中执行<code>:r !blkid -s PARTUUID -o value /dev/sdaX</code>以获取根分区PARTUUID</p>
 </blockquote>
 <p><code>bootctl --path=/boot install</code></p>
 <p><code>vim /boot/loader/loader.conf</code></p>
-<pre><code>default  arch
-timeout  3
+<pre><code>timeout  3
+default  arch
 </code></pre><p><code>vim /boot/loader/entries/arch.conf </code></p>
 <pre><code>title    Arch Linux
 linux    /vmlinuz-linux
