@@ -21,7 +21,7 @@
     <h1 id="singletitle">Arch Linux Installation Guide</h1>
     
         <div id="singledate">
-            2020/10/25
+            2020/09/25
         </div>
     
     <div id="content">
@@ -88,9 +88,7 @@ ja_JP.UTF-8 UTF-8
 <h3 id="设置root密码">设置root密码</h3>
 <p><code>passwd</code></p>
 <h3 id="安装引导程序">安装引导程序</h3>
-<blockquote>
 <p>可在vim中执行<code>:r !blkid -s PARTUUID -o value /dev/sdaX</code>以获取根分区PARTUUID</p>
-</blockquote>
 <p><code>bootctl --path=/boot install</code></p>
 <p><code>vim /boot/loader/loader.conf</code></p>
 <pre><code>timeout  3
@@ -172,7 +170,7 @@ dmenu ==&gt; rofi -show drun
 <p><code>startx</code></p>
 <h2 id="三软件清单">三、软件清单</h2>
 <h4 id="浏览器">浏览器</h4>
-<p><code>firefox firefox-i18n-zh-cn</code></p>
+<p><code>sudo pacman -S firefox firefox-i18n-zh-cn</code></p>
 <h3 id="源">源</h3>
 <p><a href="https://qvshuo.faith/posts/arch-linux-configuration-guide/">Arch Linux Configuration Guide</a></p>
 <h4 id="代理">代理</h4>
@@ -210,11 +208,11 @@ dmenu ==&gt; rofi -show drun
 <h4 id="图片浏览器">图片浏览器</h4>
 <p><code>viewnior</code></p>
 <h4 id="音乐播放器">音乐播放器</h4>
-<p>``</p>
+<p><code>cmus</code></p>
 <h4 id="视频播放器">视频播放器</h4>
 <p><code>mpv</code></p>
 <h4 id="截图">截图</h4>
-<p><code>gnome-screenshot</code></p>
+<p><code>gnome-screenshot imagemagick</code></p>
 <h4 id="录屏">录屏</h4>
 <p><code>obs-studio</code></p>
 <h4 id="图像编辑">图像编辑</h4>
