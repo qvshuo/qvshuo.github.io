@@ -32,9 +32,7 @@
 Option &quot;NaturalScrolling&quot; &quot;true&quot;
 </code></pre><p><code>reboot</code></p>
 <h3 id="自动挂载windows分区">自动挂载windows分区</h3>
-<p><code>sudo mkdir /media</code></p>
-<p><code>sudo mkdir /media/Windows</code></p>
-<p><code>sudo mkdir /media/Data</code></p>
+<p><code>sudo mkdir /media &amp;&amp; sudo mkdir /media/Windows &amp;&amp; sudo mkdir /media/Data</code></p>
 <p><code>sudo vim /etc/fstab</code></p>
 <pre><code>/dev/sda4       /media/Windows    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
 /dev/sdb2       /media/Data    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
@@ -86,10 +84,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>cd ~</code></p>
 <p><code>mkdir Desktop Documents Downloads &amp;&amp; ln -s /media/Data/Videos Videos &amp;&amp; ln -s /media/Data/Music Music &amp;&amp; ln -s /media/Data/Pictures Pictures &amp;&amp; ln -s /media/Data/Hugo Hugo</code></p>
 <h3 id="从windows安装字体">从Windows安装字体</h3>
-<p><code>sudo mkdir /usr/share/fonts/WindowsFonts</code></p>
-<p><code>sudo cp /media/Windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts</code></p>
-<p><code>sudo chmod 755 /usr/share/fonts/WindowsFonts/*</code></p>
-<p><code>fc-cache -f</code></p>
+<p><code>sudo mkdir /usr/share/fonts/WindowsFonts &amp;&amp; sudo cp /media/Windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts &amp;&amp; sudo chmod 755 /usr/share/fonts/WindowsFonts/* &amp;&amp; fc-cache -f</code></p>
 <h3 id="恢复配置文件">恢复配置文件</h3>
 <p><code>git clone https://github.com/qvshuo/dotfiles.git</code></p>
 <h3 id="fish">fish</h3>
@@ -132,11 +127,11 @@ write_enable=YES
 		charset utf-8;
 		
 	    location / {
-        root   /media/Data/Videos;
-        index  index.html index.htm;
-        autoindex on;
-        autoindex_exact_size off;
-        autoindex_localtime on;
+            root   /media/Data/Videos;
+            index  index.html index.htm;
+            autoindex on;
+            autoindex_exact_size off;
+            autoindex_localtime on;
         }
 }
 </code></pre><p><code>sudo systemctl enable --now nginx.service</code></p>
@@ -154,14 +149,12 @@ write_enable=YES
 <h4 id="文件打开方式">文件打开方式</h4>
 <p><code>vim ~/.config/ranger/rifle.conf</code></p>
 <pre><code># Documents
-
 ext wps|wpt|doc|dot|docx, has wps, X, flag f = wps &quot;$@&quot;
 ext et|ett|xls|xlt|xlsx, has et, X, flag f = et &quot;$@&quot;
 ext dps|dpt|ppt|pot|pptx|pps, has wpp, X, flag f = wpp &quot;$@&quot;
 ext pdf, has wpspdf, X, flag f = wpspdf &quot;$@&quot;
 
 # Images
-
 mime ^image, has viewnior, X, flag f = viewnior -- &quot;$@&quot;
 </code></pre><h4 id="自定义快捷键">自定义快捷键</h4>
 <p><code>vim ~/.config/ranger/rc.conf</code></p>
@@ -201,10 +194,11 @@ map cw eval fm.execute_console(&quot;bulkrename&quot;) if fm.thisdir.marked_item
                 self.fm.cd(fzf_file)
             else:
                 self.fm.select_file(fzf_file)
-</code></pre><p><code>vim ~/.config/ranger/rc.conf</code></p>
-<p>绑定快捷键</p>
-<p><code>map &lt;C-f&gt; fzf_select</code></p>
-<h4 id="插件">插件</h4>
+</code></pre><p>绑定快捷键</p>
+<p><code>vim ~/.config/ranger/rc.conf</code></p>
+<pre><code>fzf集成
+map &lt;C-f&gt; fzf_select
+</code></pre><h4 id="插件">插件</h4>
 <ol>
 <li>图标支持</li>
 </ol>
@@ -212,7 +206,6 @@ map cw eval fm.execute_console(&quot;bulkrename&quot;) if fm.thisdir.marked_item
 <p><code>git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons</code></p>
 <p><code>vim ~/.config/ranger/rc.conf</code></p>
 <pre><code># 图标支持
-
 default_linemode devicons
 </code></pre><ol start="2">
 <li>压缩与解压缩</li>
@@ -223,7 +216,6 @@ default_linemode devicons
 <p>绑定快捷键：</p>
 <p><code>vim ~/.config/ranger/rc.conf</code></p>
 <pre><code># 压缩与解压缩
-
 map ex extract
 map ec compress
 </code></pre><h4 id="图像预览">图像预览</h4>
@@ -243,8 +235,7 @@ set preview_images_method ueberzug
 <p><code>vim ~/.config/ranger/rc.conf</code></p>
 <pre><code>set vcs_aware true
 </code></pre><h3 id="git">git</h3>
-<p><code>git config --global user.name &quot;qvshuo&quot;</code></p>
-<p><code>git config --global user.email qvshuo@foxmail.com</code></p>
+<p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
 <h3 id="scrcpy">scrcpy</h3>
 <p><code>sudo adb devices</code></p>
 <p><code>sudo adb tcpip 5556</code></p>

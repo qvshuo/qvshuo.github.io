@@ -15,9 +15,7 @@
       <guid>https://qvshuo.faith/posts/arch-linux-configuration-guide/</guid>
       <description>硬件 触控板优化 sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf
 Option &amp;quot;Tapping&amp;quot; &amp;quot;on&amp;quot; Option &amp;quot;NaturalScrolling&amp;quot; &amp;quot;true&amp;quot; reboot
-自动挂载windows分区 sudo mkdir /media
-sudo mkdir /media/Windows
-sudo mkdir /media/Data
+自动挂载windows分区 sudo mkdir /media &amp;amp;&amp;amp; sudo mkdir /media/Windows &amp;amp;&amp;amp; sudo mkdir /media/Data
 sudo vim /etc/fstab
 /dev/sda4 /media/Windows ntfs-3g uid=huizhi,gid=users,dmask=022,fmask=133 0 0 /dev/sdb2 /media/Data ntfs-3g uid=huizhi,gid=users,dmask=022,fmask=133 0 0 Nvidia显卡 方案一：
 prime方案
@@ -35,7 +33,7 @@ sudo vim /etc/modprobe.d/bbswitch.conf
 键入：
 options bbswitch load_state=0 unload_state=1
 屏蔽nouveau驱动:
-sudo vim /etc/modprobe.d/blacklistnvidia.conf</description>
+sudo vim /etc/modprobe.</description>
     </item>
     
     <item>
