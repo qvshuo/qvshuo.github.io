@@ -210,7 +210,7 @@ default_linemode devicons
 </code></pre><ol start="2">
 <li>压缩与解压缩</li>
 </ol>
-<p><code>yay -S atool</code></p>
+<p><code>yay -S atool zip unzip p7zip unrar</code></p>
 <p><code>git clone https://github.com/maximtrp/ranger-archives.git</code></p>
 <p>将<code>compress.py</code>和<code>extract.py</code>复制至<code>~/.config/ranger/plugins</code></p>
 <p>绑定快捷键：</p>
@@ -244,8 +244,8 @@ set preview_images_method ueberzug
 <h3 id="cron">cron</h3>
 <p><code>sudo systemctl enable --now cronie.service</code></p>
 <p><code>crontab -e</code></p>
-<pre><code>0 * * * * /home/huizhi/Desktop/scripts/autonitrogen.sh
-0 7 * * * /home/huizhi/Desktop/scripts/alarm.sh
+<pre><code>0 * * * * export DISPLAY=:0 &amp;&amp; nitrogen --set-zoom-fill --random &amp;
+45 6 * * * export DISPLAY=:0 &amp;&amp; alacritty -e mpv --no-config --loop ~/Music/alarm.m4a &amp;
 </code></pre><h3 id="获取程序名称">获取程序名称</h3>
 <p><code>xprop | grep WM_CLASS</code></p>
 <h3 id="获取中文字体列表">获取中文字体列表</h3>
