@@ -245,9 +245,9 @@ set preview_images_method ueberzug
 <h3 id="cron">cron</h3>
 <p><code>sudo systemctl enable --now cronie.service</code></p>
 <p><code>crontab -e</code></p>
-<pre><code>0 * * * * export DISPLAY=:0 &amp;&amp; nitrogen --set-zoom-fill --random &amp;&amp; notify-send 'cron' '壁纸已更换' &amp;
-15 7 * * * export DISPLAY=:0 &amp;&amp; alacritty -e mpv --no-config --loop ~/Music/alarm.m4a &amp;&amp; notify-send 'cron' '闹钟' &amp;
-59 23 * * * rsync -r --exclude &quot;.git/&quot; --exclude &quot;LICENSE&quot; --exclude &quot;README.md&quot; --exclude &quot;inbox-imap-python.py&quot; --exclude &quot;openweathermap-simple.sh&quot; ~/dotfiles/ ~/ &amp;&amp; notify-send 'cron' 'dotfiles已同步至家目录' &amp;
+<pre><code>0 * * * * export DISPLAY=:0 &amp;&amp; nitrogen --set-zoom-fill --random &amp;
+45 6 * * * export DISPLAY=:0 &amp;&amp; alacritty -e mpv --no-config --loop ~/Music/alarm.m4a &amp;
+59 23 * * * rsync -r --exclude &quot;.git/&quot; --exclude &quot;LICENSE&quot; --exclude &quot;README.md&quot; --exclude &quot;inbox-imap-python.py&quot; --exclude &quot;openweathermap-simple.sh&quot; ~/dotfiles/ ~/
 </code></pre><h3 id="获取程序名称">获取程序名称</h3>
 <p><code>xprop | grep WM_CLASS</code></p>
 <h3 id="获取中文字体列表">获取中文字体列表</h3>
