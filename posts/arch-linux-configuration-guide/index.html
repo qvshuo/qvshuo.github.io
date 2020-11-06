@@ -112,10 +112,17 @@ media.ffmpeg.vaapi.enabled
 
 false:
 media.ffvpx.enabled
-</code></pre><h3 id="vsc-netease-music">VSC Netease Music</h3>
-<p><code>su</code></p>
-<p><code>curl https://gist.githubusercontent.com/nondanee/f157bbbccecfe29e48d87273cd02e213/raw | python</code></p>
-<h3 id="vsftpd">vsftpd</h3>
+</code></pre><h3 id="网易云音乐">网易云音乐</h3>
+<p><code>vim ~/.local/share/applications/musicfox.desktop</code></p>
+<pre><code>[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Terminal=false
+Icon=/usr/share/icons/Qogir/scalable/apps/netease-cloud-music.svg
+Exec=sh -c &quot;alacritty -e ~/Desktop/musicfox&quot;
+Name=musicfox
+Name[zh_CN]=网易云音乐
+</code></pre><h3 id="vsftpd">vsftpd</h3>
 <p><code>sudo vim /etc/vsftpd.conf</code></p>
 <pre><code>local_enable=YES
 write_enable=YES
