@@ -64,8 +64,6 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <p>执行：</p>
 <p><code>lspci | grep NVIDIA</code></p>
 <p>如有 (rev ff)字样 ，则表示独显已成功禁用。</p>
-<h3 id="电池优化">电池优化</h3>
-<p><code>sudo systemctl enable --now tlp.service</code></p>
 <h2 id="软件">软件</h2>
 <h3 id="软件仓库">软件仓库</h3>
 <p>修改镜像列表：</p>
@@ -113,15 +111,8 @@ media.ffmpeg.vaapi.enabled
 false:
 media.ffvpx.enabled
 </code></pre><h3 id="网易云音乐">网易云音乐</h3>
-<p><code>vim ~/.local/share/applications/musicfox.desktop</code></p>
-<pre><code>[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Terminal=false
-Icon=/usr/share/icons/Qogir/scalable/apps/netease-cloud-music.svg
-Exec=sh -c &quot;alacritty -e ~/Desktop/musicfox&quot;
-Name=musicfox
-Name[zh_CN]=网易云音乐
+<p><code> vim /usr/share/applications/netease-cloud-music-gtk.desktop</code></p>
+<pre><code>Icon=/usr/share/icons/Qogir/scalable/apps/netease-cloud-music.svg
 </code></pre><h3 id="vsftpd">vsftpd</h3>
 <p><code>sudo vim /etc/vsftpd.conf</code></p>
 <pre><code>local_enable=YES
@@ -148,102 +139,11 @@ write_enable=YES
 <p>天气</p>
 <p><code>yay -S jq</code></p>
 <p><code>yay -S ttf-weather-icons</code>（代理）</p>
+<p>图标</p>
+<p><code>yay -S nerd-fonts-roboto-mono</code>（代理）</p>
 <h3 id="ibus">ibus</h3>
 <p><code>ibus-setup</code></p>
-<h3 id="ranger">Ranger</h3>
-<h4 id="配置文件">配置文件</h4>
-<p><code>~/.config/ranger</code> 用户配置文件目录</p>
-<p><code>ranger --copy-config=all</code> 复制默认配置文件至上述目录</p>
-<p><code>export RANGER_LOAD_DEFAULT_RC=FALSE</code> 避免加载默认配置。</p>
-<h4 id="文件打开方式">文件打开方式</h4>
-<p><code>vim ~/.config/ranger/rifle.conf</code></p>
-<pre><code># Documents
-ext wps|wpt|doc|dot|docx, has wps, X, flag f = wps &quot;$@&quot;
-ext et|ett|xls|xlt|xlsx, has et, X, flag f = et &quot;$@&quot;
-ext dps|dpt|ppt|pot|pptx|pps, has wpp, X, flag f = wpp &quot;$@&quot;
-ext pdf, has wpspdf, X, flag f = wpspdf &quot;$@&quot;
-
-# Images
-mime ^image, has viewnior, X, flag f = viewnior -- &quot;$@&quot;
-</code></pre><h4 id="自定义快捷键">自定义快捷键</h4>
-<p><code>vim ~/.config/ranger/rc.conf</code></p>
-<pre><code># 智能重命名
-
-map cw eval fm.execute_console(&quot;bulkrename&quot;) if fm.thisdir.marked_items else fm.open_console(&quot;rename &quot;)
-</code></pre><h4 id="自定义命令">自定义命令</h4>
-<p>fzf集成</p>
-<p><code>yay -S fzf</code></p>
-<p><code>vim .config/ranger/commands.py</code></p>
-<pre><code>class fzf_select(Command):
-    &quot;&quot;&quot;
-    :fzf_select
-
-    Find a file using fzf.
-
-    With a prefix argument select only directories.
-
-    See: https://github.com/junegunn/fzf
-    &quot;&quot;&quot;
-    def execute(self):
-        import subprocess
-        import os.path
-        if self.quantifier:
-            # match only directories
-            command=&quot;find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
-            -o -type d -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;
-        else:
-            # match files and directories
-            command=&quot;find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
-            -o -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;
-        fzf = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
-        stdout, stderr = fzf.communicate()
-        if fzf.returncode == 0:
-            fzf_file = os.path.abspath(stdout.rstrip('\n'))
-            if os.path.isdir(fzf_file):
-                self.fm.cd(fzf_file)
-            else:
-                self.fm.select_file(fzf_file)
-</code></pre><p>绑定快捷键</p>
-<p><code>vim ~/.config/ranger/rc.conf</code></p>
-<pre><code>fzf集成
-map &lt;C-f&gt; fzf_select
-</code></pre><h4 id="插件">插件</h4>
-<ol>
-<li>图标支持</li>
-</ol>
-<p><code>yay -S nerd-fonts-roboto-mono</code>（代理）</p>
-<p><code>git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons</code></p>
-<p><code>vim ~/.config/ranger/rc.conf</code></p>
-<pre><code># 图标支持
-default_linemode devicons
-</code></pre><ol start="2">
-<li>压缩与解压缩</li>
-</ol>
-<p><code>yay -S atool zip unzip p7zip unrar</code></p>
-<p><code>git clone https://github.com/maximtrp/ranger-archives.git</code></p>
-<p>将<code>compress.py</code>和<code>extract.py</code>复制至<code>~/.config/ranger/plugins</code></p>
-<p>绑定快捷键：</p>
-<p><code>vim ~/.config/ranger/rc.conf</code></p>
-<pre><code># 压缩与解压缩
-map ex extract
-map ec compress
-</code></pre><h4 id="图像预览">图像预览</h4>
-<p><code>sudo pacman -S ueberzug</code></p>
-<p><code>vim ~/.config/ranger/rc.conf</code></p>
-<pre><code>set preview_images true
-set preview_images_method ueberzug
-</code></pre><h4 id="视频预览">视频预览</h4>
-<p><code>sudo pacman -S ffmpegthumbnailer</code></p>
-<p><code>vim ~/.config/ranger/scope.sh</code></p>
-<p>搜索<code>ffmpegthumbnailer</code>并取消video部分注释</p>
-<p><code>vim ~/.config/ranger/rc.conf</code></p>
-<p>搜索<code>set preview_script</code></p>
-<h4 id="office文档预览">Office文档预览</h4>
-<p><code>yay -S python-xlsx2csv pandoc catdoc</code></p>
-<h4 id="vcs集成">VCS集成</h4>
-<p><code>vim ~/.config/ranger/rc.conf</code></p>
-<pre><code>set vcs_aware true
-</code></pre><h3 id="git">git</h3>
+<h3 id="git">git</h3>
 <p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
 <h3 id="scrcpy">scrcpy</h3>
 <p><code>sudo adb devices</code></p>
@@ -254,7 +154,7 @@ set preview_images_method ueberzug
 <p><code>sudo systemctl enable --now cronie.service</code></p>
 <p><code>crontab -e</code></p>
 <pre><code>0 * * * * export DISPLAY=:0 &amp;&amp; nitrogen --set-zoom-fill --random &amp;
-45 6 * * * export DISPLAY=:0 &amp;&amp; alacritty -e mpv --no-config --loop ~/Music/alarm.m4a &amp;
+15 8 * * * export DISPLAY=:0 &amp;&amp; alacritty -e mpv --no-config --loop ~/Videos/alarm.mp4 &amp;
 </code></pre><h3 id="获取程序名称">获取程序名称</h3>
 <p><code>xprop | grep WM_CLASS</code></p>
 <h3 id="获取中文字体列表">获取中文字体列表</h3>
