@@ -59,7 +59,7 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装系统基础软件包">安装系统基础软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode efibootmgr sudo fish iwd vim man-db man-pages</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode efibootmgr sudo fish iwd vim</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -71,8 +71,8 @@
 <h3 id="本地化">本地化</h3>
 <p><code>vim /etc/locale.gen</code></p>
 <pre><code>en_US.UTF-8 UTF-8
-zh_CN.UTF-8 UTF-8
 ja_JP.UTF-8 UTF-8
+zh_CN.UTF-8 UTF-8
 </code></pre><p><code>locale-gen</code></p>
 <p><code>echo LANG=en_US.UTF-8 &gt; /etc/locale.conf</code></p>
 <h3 id="主机名">主机名</h3>
@@ -205,7 +205,7 @@ dmenu ==&gt; rofi -show drun
 <h4 id="输入法">输入法</h4>
 <p><code>ibus ibus-rime ibus-mozc</code></p>
 <h4 id="文件管理">文件管理</h4>
-<p><code>nautilus udiskie gvfs-mtp file-roller p7zip unrar rsync</code></p>
+<p><code>nautilus ffmpegthumbnailer udiskie gvfs-mtp file-roller p7zip unrar rsync</code></p>
 <h4 id="图片浏览器">图片浏览器</h4>
 <p><code>viewnior</code></p>
 <h4 id="音乐播放器">音乐播放器</h4>
@@ -225,8 +225,6 @@ dmenu ==&gt; rofi -show drun
 <p><code>rofi-greenclip</code>（代理）</p>
 <h4 id="办公软件">办公软件</h4>
 <p><code>wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts</code></p>
-<h4 id="电子书管理">电子书管理</h4>
-<p><code>calibre</code></p>
 <h4 id="博客">博客</h4>
 <p><code>hugo</code></p>
 <h4 id="开发">开发</h4>
@@ -242,6 +240,8 @@ dmenu ==&gt; rofi -show drun
 <p><code>cronie</code></p>
 <h4 id="主题美化">主题美化</h4>
 <p><code>materia-gtk-theme qogir-icon-theme-git lxappearance-gtk3</code></p>
+<h4 id="文档">文档</h4>
+<p><code>man-db man-pages</code></p>
 
     </div>
 
