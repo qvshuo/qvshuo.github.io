@@ -17,10 +17,7 @@
 Option &amp;quot;Tapping&amp;quot; &amp;quot;on&amp;quot; Option &amp;quot;NaturalScrolling&amp;quot; &amp;quot;true&amp;quot; reboot
 自动挂载windows分区 sudo mkdir /media &amp;amp;&amp;amp; sudo mkdir /media/Windows &amp;amp;&amp;amp; sudo mkdir /media/Data
 sudo vim /etc/fstab
-/dev/sda4 /media/Windows ntfs-3g uid=huizhi,gid=users,dmask=022,fmask=133 0 0 /dev/sdb2 /media/Data ntfs-3g uid=huizhi,gid=users,dmask=022,fmask=133 0 0 Nvidia显卡 方案一：
-prime方案
-yay -S nvidia nvidia-prime
-方案二：
+/dev/sda4	/media/Windows	ntfs-3g	uid=huizhi,gid=users,dmask=022,fmask=133	0	0 /dev/sdb2	/media/Data	ntfs-3g	uid=huizhi,gid=users,dmask=022,fmask=133	0	0 Nvidia显卡 方案一：
 禁用Nvidia显卡
 安装bbswitch：
 sudo pacman -S bbswitch
@@ -33,7 +30,10 @@ sudo vim /etc/modprobe.d/bbswitch.conf
 键入：
 options bbswitch load_state=0 unload_state=1
 屏蔽nouveau驱动:
-sudo vim /etc/modprobe.</description>
+sudo vim /etc/modprobe.d/blacklistnvidia.conf
+键入：
+blacklist nouveau
+重建 initrd：</description>
     </item>
     
     <item>

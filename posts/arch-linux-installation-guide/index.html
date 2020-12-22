@@ -80,12 +80,12 @@ zh_CN.UTF-8 UTF-8
 <h3 id="hosts">hosts</h3>
 <p><code>vim /etc/hosts</code></p>
 <pre><code>127.0.0.1	localhost
-::1	localhost
+::1		localhost
 127.0.0.1	matebook.localdomain	matebook
 </code></pre><h3 id="配置initramfs参数">配置initramfs参数</h3>
 <p><code>vim /etc/mkinitcpio.conf</code></p>
 <pre><code>HOOKS=(添加 btrfs)
-</code></pre><p><code>mkinitcpio -p linux</code></p>
+</code></pre><p><code>mkinitcpio -P</code></p>
 <h3 id="设置root密码">设置root密码</h3>
 <p><code>passwd</code></p>
 <h3 id="安装引导程序">安装引导程序</h3>
@@ -104,7 +104,6 @@ options  root=PARTUUID=d22644f6-8d53-44d6-80cf-4990db6e532c rw rootflags=subvol=
 <p><code>exit</code></p>
 <p><code>reboot</code></p>
 <h3 id="重新连接网络">重新连接网络</h3>
-<p>方案一：</p>
 <p><code>systemctl enable --now systemd-networkd.service</code></p>
 <p><code>systemctl enable --now systemd-resolved.service</code></p>
 <p><code>systemctl enable --now iwd.service</code></p>
@@ -115,16 +114,6 @@ EnableNetworkConfiguration=true
 NameResolvingService=systemd
 </code></pre><p><code>systemctl restart iwd.service</code></p>
 <p><code>iwctl</code></p>
-<p>方案二：</p>
-<p><code>vim /etc/systemd/network/config.network</code></p>
-<pre><code>[Match]
-Name=interface
-[Network]
-DHCP=yes
-</code></pre><p><code>systemctl enable --now systemd-networkd.service</code></p>
-<p><code>ln -s /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf</code></p>
-<p><code>systemctl enable --now systemd-resolved.service</code></p>
-<p><code>systemctl enable --now iwd.service</code></p>
 <h3 id="添加新用户">添加新用户</h3>
 <p><code>useradd -m -G wheel,video huizhi</code></p>
 <p><code>passwd huizhi</code></p>
@@ -151,7 +140,8 @@ DHCP=yes
 <pre><code>Xft.dpi: 120
 </code></pre><h3 id="xinitrc">xinitrc</h3>
 <p><code>vim ~/.xinitrc</code></p>
-<pre><code>export LANG=zh_CN.UTF-8
+<pre><code>xrdb -merge ~/.Xresources
+export LANG=zh_CN.UTF-8
 exec bspwm
 </code></pre><h3 id="基础配置文件">基础配置文件</h3>
 <p><code>mkdir .config/bspwm</code></p>

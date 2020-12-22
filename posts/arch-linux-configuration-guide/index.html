@@ -35,13 +35,10 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <h3 id="自动挂载windows分区">自动挂载windows分区</h3>
 <p><code>sudo mkdir /media &amp;&amp; sudo mkdir /media/Windows &amp;&amp; sudo mkdir /media/Data</code></p>
 <p><code>sudo vim /etc/fstab</code></p>
-<pre><code>/dev/sda4       /media/Windows    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
-/dev/sdb2       /media/Data    ntfs-3g         uid=huizhi,gid=users,dmask=022,fmask=133    0       0
+<pre><code>/dev/sda4	/media/Windows	ntfs-3g	uid=huizhi,gid=users,dmask=022,fmask=133	0	0
+/dev/sdb2	/media/Data	ntfs-3g	uid=huizhi,gid=users,dmask=022,fmask=133	0	0
 </code></pre><h3 id="nvidia显卡">Nvidia显卡</h3>
 <p>方案一：</p>
-<p>prime方案</p>
-<p><code>yay -S nvidia nvidia-prime</code></p>
-<p>方案二：</p>
 <p>禁用Nvidia显卡</p>
 <p>安装bbswitch：</p>
 <p><code>sudo pacman -S bbswitch</code></p>
@@ -64,6 +61,9 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <p>执行：</p>
 <p><code>lspci | grep NVIDIA</code></p>
 <p>如有 (rev ff)字样 ，则表示独显已成功禁用。</p>
+<p>方案二：</p>
+<p>prime方案</p>
+<p><code>yay -S nvidia nvidia-prime</code></p>
 <h2 id="软件">软件</h2>
 <h3 id="软件仓库">软件仓库</h3>
 <p>修改镜像列表：</p>
@@ -80,7 +80,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p>AUR：</p>
 <p><code>sudo pacman -S yay</code></p>
 <h3 id="建立常用目录的软链接">建立常用目录（的软链接）</h3>
-<p><code>cd ~</code></p>
+<p><code>cd</code></p>
 <p><code>mkdir Desktop Documents Downloads &amp;&amp; ln -s /media/Data/Videos Videos &amp;&amp; ln -s /media/Data/Music Music &amp;&amp; ln -s /media/Data/Pictures Pictures &amp;&amp; ln -s /media/Data/Hugo Hugo</code></p>
 <h3 id="从windows安装字体">从Windows安装字体</h3>
 <p><code>sudo mkdir /usr/share/fonts/WindowsFonts &amp;&amp; sudo cp /media/Windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts &amp;&amp; sudo chmod 755 /usr/share/fonts/WindowsFonts/* &amp;&amp; fc-cache -f</code></p>
@@ -91,6 +91,8 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p>取消欢迎语：</p>
 <p><code>fish</code></p>
 <p><code>set -U fish_greeting</code></p>
+<p>样式设置：</p>
+<p><code>fish_config</code></p>
 <h3 id="firefox">Firefox</h3>
 <p><code>about:config</code></p>
 <pre><code>退格键返回：（将值由2改成0）
@@ -98,9 +100,6 @@ browser.backspace_action
 
 双击关闭标签页：
 browser.tabs.closeTabByDblclick
-
-关闭切换标签页预览
-browser.ctrlTab.recentlyUsedOrder
 </code></pre><p>终结内容农场</p>
 <p><code>https://raw.githubusercontent.com/danny0838/content-farm-terminator/gh-pages/files/blocklist/content-farms.txt</code></p>
 <h3 id="vsftpd">vsftpd</h3>
@@ -134,6 +133,7 @@ http {
         }
 
     }
+
 }
 </code></pre><p><code>sudo systemctl enable --now nginx.service</code></p>
 <h3 id="polybar">polybar</h3>
@@ -150,7 +150,6 @@ http {
 <p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
 <h3 id="scrcpy">scrcpy</h3>
 <p><code>sudo adb devices &amp;&amp; adb tcpip 5556 &amp;&amp; adb connect 192.168.3.120:5556</code></p>
-<p><code>scrcpy -b 6M --window-title 'MEIZU 16s' --window-borderless --stay-awake --push-target /sdcard/scrcpy</code></p>
 <h3 id="cron">cron</h3>
 <p><code>sudo systemctl enable --now cronie.service</code></p>
 <p><code>crontab -e</code></p>
