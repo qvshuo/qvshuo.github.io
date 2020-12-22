@@ -64,7 +64,10 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <p>方案二：</p>
 <p>prime方案</p>
 <p><code>yay -S nvidia nvidia-prime</code></p>
-<h2 id="软件">软件</h2>
+<h3 id="加快关机速度">加快关机速度</h3>
+<p><code>sudo vim /etc/systemd/system.conf</code></p>
+<pre><code>DefaultTimeoutStopSec=5s
+</code></pre><h2 id="软件">软件</h2>
 <h3 id="软件仓库">软件仓库</h3>
 <p>修改镜像列表：</p>
 <p><code>sudo vim /etc/pacman.d/mirrorlist</code></p>
