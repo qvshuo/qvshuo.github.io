@@ -26,7 +26,10 @@
         </div>
     
     <div id="content">
-        <h2 id="硬件">硬件</h2>
+        <blockquote>
+<p>更新于2020.12</p>
+</blockquote>
+<h2 id="硬件">硬件</h2>
 <h3 id="触控板优化">触控板优化</h3>
 <p><code>sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf</code></p>
 <pre><code>Option &quot;Tapping&quot; &quot;on&quot;
@@ -55,7 +58,7 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <p>键入：</p>
 <p><code>blacklist nouveau</code></p>
 <p>重建 initrd：</p>
-<p><code>sudo mkinitcpio -p linux</code></p>
+<p><code>sudo mkinitcpio -P</code></p>
 <p>重启：</p>
 <p><code>reboot</code></p>
 <p>执行：</p>
@@ -146,9 +149,9 @@ http {
 <h3 id="polybar">polybar</h3>
 <p>天气</p>
 <p><code>yay -S jq</code></p>
-<p><code>yay -S ttf-weather-icons</code>（代理）</p>
+<p><code>yay -S ttf-weather-icons</code>（AUR）</p>
 <p>图标</p>
-<p><code>yay -S nerd-fonts-roboto-mono</code>（代理）</p>
+<p><code>yay -S nerd-fonts-complete</code>（AUR）</p>
 <h3 id="ibus">ibus</h3>
 <p><code>ibus-setup</code></p>
 <p>Rime同步</p>
