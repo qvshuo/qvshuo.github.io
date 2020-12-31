@@ -35,12 +35,17 @@
 <pre><code>Option &quot;Tapping&quot; &quot;on&quot;
 Option &quot;NaturalScrolling&quot; &quot;true&quot;
 </code></pre><p><code>reboot</code></p>
-<h3 id="自动挂载windows分区">自动挂载windows分区</h3>
-<p><code>sudo mkdir /media &amp;&amp; sudo mkdir /media/Windows &amp;&amp; sudo mkdir /media/Data</code></p>
+<h3 id="自动挂载资料分区并修改所有者及权限">自动挂载资料分区并修改所有者及权限</h3>
+<p><code>sudo mkdir /data</code></p>
 <p><code>sudo vim /etc/fstab</code></p>
-<pre><code>/dev/sda4	/media/Windows	ntfs-3g	uid=huizhi,gid=users,dmask=022,fmask=133	0	0
-/dev/sdb2	/media/Data	ntfs-3g	uid=huizhi,gid=users,dmask=022,fmask=133	0	0
-</code></pre><h3 id="nvidia显卡">Nvidia显卡</h3>
+<pre><code>/dev/sdb1	/data	ext4	defaults	0	0
+</code></pre><p><code>sudo mount -a</code></p>
+<p><code>cd /data</code></p>
+<p>设置所有文件权限为644：</p>
+<p><code>sudo find ./ -type f -exec chmod 644 {} \;</code></p>
+<p>设置所有目录权限为755：</p>
+<p><code>sudo find ./ -type d -exec chmod 755 {} \;</code></p>
+<h3 id="nvidia显卡">Nvidia显卡</h3>
 <p>方案一：</p>
 <p>禁用Nvidia显卡</p>
 <p>安装bbswitch：</p>
@@ -69,7 +74,7 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <p><code>yay -S nvidia nvidia-prime</code></p>
 <h3 id="加快关机速度">加快关机速度</h3>
 <p><code>sudo vim /etc/systemd/system.conf</code></p>
-<pre><code>DefaultTimeoutStopSec=5s
+<pre><code>DefaultTimeoutStopSec=3s
 </code></pre><h2 id="软件">软件</h2>
 <h3 id="软件仓库">软件仓库</h3>
 <p>修改镜像列表：</p>
@@ -87,15 +92,12 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>sudo pacman -S yay</code></p>
 <h3 id="建立常用目录的软链接">建立常用目录（的软链接）</h3>
 <p><code>cd</code></p>
-<p><code>mkdir Desktop Documents Downloads &amp;&amp; ln -s /media/Data/Videos Videos &amp;&amp; ln -s /media/Data/Music Music &amp;&amp; ln -s /media/Data/Pictures Pictures &amp;&amp; ln -s /media/Data/Hugo Hugo</code></p>
-<h3 id="从windows安装字体">从Windows安装字体</h3>
-<p><code>sudo mkdir /usr/share/fonts/WindowsFonts &amp;&amp; sudo cp /media/Windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts &amp;&amp; sudo chmod 755 /usr/share/fonts/WindowsFonts/* &amp;&amp; fc-cache -f</code></p>
+<p><code>mkdir Desktop Documents Downloads &amp;&amp; ln -s /data/Videos Videos &amp;&amp; ln -s /data/Music Music &amp;&amp; ln -s /data/Pictures Pictures &amp;&amp; ln -s /data/Hugo Hugo</code></p>
 <h3 id="恢复配置文件">恢复配置文件</h3>
 <p><code>git clone https://github.com/qvshuo/dotfiles.git</code></p>
 <p><code>rsync -r --exclude &quot;.git/&quot; --exclude &quot;LICENSE&quot; --exclude &quot;README.md&quot; ~/dotfiles/ ~/</code></p>
 <h3 id="fish">fish</h3>
 <p>取消欢迎语：</p>
-<p><code>fish</code></p>
 <p><code>set -U fish_greeting</code></p>
 <p>样式设置：</p>
 <p><code>fish_config</code></p>
@@ -133,7 +135,7 @@ http {
         listen  8765;
 
         location / {
-            root   /media/Data/Videos;
+            root   /data/Videos;
             autoindex on;
             autoindex_exact_size off;
             autoindex_localtime on;
@@ -151,13 +153,13 @@ http {
 <p><code>yay -S jq</code></p>
 <p><code>yay -S ttf-weather-icons</code>（AUR）</p>
 <p>图标</p>
-<p><code>yay -S nerd-fonts-complete</code>（AUR）</p>
+<p><code>yay -S nerd-fonts-complete</code></p>
 <h3 id="ibus">ibus</h3>
 <p><code>ibus-setup</code></p>
 <p>Rime同步</p>
 <p><code>vim ~/.config/ibus/rime/installation.yaml</code></p>
 <pre><code>installation_id: &quot;archlinux&quot;
-sync_dir: /media/Data/我的坚果云/rimesync
+sync_dir: /data/我的坚果云/rimesync
 </code></pre><h3 id="git">git</h3>
 <p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
 <h3 id="nativefier">nativefier</h3>
@@ -187,9 +189,8 @@ Font Awesome 5 Free Solid
 Weather Icons
 
 RobotoMono Nerd Font
-</code></pre><h3 id="使windows使用utc时间">使Windows使用UTC时间</h3>
-<p>Windows下以管理员权限运行：</p>
-<p><code>reg add &quot;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation&quot; /v RealTimeIsUniversal /d 1 /t REG_QWORD /f</code></p>
+</code></pre><h3 id="从windows安装字体">从Windows安装字体</h3>
+<p><code>sudo mkdir /usr/share/fonts/WindowsFonts &amp;&amp; sudo cp /media/Windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts &amp;&amp; sudo chmod 755 /usr/share/fonts/WindowsFonts/* &amp;&amp; fc-cache -f</code></p>
 
     </div>
 

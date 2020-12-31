@@ -49,11 +49,13 @@
 <p><code>mkfs.btrfs -f -L Arch /dev/sdaX</code></p>
 <p>挂载根分区：</p>
 <p><code>mount /dev/sdaX /mnt</code></p>
+<p>格式化ESP分区：</p>
+<p><code>mkfs.vfat /dev/sdaY</code></p>
 <p>挂载ESP分区：</p>
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装系统基础软件包">安装系统基础软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode efibootmgr sudo fish iwd vim</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd vim</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -120,7 +122,7 @@ NameResolvingService=systemd
 <p><code>pacman -S alsa-utils pulseaudio pulseaudio-alsa</code></p>
 <h3 id="触控板">触控板</h3>
 <p><code>pacman -S xf86-input-libinput</code></p>
-<p><code>ruby-fusuma</code></p>
+<p><code>ruby-fusuma</code>（AUR）</p>
 <h3 id="x">X</h3>
 <p><code>pacman -S xorg-server xorg-xinit xorg-xsetroot</code></p>
 <h3 id="窗口管理器">窗口管理器</h3>
@@ -163,13 +165,15 @@ dmenu ==&gt; rofi -show drun
 <h4 id="代理">代理</h4>
 <p><code>clash proxychains-ng</code></p>
 <h4 id="通讯">通讯</h4>
-<p><code>wechat-uos telegram-desktop</code></p>
+<p><code>telegram-desktop</code></p>
+<p><code>wechat-uos</code>（AUR）</p>
 <h4 id="在线音乐">在线音乐</h4>
 <p><code>musicfox</code>（AUR）</p>
 <h4 id="在线会议">在线会议</h4>
 <p><code>zoom</code>（AUR）</p>
 <h4 id="下载工具">下载工具</h4>
-<p><code>youtube-dl vdhcoapp xunlei-bin</code></p>
+<p><code>youtube-dl vdhcoapp</code></p>
+<p><code>xunlei-bin</code>（AUR）</p>
 <h4 id="网盘">网盘</h4>
 <p><code>baidunetdisk-bin nutstore</code></p>
 <h4 id="局域网ftp文件共享">局域网ftp文件共享</h4>
@@ -215,7 +219,8 @@ dmenu ==&gt; rofi -show drun
 <h4 id="博客">博客</h4>
 <p><code>hugo</code></p>
 <h4 id="开发">开发</h4>
-<p><code>git code nodejs-nativefier</code></p>
+<p><code>git code</code></p>
+<p><code>nodejs-nativefier</code>（AUR）</p>
 <h4 id="android">Android</h4>
 <p><code>android-tools scrcpy</code></p>
 <h4 id="虚拟机">虚拟机</h4>

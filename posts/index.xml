@@ -16,9 +16,15 @@
       <description>更新于2020.12
  硬件 触控板优化 sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf
 Option &amp;quot;Tapping&amp;quot; &amp;quot;on&amp;quot; Option &amp;quot;NaturalScrolling&amp;quot; &amp;quot;true&amp;quot; reboot
-自动挂载windows分区 sudo mkdir /media &amp;amp;&amp;amp; sudo mkdir /media/Windows &amp;amp;&amp;amp; sudo mkdir /media/Data
+自动挂载资料分区并修改所有者及权限 sudo mkdir /data
 sudo vim /etc/fstab
-/dev/sda4	/media/Windows	ntfs-3g	uid=huizhi,gid=users,dmask=022,fmask=133	0	0 /dev/sdb2	/media/Data	ntfs-3g	uid=huizhi,gid=users,dmask=022,fmask=133	0	0 Nvidia显卡 方案一：
+/dev/sdb1	/data	ext4	defaults	0	0 sudo mount -a
+cd /data
+设置所有文件权限为644：
+sudo find ./ -type f -exec chmod 644 {} \;
+设置所有目录权限为755：
+sudo find ./ -type d -exec chmod 755 {} \;
+Nvidia显卡 方案一：
 禁用Nvidia显卡
 安装bbswitch：
 sudo pacman -S bbswitch
@@ -26,13 +32,7 @@ sudo pacman -S bbswitch
 sudo vim /etc/modules-load.d/bbswitch.conf
 键入：
 bbswitch
-设置bbswitch加载参数，实现开机时关闭独显，关机时开启独显，避免重启进入Windows时找不到独显：
-sudo vim /etc/modprobe.d/bbswitch.conf
-键入：
-options bbswitch load_state=0 unload_state=1
-屏蔽nouveau驱动:
-sudo vim /etc/modprobe.d/blacklistnvidia.conf
-键入：</description>
+设置bbswitch加载参数，实现开机时关闭独显，关机时开启独显，避免重启进入Windows时找不到独显：</description>
     </item>
     
     <item>
@@ -56,10 +56,12 @@ quit
 mkfs.btrfs -f -L Arch /dev/sdaX
 挂载根分区：
 mount /dev/sdaX /mnt
+格式化ESP分区：
+mkfs.vfat /dev/sdaY
 挂载ESP分区：
 mkdir /mnt/boot
 mount /dev/sdaY /mnt/boot
-安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode efibootmgr sudo fish iwd vim
+安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd vim
 生成fstab genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab</description>
     </item>
     
