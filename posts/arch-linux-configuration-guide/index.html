@@ -113,6 +113,21 @@ browser.tabs.closeTabByDblclick
 browser.ctrlTab.recentlyUsedOrder
 </code></pre><p>终结内容农场</p>
 <p><code>https://raw.githubusercontent.com/danny0838/content-farm-terminator/gh-pages/files/blocklist/content-farms.txt</code></p>
+<h3 id="clash">clash</h3>
+<p><code>vim ~/.config/clash/clashup.json</code></p>
+<pre><code>{
+    &quot;http_port&quot;: 7890,
+    &quot;socks5_port&quot;: 7891,
+    &quot;redir_port&quot;: 7892, 
+    &quot;allow_lan&quot;: true,
+    &quot;external_controller&quot;: &quot;127.0.0.1:9090&quot;,
+    &quot;subscribe_url&quot;: &quot;&quot;,
+    &quot;is_subscribe_banned&quot;: false, 
+    &quot;custom_rules&quot;: [],
+    &quot;mmdb_file_url&quot;: &quot;http://www.ideame.top/mmdb/Country.mmdb&quot;,
+    &quot;mmdb_version_url&quot;: &quot;http://www.ideame.top/mmdb/version&quot;
+}
+</code></pre><p><code>systemctl --user enable --now clash</code></p>
 <h3 id="proxychains">proxychains</h3>
 <p><code>sudo vim /etc/proxychains.conf</code></p>
 <pre><code>quiet_mode
