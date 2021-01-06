@@ -188,7 +188,7 @@ sync_dir: /data/我的坚果云/rimesync
 <h3 id="cron">cron</h3>
 <p><code>sudo systemctl enable --now cronie.service</code></p>
 <p><code>crontab -e</code></p>
-<pre><code>*/10 * * * * export DISPLAY=:0 &amp;&amp; hsetroot -tile $(find ~/Pictures/limboPro.xyz -type f | shuf -n 1) &amp;
+<pre><code>0 * * * * export DISPLAY=:0 &amp;&amp; /home/huizhi/Desktop/dynamic_wallpaper/your_name/your_name.sh &amp;
 15 8 * * * export DISPLAY=:0 &amp;&amp; alacritty -e mpv --loop ~/Videos/alarm.mp4 &amp;
 </code></pre><h3 id="获取程序名称">获取程序名称</h3>
 <p><code>xprop | grep WM_CLASS</code></p>
