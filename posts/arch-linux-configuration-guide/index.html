@@ -94,7 +94,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>cd</code></p>
 <p><code>mkdir Desktop Documents Downloads &amp;&amp; ln -s /data/Videos Videos &amp;&amp; ln -s /data/Music Music &amp;&amp; ln -s /data/Pictures Pictures &amp;&amp; ln -s /data/Hugo Hugo</code></p>
 <h3 id="恢复配置文件">恢复配置文件</h3>
-<p><code>git clone https://github.com/qvshuo/dotfiles.git</code></p>
+<p><code>git clone git@github.com:qvshuo/dotfiles.git</code></p>
 <p><code>rsync -r --exclude &quot;.git/&quot; --exclude &quot;LICENSE&quot; --exclude &quot;README.md&quot; ~/dotfiles/ ~/</code></p>
 <h3 id="fish">fish</h3>
 <p>取消欢迎语：</p>
@@ -172,11 +172,11 @@ http {
 </code></pre><p><code>sudo systemctl enable --now nginx.service</code></p>
 <h3 id="hsetroot">hsetroot</h3>
 <p><code>cd ~/Desktop</code></p>
-<p><code>proxychains git clone https://github.com/qvshuo/dynamic_wallpaper.git</code></p>
+<p><code>proxychains git clone git@github.com:qvshuo/dynamic_wallpaper.git</code></p>
 <h3 id="polybar">polybar</h3>
 <p>脚本</p>
 <p><code>cd ~/Desktop</code></p>
-<p><code>proxychains git clone https://github.com/qvshuo/polybar-scripts.git</code></p>
+<p><code>proxychains git clone git@github.com:qvshuo/polybar-scripts.git</code></p>
 <p><code>yay -S jq</code></p>
 <h3 id="ibus">ibus</h3>
 <p><code>ibus-setup</code></p>
@@ -186,9 +186,11 @@ http {
 sync_dir: /data/我的坚果云/rimesync
 </code></pre><h3 id="git">git</h3>
 <p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
+<p><code>ssh-keygen -t rsa -C qvshuo@foxmail.com</code></p>
+<p><code>cat ~/.ssh/id_rsa.pub</code></p>
 <h3 id="nodejs-nativefier">nodejs-nativefier</h3>
 <p><code>cd ~/Desktop</code></p>
-<p><code>proxychains git clone https://github.com/qvshuo/wechat_css.git</code></p>
+<p><code>proxychains git clone git@github.com:qvshuo/wechat_css.git</code></p>
 <h3 id="scrcpy">scrcpy</h3>
 <p>有线:</p>
 <p><code>sudo adb devices</code></p>
