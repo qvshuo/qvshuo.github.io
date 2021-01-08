@@ -74,7 +74,7 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <p><code>yay -S nvidia nvidia-prime</code></p>
 <h3 id="加快关机速度">加快关机速度</h3>
 <p><code>sudo vim /etc/systemd/system.conf</code></p>
-<pre><code>DefaultTimeoutStopSec=3s
+<pre><code>DefaultTimeoutStopSec=1s
 </code></pre><h2 id="软件">软件</h2>
 <h3 id="软件仓库">软件仓库</h3>
 <p>修改镜像列表：</p>
@@ -109,8 +109,9 @@ browser.backspace_action
 双击关闭标签页：
 browser.tabs.closeTabByDblclick
 
-最近使用顺序：
-browser.ctrlTab.recentlyUsedOrder
+Hardware video acceleration:
+`media.ffmpeg.vaapi.enabled` to `true` in order to enable the use of VA-API with FFmpeg;
+`media.ffvpx.enabled` to `false` to disable the internal decoders for VP8/VP9.
 </code></pre><p>终结内容农场</p>
 <p><code>https://raw.githubusercontent.com/danny0838/content-farm-terminator/gh-pages/files/blocklist/content-farms.txt</code></p>
 <h3 id="clash">clash</h3>
