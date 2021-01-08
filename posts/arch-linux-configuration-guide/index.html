@@ -110,8 +110,10 @@ browser.backspace_action
 browser.tabs.closeTabByDblclick
 
 Hardware video acceleration:
-`media.ffmpeg.vaapi.enabled` to `true` in order to enable the use of VA-API with FFmpeg;
-`media.ffvpx.enabled` to `false` to disable the internal decoders for VP8/VP9.
+true:
+media.ffmpeg.vaapi.enabled
+false:
+media.ffvpx.enabled
 </code></pre><p>终结内容农场</p>
 <p><code>https://raw.githubusercontent.com/danny0838/content-farm-terminator/gh-pages/files/blocklist/content-farms.txt</code></p>
 <h3 id="clash">clash</h3>
@@ -184,8 +186,9 @@ http {
 sync_dir: /data/我的坚果云/rimesync
 </code></pre><h3 id="git">git</h3>
 <p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
-<h3 id="nativefier">nativefier</h3>
-<p><code>nativefier -i ./wechat.png --max-width 1000 --inject wechat.css --disable-dev-tools --tray wx.qq.com wechat-nativefier</code></p>
+<h3 id="nodejs-nativefier">nodejs-nativefier</h3>
+<p><code>cd ~/Desktop</code></p>
+<p><code>proxychains git clone https://github.com/qvshuo/wechat_css.git</code></p>
 <h3 id="scrcpy">scrcpy</h3>
 <p>有线:</p>
 <p><code>sudo adb devices</code></p>
