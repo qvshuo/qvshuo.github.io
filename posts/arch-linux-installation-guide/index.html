@@ -55,7 +55,7 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装系统基础软件包">安装系统基础软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd vim</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr iwd neovim</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -65,7 +65,7 @@
 <p><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
 <p><code>hwclock --systohc</code></p>
 <h3 id="本地化">本地化</h3>
-<p><code>vim /etc/locale.gen</code></p>
+<p><code>nvim /etc/locale.gen</code></p>
 <pre><code>en_US.UTF-8 UTF-8
 ja_JP.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
@@ -74,23 +74,23 @@ zh_CN.UTF-8 UTF-8
 <h3 id="主机名">主机名</h3>
 <p><code>echo matebook &gt; /etc/hostname</code></p>
 <h3 id="hosts">hosts</h3>
-<p><code>vim /etc/hosts</code></p>
+<p><code>nvim /etc/hosts</code></p>
 <pre><code>127.0.0.1	localhost
 ::1		localhost
 127.0.0.1	matebook.localdomain	matebook
 </code></pre><h3 id="配置initramfs参数">配置initramfs参数</h3>
-<p><code>vim /etc/mkinitcpio.conf</code></p>
+<p><code>nvim /etc/mkinitcpio.conf</code></p>
 <pre><code>HOOKS=(添加 btrfs)
 </code></pre><p><code>mkinitcpio -P</code></p>
 <h3 id="设置root密码">设置root密码</h3>
 <p><code>passwd</code></p>
 <h3 id="安装引导程序">安装引导程序</h3>
-<p>可在vim中执行<code>:r !blkid -s PARTUUID -o value /dev/sdaX</code>以获取根分区PARTUUID</p>
+<p>可在nvim中执行<code>:r !blkid -s PARTUUID -o value /dev/sdaX</code>以获取根分区PARTUUID</p>
 <p><code>bootctl --path=/boot install</code></p>
-<p><code>vim /boot/loader/loader.conf</code></p>
+<p><code>nvim /boot/loader/loader.conf</code></p>
 <pre><code>timeout  3
 default  arch
-</code></pre><p><code>vim /boot/loader/entries/arch.conf </code></p>
+</code></pre><p><code>nvim /boot/loader/entries/arch.conf </code></p>
 <pre><code>title    Arch Linux
 linux    /vmlinuz-linux
 initrd   /intel-ucode.img
@@ -103,7 +103,7 @@ options  root=PARTUUID=d22644f6-8d53-44d6-80cf-4990db6e532c rw rootflags=subvol=
 <p><code>systemctl enable --now systemd-networkd.service</code></p>
 <p><code>systemctl enable --now systemd-resolved.service</code></p>
 <p><code>systemctl enable --now iwd.service</code></p>
-<p><code>vim /etc/iwd/main.conf</code></p>
+<p><code>nvim /etc/iwd/main.conf</code></p>
 <pre><code>[General]
 EnableNetworkConfiguration=true
 [Network]
@@ -113,7 +113,7 @@ NameResolvingService=systemd
 <h3 id="添加新用户">添加新用户</h3>
 <p><code>useradd -mG wheel,video,input huizhi</code></p>
 <p><code>passwd huizhi</code></p>
-<p><code>vim /etc/sudoers</code></p>
+<p><code>nvim /etc/sudoers</code></p>
 <pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
 </code></pre><h2 id="二图形界面安装">二、图形界面安装</h2>
 <h3 id="显示">显示</h3>
@@ -135,10 +135,10 @@ NameResolvingService=systemd
 <p><code>su huizhi</code></p>
 <p><code>cd</code></p>
 <h3 id="hidpi">HiDPI</h3>
-<p><code>vim ~/.Xresources</code></p>
+<p><code>nvim ~/.Xresources</code></p>
 <pre><code>Xft.dpi: 120
 </code></pre><h3 id="xinitrc">xinitrc</h3>
-<p><code>vim ~/.xinitrc</code></p>
+<p><code>nvim ~/.xinitrc</code></p>
 <pre><code>xrdb -merge ~/.Xresources
 export LANG=zh_CN.UTF-8
 exec bspwm
@@ -147,7 +147,7 @@ exec bspwm
 <p><code>cp /usr/share/doc/bspwm/examples/bspwmrc .config/bspwm</code></p>
 <p><code>mkdir .config/sxhkd</code></p>
 <p><code>cp /usr/share/doc/bspwm/examples/sxhkdrc .config/sxhkd</code></p>
-<p><code>vim .config/sxhkd/sxhkdrc</code></p>
+<p><code>nvim .config/sxhkd/sxhkdrc</code></p>
 <pre><code>uxrvt ==&gt; alacritty -e fish
 dmenu ==&gt; rofi -show drun
 </code></pre><h3 id="字体">字体</h3>
@@ -161,10 +161,19 @@ dmenu ==&gt; rofi -show drun
 <h4 id="浏览器">浏览器</h4>
 <p><code>sudo pacman -S firefox firefox-i18n-zh-cn</code></p>
 <h3 id="源">源</h3>
-<p><a href="https://qvshuo.faith/posts/arch-linux-configuration-guide/">Arch Linux Configuration Guide</a></p>
+<p>修改镜像列表：</p>
+<p><code>sudo vim /etc/pacman.d/mirrorlist</code></p>
+<pre><code>Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
+</code></pre><p>Archlinuxcn源：</p>
+<p><code>sudo vim /etc/pacman.conf</code></p>
+<pre><code>[archlinuxcn]
+Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
+</code></pre><p><code>sudo pacman -Syy &amp;&amp; sudo pacman -S archlinuxcn-keyring</code></p>
+<p>AUR：</p>
+<p><code>sudo pacman -S yay</code></p>
 <h4 id="代理">代理</h4>
-<p><code>clashup</code>（AUR）</p>
-<p><code>proxychains-ng</code></p>
+<p><code>clash proxychains-ng</code></p>
 <h4 id="通讯">通讯</h4>
 <p><code>telegram-desktop</code></p>
 <h4 id="在线音乐">在线音乐</h4>
@@ -195,9 +204,9 @@ dmenu ==&gt; rofi -show drun
 <h4 id="输入法">输入法</h4>
 <p><code>ibus ibus-rime ibus-mozc</code></p>
 <h4 id="文件管理">文件管理</h4>
-<p><code>nautilus ffmpegthumbnailer udiskie gvfs-mtp file-roller p7zip unrar rsync tree</code></p>
+<p><code>nnn atool fuse2 libarchive trash-cli unzip zip p7zip udiskie rsync tree</code></p>
 <h4 id="图片浏览器">图片浏览器</h4>
-<p><code>viewnior</code></p>
+<p><code>imv</code></p>
 <h4 id="音乐播放器">音乐播放器</h4>
 <p><code>cmus</code></p>
 <h4 id="视频播放器">视频播放器</h4>
@@ -215,7 +224,9 @@ dmenu ==&gt; rofi -show drun
 <p><code>rofi-greenclip</code>（AUR）</p>
 <h4 id="办公">办公</h4>
 <p><code>wps-office-cn wps-office-mui-zh-cn</code>（AUR）</p>
-<p><code>ttf-wps-fonts drawio-desktop-bin</code></p>
+<p><code>ttf-wps-fonts</code></p>
+<h4 id="流程图">流程图</h4>
+<p><code>drawio-desktop-bin</code></p>
 <h4 id="笔记">笔记</h4>
 <p><code>typora</code></p>
 <h4 id="博客">博客</h4>
@@ -236,6 +247,8 @@ dmenu ==&gt; rofi -show drun
 <p><code>materia-gtk-theme qogir-icon-theme-git lxappearance-gtk3</code></p>
 <h4 id="文档">文档</h4>
 <p><code>man-db man-pages</code></p>
+<h4 id="设置默认程序">设置默认程序</h4>
+<p><code>selectdefaultapplication-git</code>（AUR）</p>
 
     </div>
 

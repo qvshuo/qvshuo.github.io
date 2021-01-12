@@ -31,13 +31,13 @@
 </blockquote>
 <h2 id="硬件">硬件</h2>
 <h3 id="触控板优化">触控板优化</h3>
-<p><code>sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf</code></p>
+<p><code>sudo nvim /usr/share/X11/xorg.conf.d/40-libinput.conf</code></p>
 <pre><code>Option &quot;Tapping&quot; &quot;on&quot;
 Option &quot;NaturalScrolling&quot; &quot;true&quot;
 </code></pre><p><code>reboot</code></p>
 <h3 id="自动挂载资料分区并修改所有者及权限">自动挂载资料分区并修改所有者及权限</h3>
 <p><code>sudo mkdir /data</code></p>
-<p><code>sudo vim /etc/fstab</code></p>
+<p><code>sudo nvim /etc/fstab</code></p>
 <pre><code>/dev/sdb1	/data	ext4	defaults	0	0
 </code></pre><p><code>sudo mount -a</code></p>
 <p><code>cd /data</code></p>
@@ -51,15 +51,15 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <p>安装bbswitch：</p>
 <p><code>sudo pacman -S bbswitch</code></p>
 <p>开机加载bbswitch模块：</p>
-<p><code>sudo vim /etc/modules-load.d/bbswitch.conf</code></p>
+<p><code>sudo nvim /etc/modules-load.d/bbswitch.conf</code></p>
 <p>键入：</p>
 <p><code>bbswitch</code></p>
 <p>设置bbswitch加载参数，实现开机时关闭独显，关机时开启独显，避免重启进入Windows时找不到独显：</p>
-<p><code>sudo vim /etc/modprobe.d/bbswitch.conf</code></p>
+<p><code>sudo nvim /etc/modprobe.d/bbswitch.conf</code></p>
 <p>键入：</p>
 <p><code>options bbswitch load_state=0 unload_state=1</code></p>
 <p>屏蔽nouveau驱动:</p>
-<p><code>sudo vim /etc/modprobe.d/blacklistnvidia.conf</code></p>
+<p><code>sudo nvim /etc/modprobe.d/blacklistnvidia.conf</code></p>
 <p>键入：</p>
 <p><code>blacklist nouveau</code></p>
 <p>重建 initrd：</p>
@@ -73,34 +73,19 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <p>prime方案</p>
 <p><code>yay -S nvidia nvidia-prime</code></p>
 <h3 id="加快关机速度">加快关机速度</h3>
-<p><code>sudo vim /etc/systemd/system.conf</code></p>
-<pre><code>DefaultTimeoutStopSec=1s
+<p><code>sudo nvim /etc/systemd/system.conf</code></p>
+<pre><code>DefaultTimeoutStopSec=3s
 </code></pre><h2 id="软件">软件</h2>
-<h3 id="软件仓库">软件仓库</h3>
-<p>修改镜像列表：</p>
-<p><code>sudo vim /etc/pacman.d/mirrorlist</code></p>
-<pre><code>Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
-</code></pre><p>Archlinuxcn源：</p>
-<p><code>sudo vim /etc/pacman.conf</code></p>
-<pre><code>[archlinuxcn]
-Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
-</code></pre><p><code>sudo pacman -Syy &amp;&amp; sudo pacman -S archlinuxcn-keyring</code></p>
-<p>AUR：</p>
-<p><code>sudo pacman -S yay</code></p>
 <h3 id="建立常用目录的软链接">建立常用目录（的软链接）</h3>
-<p><code>cd</code></p>
-<p><code>mkdir Desktop Documents Downloads &amp;&amp; ln -s /data/Videos Videos &amp;&amp; ln -s /data/Music Music &amp;&amp; ln -s /data/Pictures Pictures &amp;&amp; ln -s /data/Hugo Hugo</code></p>
+<p><code>cd ~ &amp;&amp; mkdir Desktop Documents Downloads &amp;&amp; ln -s /data/Videos Videos &amp;&amp; ln -s /data/Music Music &amp;&amp; ln -s /data/Pictures Pictures &amp;&amp; ln -s /data/Hugo Hugo</code></p>
+<h3 id="git">git</h3>
+<p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
+<p><code>ssh-keygen -t rsa -C qvshuo@foxmail.com</code></p>
+<p><code>cat ~/.ssh/id_rsa.pub</code></p>
+<p><code>ssh -T git@github.com</code></p>
 <h3 id="恢复配置文件">恢复配置文件</h3>
 <p><code>git clone git@github.com:qvshuo/dotfiles.git</code></p>
-<p><code>rsync -r --exclude &quot;.git/&quot; --exclude &quot;LICENSE&quot; --exclude &quot;README.md&quot; ~/dotfiles/ ~/</code></p>
-<h3 id="fish">fish</h3>
-<p>取消欢迎语：</p>
-<p><code>set -U fish_greeting</code></p>
-<p>样式设置：</p>
-<p><code>fish_config</code></p>
+<p><code>./rsync</code></p>
 <h3 id="firefox">Firefox</h3>
 <p><code>about:config</code></p>
 <pre><code>退格键返回：（将值由2改成0）
@@ -110,39 +95,26 @@ browser.backspace_action
 browser.tabs.closeTabByDblclick
 
 Hardware video acceleration:
+
 true:
 media.ffmpeg.vaapi.enabled
+
 false:
 media.ffvpx.enabled
 </code></pre><p>终结内容农场</p>
 <p><code>https://raw.githubusercontent.com/danny0838/content-farm-terminator/gh-pages/files/blocklist/content-farms.txt</code></p>
-<h3 id="clash">clash</h3>
-<p><code>vim ~/.config/clash/clashup.json</code></p>
-<pre><code>{
-    &quot;http_port&quot;: 7890,
-    &quot;socks5_port&quot;: 7891,
-    &quot;redir_port&quot;: 7892, 
-    &quot;allow_lan&quot;: true,
-    &quot;external_controller&quot;: &quot;127.0.0.1:9090&quot;,
-    &quot;subscribe_url&quot;: &quot;&quot;,
-    &quot;is_subscribe_banned&quot;: false, 
-    &quot;custom_rules&quot;: [],
-    &quot;mmdb_file_url&quot;: &quot;http://www.ideame.top/mmdb/Country.mmdb&quot;,
-    &quot;mmdb_version_url&quot;: &quot;http://www.ideame.top/mmdb/version&quot;
-}
-</code></pre><p><code>systemctl --user enable --now clash</code></p>
 <h3 id="proxychains">proxychains</h3>
-<p><code>sudo vim /etc/proxychains.conf</code></p>
+<p><code>sudo nvim /etc/proxychains.conf</code></p>
 <pre><code>quiet_mode
 # proxy_dns
-http    127.0.0.1       7890
+http    127.0.0.1   7890
 </code></pre><h3 id="vsftpd">vsftpd</h3>
-<p><code>sudo vim /etc/vsftpd.conf</code></p>
+<p><code>sudo nvim /etc/vsftpd.conf</code></p>
 <pre><code>local_enable=YES
 write_enable=YES
 </code></pre><p><code>sudo systemctl enable --now vsftpd.service</code></p>
 <h3 id="nginx">nginx</h3>
-<p><code>sudo vim /etc/nginx/nginx.conf</code></p>
+<p><code>sudo nvim /etc/nginx/nginx.conf</code></p>
 <pre><code>worker_processes  1;
 
 events {
@@ -181,14 +153,10 @@ http {
 <h3 id="ibus">ibus</h3>
 <p><code>ibus-setup</code></p>
 <p>Rime同步</p>
-<p><code>vim ~/.config/ibus/rime/installation.yaml</code></p>
+<p><code>nvim ~/.config/ibus/rime/installation.yaml</code></p>
 <pre><code>installation_id: &quot;archlinux&quot;
 sync_dir: /data/我的坚果云/rimesync
-</code></pre><h3 id="git">git</h3>
-<p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
-<p><code>ssh-keygen -t rsa -C qvshuo@foxmail.com</code></p>
-<p><code>cat ~/.ssh/id_rsa.pub</code></p>
-<h3 id="nodejs-nativefier">nodejs-nativefier</h3>
+</code></pre><h3 id="nodejs-nativefier">nodejs-nativefier</h3>
 <p><code>cd ~/Desktop</code></p>
 <p><code>proxychains git clone git@github.com:qvshuo/wechat_css.git</code></p>
 <h3 id="scrcpy">scrcpy</h3>
@@ -200,7 +168,7 @@ sync_dir: /data/我的坚果云/rimesync
 <p><code>sudo systemctl enable --now cronie.service</code></p>
 <p><code>crontab -e</code></p>
 <pre><code>0 * * * * export DISPLAY=:0 &amp;&amp; /home/huizhi/Desktop/dynamic_wallpaper/your_name/your_name.sh &amp;
-15 8 * * * export DISPLAY=:0 &amp;&amp; alacritty -e mpv --loop ~/Videos/alarm.mp4 &amp;
+15 7 * * * export DISPLAY=:0 &amp;&amp; alacritty -e mpv --loop ~/Videos/alarm.mp4 &amp;
 </code></pre><h3 id="获取程序名称">获取程序名称</h3>
 <p><code>xprop | grep WM_CLASS</code></p>
 <h3 id="获取中文字体列表">获取中文字体列表</h3>
