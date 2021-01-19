@@ -31,7 +31,7 @@
 </blockquote>
 <h2 id="一基本系统安装">一、基本系统安装</h2>
 <h3 id="前置准备">前置准备</h3>
-<p>关闭BIOS安全启动 &amp; 关闭Windows快速启动</p>
+<p>Disable BIOS Secure Boot</p>
 <h3 id="设置tty字体">设置tty字体</h3>
 <p><code>setfont ter-132n</code></p>
 <h3 id="首次连接网络">首次连接网络</h3>
@@ -55,7 +55,7 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装系统基础软件包">安装系统基础软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr iwd neovim</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -95,7 +95,7 @@ default  arch
 linux    /vmlinuz-linux
 initrd   /intel-ucode.img
 initrd   /initramfs-linux.img
-options  root=PARTUUID=d22644f6-8d53-44d6-80cf-4990db6e532c rw rootflags=subvol=/
+options  root=PARTUUID=598a6da7-fe58-42c6-a0e4-c21170aeaa6d rw rootflags=subvol=/
 </code></pre><h3 id="重启">重启</h3>
 <p><code>exit</code></p>
 <p><code>reboot</code></p>
@@ -177,7 +177,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <h4 id="通讯">通讯</h4>
 <p><code>telegram-desktop</code></p>
 <h4 id="在线音乐">在线音乐</h4>
-<p><code>musicfox</code>（AUR）</p>
+<p><code>netease-cloud-music-gtk</code></p>
 <h4 id="在线会议">在线会议</h4>
 <p><code>zoom</code>（AUR）</p>
 <h4 id="下载工具">下载工具</h4>
@@ -208,7 +208,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <h4 id="图片浏览器">图片浏览器</h4>
 <p><code>viewnior</code></p>
 <h4 id="音乐播放器">音乐播放器</h4>
-<p><code>cmus</code></p>
+<p><code>gnome-music</code></p>
 <h4 id="视频播放器">视频播放器</h4>
 <p><code>mpv</code></p>
 <h4 id="截图">截图</h4>
@@ -218,12 +218,12 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <h4 id="图像编辑">图像编辑</h4>
 <p><code>gimp</code></p>
 <h4 id="视频剪辑">视频剪辑</h4>
-<p><code>olive-git</code>（AUR）</p>
+<p><code>pitivi frei0r-plugins gst-libav gst-plugins-ugly</code></p>
 <h4 id="剪贴板管理器">剪贴板管理器</h4>
 <p><code>xclip</code></p>
 <p><code>rofi-greenclip</code>（AUR）</p>
 <h4 id="办公">办公</h4>
-<p><code>wps-office-cn wps-office-mui-zh-cn</code>（AUR）</p>
+<p><code>wps-office wps-office-mui-zh-cn wps-office-mime</code>（AUR）</p>
 <p><code>ttf-wps-fonts</code></p>
 <h4 id="流程图">流程图</h4>
 <p><code>drawio-desktop-bin</code></p>
@@ -244,7 +244,8 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <h4 id="自动化">自动化</h4>
 <p><code>cronie</code></p>
 <h4 id="主题美化">主题美化</h4>
-<p><code>materia-gtk-theme qogir-icon-theme-git lxappearance-gtk3</code></p>
+<p><code>arc-gtk-theme lxappearance-gtk3</code></p>
+<p><code>qogir-icon-theme</code>（AUR）</p>
 <h4 id="文档">文档</h4>
 <p><code>man-db man-pages</code></p>
 <h4 id="设置默认程序">设置默认程序</h4>

@@ -42,7 +42,7 @@ bbswitch
       
       <guid>https://qvshuo.faith/posts/arch-linux-installation-guide/</guid>
       <description>更新于2021.1
- 一、基本系统安装 前置准备 关闭BIOS安全启动 &amp;amp; 关闭Windows快速启动
+ 一、基本系统安装 前置准备 Disable BIOS Secure Boot
 设置tty字体 setfont ter-132n
 首次连接网络 iwctl
 device list
@@ -61,7 +61,7 @@ mkfs.vfat /dev/sdaY
 挂载ESP分区：
 mkdir /mnt/boot
 mount /dev/sdaY /mnt/boot
-安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr iwd neovim
+安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim
 生成fstab genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab</description>
     </item>
     
