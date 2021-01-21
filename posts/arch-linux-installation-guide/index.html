@@ -88,7 +88,7 @@ zh_CN.UTF-8 UTF-8
 <p>可在nvim中执行<code>:r !blkid -s PARTUUID -o value /dev/sdaX</code>以获取根分区PARTUUID</p>
 <p><code>bootctl --path=/boot install</code></p>
 <p><code>nvim /boot/loader/loader.conf</code></p>
-<pre><code>timeout  3
+<pre><code>timeout  0
 default  arch
 </code></pre><p><code>nvim /boot/loader/entries/arch.conf </code></p>
 <pre><code>title    Arch Linux
@@ -162,7 +162,7 @@ dmenu ==&gt; rofi -show drun
 <p><code>sudo pacman -S firefox firefox-i18n-zh-cn</code></p>
 <h3 id="源">源</h3>
 <p>修改镜像列表：</p>
-<p><code>sudo vim /etc/pacman.d/mirrorlist</code></p>
+<p><code>sudo nvim /etc/pacman.d/mirrorlist</code></p>
 <pre><code>Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
 Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
 </code></pre><p>Archlinuxcn源：</p>
