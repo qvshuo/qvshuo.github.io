@@ -71,7 +71,7 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <p>如有 (rev ff)字样 ，则表示独显已成功禁用。</p>
 <p>方案二：</p>
 <p>prime方案</p>
-<p><code>yay -S nvidia nvidia-prime</code></p>
+<p><code>paru -S nvidia nvidia-prime</code></p>
 <h3 id="加快关机速度">加快关机速度</h3>
 <p><code>sudo nvim /etc/systemd/system.conf</code></p>
 <pre><code>DefaultTimeoutStopSec=3s
@@ -79,7 +79,7 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <h3 id="建立常用目录的软链接">建立常用目录的软链接</h3>
 <p><code>cd ~ &amp;&amp; ln -s /data/Videos Videos &amp;&amp; ln -s /data/Music Music &amp;&amp; ln -s /data/Pictures Pictures &amp;&amp; ln -s /data/Hugo Hugo</code></p>
 <h3 id="创建默认目录">创建默认目录</h3>
-<p><code>yay -S xdg-user-dirs</code></p>
+<p><code>paru -S xdg-user-dirs</code></p>
 <p><code>LC_ALL=C xdg-user-dirs-update --force</code></p>
 <h3 id="git">git</h3>
 <p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
@@ -157,7 +157,7 @@ http {
 <p>脚本</p>
 <p><code>cd ~/Desktop</code></p>
 <p><code>proxychains git clone git@github.com:qvshuo/polybar-scripts.git</code></p>
-<p><code>yay -S jq</code></p>
+<p><code>paru -S jq</code></p>
 <h3 id="ibus">ibus</h3>
 <p><code>ibus-setup</code></p>
 <p>Rime同步</p>
