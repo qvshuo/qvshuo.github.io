@@ -111,21 +111,21 @@ NameResolvingService=systemd
 </code></pre><p><code>systemctl restart iwd.service</code></p>
 <p><code>iwctl</code></p>
 <h3 id="添加新用户">添加新用户</h3>
-<p><code>useradd -mG wheel,video,input huizhi</code></p>
-<p><code>passwd huizhi</code></p>
+<p><code>useradd -mG wheel,video,input qvshuo</code></p>
+<p><code>passwd qvshuo</code></p>
 <p><code>nvim /etc/sudoers</code></p>
 <pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
 </code></pre><h2 id="二图形界面安装">二、图形界面安装</h2>
 <h3 id="显示">显示</h3>
 <p><code>pacman -S mesa vulkan-intel intel-media-driver light</code></p>
 <h3 id="声音">声音</h3>
-<p>r</p>
+<p><code>pacman-S alsa-utils pulseaudio pulseaudio-alsa</code></p>
 <h3 id="终端">终端</h3>
 <p><code>pacman -S alacritty</code></p>
 <h3 id="启动器">启动器</h3>
 <p><code>pacman -S rofi</code></p>
 <h3 id="切换用户">切换用户</h3>
-<p><code>su huizhi</code></p>
+<p><code>su qvshuo</code></p>
 <p><code>cd</code></p>
 <h3 id="hidpi">HiDPI</h3>
 <p><code>nvim ~/.Xresources</code></p>
@@ -171,6 +171,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>clash proxychains-ng</code></p>
 <h4 id="通讯">通讯</h4>
 <p><code>telegram-desktop</code></p>
+<p><code>wechat-nativefier</code>（AUR）</p>
 <h4 id="在线音乐">在线音乐</h4>
 <p><code>yesplaymusic-appimage</code>（AUR）</p>
 <h4 id="在线会议">在线会议</h4>
@@ -229,7 +230,6 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>hugo</code></p>
 <h4 id="开发">开发</h4>
 <p><code>git code</code></p>
-<p><code>nodejs-nativefier</code>（AUR）</p>
 <h4 id="android">Android</h4>
 <p><code>android-tools scrcpy</code></p>
 <h4 id="虚拟机">虚拟机</h4>
