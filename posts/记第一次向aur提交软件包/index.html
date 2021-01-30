@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>记第一次向AUR提交软件包 | 杨蕙芷</title>
+    <link rel="shortcut icon" href="https://qvshuofaith-1253944953.cos.ap-chengdu.myqcloud.com/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+    <body>
+        <div id="header">
+    <span id="home">
+        <a href="/">首页</a> 
+    </span>
+    <span id="about">
+        <a href="/about/">关于</a>
+    </span>
+    <hr>
+</div>
+        <div class="main">
+        
+    <h1 id="singletitle">记第一次向AUR提交软件包</h1>
+    
+        <div id="singledate">
+            2021/01/30
+        </div>
+    
+    <div id="content">
+        <p>事情缘起于我发现了一款很漂亮的第三方网易云音乐客户端：YesPlayMusic</p>
+<p><img src="https://github.com/qier222/YesPlayMusic/blob/master/images/home.png" alt="截图"></p>
+<p>作为Arch Linux用户，第一反应必然是到万能的AUR搜一下，结果竟然&hellip;没有？</p>
+<p>诚然，软件提供了AppImage可供直接运行，可是，这种类似Windows的独立于包管理系统之外的手动下载方式一点都不优雅。干脆，我自己写一个PKGBUILD把软件包提交到AUR不就好了。</p>
+<p>说干就干。经过一番折腾，我成功达成了目标。</p>
+<p>现记录步骤如下。</p>
+<p>首先，在AUR账户界面上传ssh公钥。</p>
+<p><code>ssh-keygen</code></p>
+<p><code>nvim ~/​.ssh/​config</code></p>
+<pre><code>Host aur.archlinux.org
+    IdentityFile ~/.ssh/aur
+    User qvshuo
+</code></pre><p>之后，创建仓库。</p>
+<p><code>git clone ssh://aur@aur.archlinux.org/yesplaymusic-appimage.git</code></p>
+<p>再之后，创建PKGBUILD文件并生成.SRCINFO文件。</p>
+<p><code>nvim PKGBUILD</code></p>
+<p><code>makepkg --printsrcinfo &gt; .SRCINFO</code></p>
+<p>最后，提交修改即可。</p>
+<p>经过半个上午的研究学习与实践，现在，每个Arch用户都可以执行<code>paru -S yesplaymusic-appimage</code>从而一条命令安装YesPlayMusic啦！</p>
+
+    </div>
+
+        </div>
+        <div id="footer">
+    <hr>
+    <div><span style="color: #555;">&copy 2016-2020 </span><a href="https://qvshuo.faith/">杨蕙芷</a></div>
+    <div><span style="color: #555;">Powered by </span><a href="https://gohugo.io/">Hugo</a> <span style="color: #f6f6f6;">| </span><span style="color: #555;">Theme by </span><a href="https://github.com/qvshuo/hugo-theme-flower">qvshuo</a></div>
+</div>
+
+    </body>
+</html>

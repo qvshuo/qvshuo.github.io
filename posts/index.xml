@@ -6,7 +6,30 @@
     <description>Recent content in Posts on 首页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 25 Oct 2020 20:48:55 +0800</lastBuildDate><atom:link href="https://qvshuo.faith/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Jan 2021 11:42:46 +0800</lastBuildDate><atom:link href="https://qvshuo.faith/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>记第一次向AUR提交软件包</title>
+      <link>https://qvshuo.faith/posts/%E8%AE%B0%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%90%91aur%E6%8F%90%E4%BA%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/</link>
+      <pubDate>Sat, 30 Jan 2021 11:42:46 +0800</pubDate>
+      
+      <guid>https://qvshuo.faith/posts/%E8%AE%B0%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%90%91aur%E6%8F%90%E4%BA%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/</guid>
+      <description>事情缘起于我发现了一款很漂亮的第三方网易云音乐客户端：YesPlayMusic
+作为Arch Linux用户，第一反应必然是到万能的AUR搜一下，结果竟然&amp;hellip;没有？
+诚然，软件提供了AppImage可供直接运行，可是，这种类似Windows的独立于包管理系统之外的手动下载方式一点都不优雅。干脆，我自己写一个PKGBUILD把软件包提交到AUR不就好了。
+说干就干。经过一番折腾，我成功达成了目标。
+现记录步骤如下。
+首先，在AUR账户界面上传ssh公钥。
+ssh-keygen
+nvim ~/​.ssh/​config
+Host aur.archlinux.org IdentityFile ~/.ssh/aur User qvshuo 之后，创建仓库。
+git clone ssh://aur@aur.archlinux.org/yesplaymusic-appimage.git
+再之后，创建PKGBUILD文件并生成.SRCINFO文件。
+nvim PKGBUILD
+makepkg --printsrcinfo &amp;gt; .SRCINFO
+最后，提交修改即可。
+经过半个上午的研究学习与实践，现在，每个Arch用户都可以执行paru -S yesplaymusic-appimage从而一条命令安装YesPlayMusic啦！</description>
+    </item>
+    
     <item>
       <title>Arch Linux Configuration Guide</title>
       <link>https://qvshuo.faith/posts/arch-linux-configuration-guide/</link>
