@@ -82,7 +82,7 @@ mkfs.vfat /dev/sdaY
 挂载ESP分区：
 mkdir /mnt/boot
 mount /dev/sdaY /mnt/boot
-安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim
+安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim man-db man-pages texinfo
 生成fstab genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab</description>
     </item>
     

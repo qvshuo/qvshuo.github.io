@@ -55,7 +55,7 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装系统基础软件包">安装系统基础软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim man-db man-pages texinfo</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -242,8 +242,6 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <h4 id="主题美化">主题美化</h4>
 <p><code>arc-gtk-theme lxappearance-gtk3</code></p>
 <p><code>qogir-icon-theme</code>（AUR）</p>
-<h4 id="文档">文档</h4>
-<p><code>man-db man-pages</code></p>
 <h4 id="设置默认程序">设置默认程序</h4>
 <p><code>selectdefaultapplication-git</code>（AUR）</p>
 
