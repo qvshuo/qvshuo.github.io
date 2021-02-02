@@ -36,7 +36,7 @@ makepkg --printsrcinfo &amp;gt; .SRCINFO
       <pubDate>Sun, 25 Oct 2020 20:48:55 +0800</pubDate>
       
       <guid>https://qvshuo.faith/posts/arch-linux-configuration-guide/</guid>
-      <description>更新于2021.1
+      <description>更新于2021.2
  硬件 配置触控板 paru -S ruby-fusuma
 sudo nvim /usr/share/X11/xorg.conf.d/40-libinput.conf
 Option &amp;quot;Tapping&amp;quot; &amp;quot;on&amp;quot; Option &amp;quot;NaturalScrolling&amp;quot; &amp;quot;true&amp;quot; reboot
