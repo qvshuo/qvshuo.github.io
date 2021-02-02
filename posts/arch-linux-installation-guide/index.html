@@ -80,7 +80,7 @@ zh_CN.UTF-8 UTF-8
 127.0.0.1	matebook.localdomain	matebook
 </code></pre><h3 id="配置initramfs参数">配置initramfs参数</h3>
 <p><code>nvim /etc/mkinitcpio.conf</code></p>
-<pre><code>HOOKS=(添加 btrfs)
+<pre><code>HOOKS=(rm fsck &amp; add btrfs)
 </code></pre><p><code>mkinitcpio -P</code></p>
 <h3 id="设置root密码">设置root密码</h3>
 <p><code>passwd</code></p>
@@ -111,21 +111,27 @@ NameResolvingService=systemd
 </code></pre><p><code>systemctl restart iwd.service</code></p>
 <p><code>iwctl</code></p>
 <h3 id="添加新用户">添加新用户</h3>
-<p><code>useradd -mG wheel,video,input qvshuo</code></p>
-<p><code>passwd qvshuo</code></p>
+<p><code>useradd -mG wheel,video,input huizhi</code></p>
+<p><code>passwd huizhi</code></p>
 <p><code>nvim /etc/sudoers</code></p>
 <pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
 </code></pre><h2 id="二图形界面安装">二、图形界面安装</h2>
 <h3 id="显示">显示</h3>
 <p><code>pacman -S mesa vulkan-intel intel-media-driver light</code></p>
 <h3 id="声音">声音</h3>
-<p><code>pacman-S alsa-utils pulseaudio pulseaudio-alsa</code></p>
+<p><code>pacman -S alsa-utils pulseaudio pulseaudio-alsa</code></p>
+<h3 id="chukongban">chukongban</h3>
+<p><code>pacman -S xf86-input-libinput</code></p>
+<h3 id="x">X</h3>
+<p><code>pacman -S xorg-server xorg-xinit xorg-xsetroot</code></p>
+<h3 id="wm">wm</h3>
+<p><code>pacman -S bspwm sxhkd</code></p>
 <h3 id="终端">终端</h3>
 <p><code>pacman -S alacritty</code></p>
 <h3 id="启动器">启动器</h3>
 <p><code>pacman -S rofi</code></p>
 <h3 id="切换用户">切换用户</h3>
-<p><code>su qvshuo</code></p>
+<p><code>su huizhi</code></p>
 <p><code>cd</code></p>
 <h3 id="hidpi">HiDPI</h3>
 <p><code>nvim ~/.Xresources</code></p>
@@ -159,7 +165,7 @@ dmenu ==&gt; rofi -show drun
 <pre><code>Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
 Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
 </code></pre><p>Archlinuxcn源 &amp; pacman 颜色支持：</p>
-<p><code>sudo vim /etc/pacman.conf</code></p>
+<p><code>sudo nvim /etc/pacman.conf</code></p>
 <pre><code>Color
 
 [archlinuxcn]
