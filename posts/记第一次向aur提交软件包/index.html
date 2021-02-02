@@ -33,12 +33,7 @@
 <p>说干就干。经过一番折腾，我成功达成了目标。</p>
 <p>现记录步骤如下。</p>
 <p>首先，在AUR账户界面上传ssh公钥。</p>
-<p><code>ssh-keygen</code></p>
-<p><code>nvim ~/​.ssh/​config</code></p>
-<pre><code>Host aur.archlinux.org
-    IdentityFile ~/.ssh/aur
-    User qvshuo
-</code></pre><p>之后，创建仓库。</p>
+<p>之后，创建仓库。</p>
 <p><code>git clone ssh://aur@aur.archlinux.org/yesplaymusic-appimage.git</code></p>
 <p>再之后，创建PKGBUILD文件并生成.SRCINFO文件。</p>
 <p><code>nvim PKGBUILD</code></p>

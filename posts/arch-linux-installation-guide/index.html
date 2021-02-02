@@ -55,7 +55,7 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装系统基础软件包">安装系统基础软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim man-db man-pages texinfo</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim man-db man-pages texinfo terminus-font</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
@@ -239,7 +239,8 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <h4 id="android">Android</h4>
 <p><code>android-tools scrcpy</code></p>
 <h4 id="虚拟机">虚拟机</h4>
-<p><code>gnome-boxes spice-vdagent</code></p>
+<p><code>virtualbox</code></p>
+<p>如内核为<code>linux</code> ，内核模块应安装<code>virtualbox-host-modules-arch</code></p>
 <h4 id="系统信息">系统信息</h4>
 <p><code>neofetch</code></p>
 <h4 id="自动化">自动化</h4>

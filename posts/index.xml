@@ -19,9 +19,7 @@
 说干就干。经过一番折腾，我成功达成了目标。
 现记录步骤如下。
 首先，在AUR账户界面上传ssh公钥。
-ssh-keygen
-nvim ~/​.ssh/​config
-Host aur.archlinux.org IdentityFile ~/.ssh/aur User qvshuo 之后，创建仓库。
+之后，创建仓库。
 git clone ssh://aur@aur.archlinux.org/yesplaymusic-appimage.git
 再之后，创建PKGBUILD文件并生成.SRCINFO文件。
 nvim PKGBUILD
@@ -82,8 +80,7 @@ mkfs.vfat /dev/sdaY
 挂载ESP分区：
 mkdir /mnt/boot
 mount /dev/sdaY /mnt/boot
-安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim man-db man-pages texinfo
-生成fstab genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab</description>
+安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim man-db man-pages texinfo terminus-font</description>
     </item>
     
     <item>
