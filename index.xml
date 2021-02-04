@@ -35,7 +35,7 @@ makepkg --printsrcinfo &amp;gt; .SRCINFO
       
       <guid>https://qvshuo.faith/posts/arch-linux-configuration-guide/</guid>
       <description>更新于2021.2
- 硬件 配置触控板 paru -S ruby-fusuma
+ 硬件 配置触控板 proxychains paru -S ruby-fusuma ruby-fusuma-plugin-sendkey
 sudo nvim /usr/share/X11/xorg.conf.d/40-libinput.conf
 Option &amp;quot;Tapping&amp;quot; &amp;quot;on&amp;quot; Option &amp;quot;NaturalScrolling&amp;quot; &amp;quot;true&amp;quot; reboot
 自动挂载资料分区并修改所有者及权限 sudo mkdir /data
@@ -51,7 +51,7 @@ Nvidia显卡 方案一：
 安装bbswitch：
 sudo pacman -S bbswitch
 开机加载bbswitch模块：
-sudo nvim /etc/modules-load.d/bbswitch.conf</description>
+sudo nvim /etc/modules-load.</description>
     </item>
     
     <item>
