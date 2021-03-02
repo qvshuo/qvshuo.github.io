@@ -60,7 +60,7 @@ sudo nvim /etc/modules-load.</description>
       <pubDate>Fri, 25 Sep 2020 20:05:25 +0800</pubDate>
       
       <guid>https://qvshuo.faith/posts/arch-linux-installation-guide/</guid>
-      <description>更新于2021.2
+      <description>更新于2021.3
  一、基本系统安装 前置准备 Disable BIOS Secure Boot
 设置tty字体 setfont ter-132n
 首次连接网络 iwctl
