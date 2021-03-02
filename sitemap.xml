@@ -1,83 +1,51 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://qvshuo.faith/posts/</loc>
     <lastmod>2021-01-30T11:42:46+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/posts/%E8%AE%B0%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%90%91aur%E6%8F%90%E4%BA%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/</loc>
     <lastmod>2021-01-30T11:42:46+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/</loc>
     <lastmod>2021-01-30T11:42:46+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/posts/arch-linux-configuration-guide/</loc>
     <lastmod>2020-10-25T20:48:55+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/posts/arch-linux-installation-guide/</loc>
     <lastmod>2020-09-25T20:05:25+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/posts/%E6%84%8F%E8%A7%81%E7%A8%BF%E4%B8%8E%E8%88%86%E8%AE%BA/</loc>
     <lastmod>2020-03-03T15:10:01+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/posts/%E5%86%8D%E8%AF%BB%E5%85%B1%E4%BA%A7%E5%85%9A%E5%AE%A3%E8%A8%80/</loc>
     <lastmod>2020-02-15T18:12:55+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/tags/</loc>
     <lastmod>2018-12-22T14:20:56+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/posts/1984/</loc>
     <lastmod>2018-12-22T14:20:56+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/tags/%E8%A7%82%E7%82%B9/</loc>
     <lastmod>2018-12-22T14:20:56+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/posts/%E5%8D%81%E5%85%AB%E5%B2%81%E7%9A%84%E6%92%A9%E5%A6%B9%E6%89%8B%E5%86%8C/</loc>
     <lastmod>2018-07-31T19:52:47+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/tags/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2018-07-31T19:52:47+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/posts/%E8%AF%88%E4%B8%8E%E8%AF%9A/</loc>
     <lastmod>2018-07-26T20:24:22+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/posts/%E6%9C%AA%E5%90%8D%E8%AE%B0%E5%BF%86/</loc>
     <lastmod>2017-09-03T21:40:45+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://qvshuo.faith/about/</loc>
   </url>
-  
 </urlset>
