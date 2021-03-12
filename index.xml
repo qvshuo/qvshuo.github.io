@@ -38,20 +38,13 @@ makepkg --printsrcinfo &amp;gt; .SRCINFO
  硬件 配置触控板 proxychains paru -S ruby-fusuma ruby-fusuma-plugin-sendkey
 sudo nvim /usr/share/X11/xorg.conf.d/40-libinput.conf
 Option &amp;quot;Tapping&amp;quot; &amp;quot;on&amp;quot; Option &amp;quot;NaturalScrolling&amp;quot; &amp;quot;true&amp;quot; reboot
-自动挂载资料分区并修改所有者及权限 sudo mkdir /data
-sudo nvim /etc/fstab
-/dev/sdb1	/data	ext4	defaults	0	0 sudo mount -a
-cd /data
-设置所有文件权限为644：
+自动挂载Windows分区及资料分区 sudo mkdir /media &amp;amp;&amp;amp; sudo mkdir /media/Windows &amp;amp;&amp;amp; sudo mkdir /media/Data
+sudo vim /etc/fstab
+/dev/sda3 /media/Windows ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0 /dev/sdb1 /media/Data ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0
+修改所有者及权限 设置所有文件权限为644：
 sudo find ./ -type f -exec chmod 644 {} \;
 设置所有目录权限为755：
-sudo find ./ -type d -exec chmod 755 {} \;
-Nvidia显卡 方案一：
-禁用Nvidia显卡
-安装bbswitch：
-sudo pacman -S bbswitch
-开机加载bbswitch模块：
-sudo nvim /etc/modules-load.</description>
+sudo find ./ -type d -exec chmod 755 {} \;</description>
     </item>
     
     <item>
@@ -69,7 +62,7 @@ station wlan0 scan
 station wlan0 get-networks
 station wlan0 connect SSID
 quit
-设置系统时间 timedatectl set-ntp true
+开启时间同步 timedatectl set-ntp true
 格式化并挂载分区 lsblk
 格式化根分区：
 mkfs.btrfs -f -L Arch /dev/sdaX
@@ -80,7 +73,7 @@ mkfs.vfat /dev/sdaY
 挂载ESP分区：
 mkdir /mnt/boot
 mount /dev/sdaY /mnt/boot
-安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim man-db man-pages texinfo terminus-font</description>
+安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode efibootmgr fish iwd neovim man-db man-pages texinfo terminus-font</description>
     </item>
     
     <item>

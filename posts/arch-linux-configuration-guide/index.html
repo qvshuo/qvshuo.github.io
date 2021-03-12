@@ -36,12 +36,12 @@
 <pre><code>Option &quot;Tapping&quot; &quot;on&quot;
 Option &quot;NaturalScrolling&quot; &quot;true&quot;
 </code></pre><p><code>reboot</code></p>
-<h3 id="自动挂载资料分区并修改所有者及权限">自动挂载资料分区并修改所有者及权限</h3>
-<p><code>sudo mkdir /data</code></p>
-<p><code>sudo nvim /etc/fstab</code></p>
-<pre><code>/dev/sdb1	/data	ext4	defaults	0	0
-</code></pre><p><code>sudo mount -a</code></p>
-<p><code>cd /data</code></p>
+<h3 id="自动挂载windows分区及资料分区">自动挂载Windows分区及资料分区</h3>
+<p><code>sudo mkdir /media &amp;&amp; sudo mkdir /media/Windows &amp;&amp; sudo mkdir /media/Data</code></p>
+<p><code>sudo vim /etc/fstab</code></p>
+<p>/dev/sda3 /media/Windows ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0
+/dev/sdb1 /media/Data ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0</p>
+<h3 id="修改所有者及权限">修改所有者及权限</h3>
 <p>设置所有文件权限为644：</p>
 <p><code>sudo find ./ -type f -exec chmod 644 {} \;</code></p>
 <p>设置所有目录权限为755：</p>
@@ -83,15 +83,18 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 # proxy_dns
 http    127.0.0.1   7890
 </code></pre><h3 id="建立常用目录的软链接">建立常用目录的软链接</h3>
-<p><code>cd ~ &amp;&amp; ln -s /data/Videos Videos &amp;&amp; ln -s /data/Music Music &amp;&amp; ln -s /data/Pictures Pictures &amp;&amp; ln -s /data/Hugo Hugo</code></p>
+<p><code>cd ~ &amp;&amp; ln -s /media/Data/Videos Videos &amp;&amp; ln -s/media/Data/Music Music &amp;&amp; ln -s /media/Data/Pictures Pictures &amp;&amp; ln -s /media/Data/Hugo Hugo</code></p>
 <h3 id="创建默认目录">创建默认目录</h3>
 <p><code>paru -S xdg-user-dirs</code></p>
 <p><code>LC_ALL=C xdg-user-dirs-update --force</code></p>
 <h3 id="git">git</h3>
 <p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
+<h3 id="ssh">ssh</h3>
 <p><code>ssh-keygen -t rsa -C qvshuo@foxmail.com</code></p>
 <p><code>cat ~/.ssh/id_rsa.pub</code></p>
 <p><code>ssh -T git@github.com</code></p>
+<p><code>sudo nvim /etc/ssh/sshd_config</code></p>
+<p><code>sudo systemctl enable --now sshd.service</code></p>
 <h3 id="恢复配置文件">恢复配置文件</h3>
 <p><code>proxychains git clone git@github.com:qvshuo/dotfiles.git</code></p>
 <p><code>./rsync</code></p>
@@ -117,40 +120,6 @@ false:
 media.ffvpx.enabled
 </code></pre><p>终结内容农场</p>
 <p><code>https://raw.githubusercontent.com/danny0838/content-farm-terminator/gh-pages/files/blocklist/content-farms.txt</code></p>
-<h3 id="vsftpd">vsftpd</h3>
-<p><code>sudo nvim /etc/vsftpd.conf</code></p>
-<pre><code>local_enable=YES
-write_enable=YES
-</code></pre><p><code>sudo systemctl enable --now vsftpd.service</code></p>
-<h3 id="nginx">nginx</h3>
-<p><code>sudo nvim /etc/nginx/nginx.conf</code></p>
-<pre><code>worker_processes  1;
-
-events {
-    worker_connections  1024;
-}
-
-http {
-    include  mime.types;
-    default_type  octet-stream;
-
-    server {
-        listen  8765;
-
-        location / {
-            root   /data/Videos;
-            autoindex on;
-            autoindex_exact_size off;
-            autoindex_localtime on;
-            charset utf-8;
-	    add_before_body /autoindex/before.html;
-	    add_after_body /autoindex/after.html;
-        }
-
-    }
-
-}
-</code></pre><p><code>sudo systemctl enable --now nginx.service</code></p>
 <h3 id="hsetroot">hsetroot</h3>
 <p><code>cd ~/Desktop</code></p>
 <p><code>proxychains git clone git@github.com:qvshuo/dynamic_wallpaper.git</code></p>
@@ -164,7 +133,7 @@ http {
 <p>Rime同步</p>
 <p><code>nvim ~/.config/ibus/rime/installation.yaml</code></p>
 <pre><code>installation_id: &quot;rimesync&quot;
-sync_dir: /data/我的坚果云
+sync_dir: /media/Data/我的坚果云
 </code></pre><h3 id="nautilus">nautilus</h3>
 <p><code>gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty</code></p>
 <h3 id="scrcpy">scrcpy</h3>
@@ -176,7 +145,7 @@ sync_dir: /data/我的坚果云
 <p><code>sudo systemctl enable --now cronie.service</code></p>
 <p><code>crontab -e</code></p>
 <pre><code>0 * * * * export DISPLAY=:0 &amp;&amp; /home/huizhi/Desktop/dynamic_wallpaper/run.sh &amp;
-15 7 * * * export DISPLAY=:0 &amp;&amp; alacritty -e mpv --loop ~/Videos/alarm.mp4 &amp;
+45 6 * * * export DISPLAY=:0 &amp;&amp; alacritty -e mpv --loop ~/Videos/alarm.mp4 &amp;
 </code></pre><h3 id="获取程序名称">获取程序名称</h3>
 <p><code>xprop | grep WM_CLASS</code></p>
 <h3 id="获取中文字体列表">获取中文字体列表</h3>
@@ -187,7 +156,7 @@ Source Han Serif SC
 
 Sarasa Mono SC
 </code></pre><h3 id="安装windows字体">安装Windows字体</h3>
-<p><code>sudo mkdir /usr/share/fonts/WindowsFonts &amp;&amp; sudo cp /data/winbackup/Fonts/* /usr/share/fonts/WindowsFonts &amp;&amp; sudo chmod 755 /usr/share/fonts/WindowsFonts/* &amp;&amp; fc-cache -f</code></p>
+<p><code>sudo mkdir /usr/share/fonts/WindowsFonts &amp;&amp; sudo cp /media/Data/winbackup/Fonts/* /usr/share/fonts/WindowsFonts &amp;&amp; sudo chmod 755 /usr/share/fonts/WindowsFonts/* &amp;&amp; fc-cache -f</code></p>
 
     </div>
 

@@ -41,7 +41,7 @@
 <p><code>station wlan0 get-networks</code></p>
 <p><code>station wlan0 connect SSID</code></p>
 <p><code>quit</code></p>
-<h3 id="设置系统时间">设置系统时间</h3>
+<h3 id="开启时间同步">开启时间同步</h3>
 <p><code>timedatectl set-ntp true</code></p>
 <h3 id="格式化并挂载分区">格式化并挂载分区</h3>
 <p><code>lsblk</code></p>
@@ -55,15 +55,16 @@
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/sdaY /mnt/boot</code></p>
 <h3 id="安装系统基础软件包">安装系统基础软件包</h3>
-<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools intel-ucode efibootmgr fish iwd neovim man-db man-pages texinfo terminus-font</code></p>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs dosfstools ntfs-3g intel-ucode efibootmgr fish iwd neovim man-db man-pages texinfo terminus-font</code></p>
 <h3 id="生成fstab">生成fstab</h3>
 <p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
 <p><code>cat /mnt/etc/fstab</code></p>
 <h3 id="进入新系统">进入新系统</h3>
 <p><code>arch-chroot /mnt</code></p>
 <h3 id="时区">时区</h3>
-<p><code>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code></p>
-<p><code>hwclock --systohc</code></p>
+<p><code>timedatectl set-timezone Asia/Shanghai</code></p>
+<h3 id="将硬件时间设为localtime解决双系统时间同步">将硬件时间设为localtime（解决双系统时间同步）</h3>
+<p><code>timedatectl set-local-rtc 1</code></p>
 <h3 id="本地化">本地化</h3>
 <p><code>nvim /etc/locale.gen</code></p>
 <pre><code>en_US.UTF-8 UTF-8
@@ -175,7 +176,10 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 </code></pre><p><code>sudo pacman -Syy &amp;&amp; sudo pacman -S archlinuxcn-keyring</code></p>
 <p>AUR：</p>
 <p><code>sudo pacman -S paru</code></p>
-<h4 id="代理">代理</h4>
+<p>反转搜索顺序</p>
+<p><code>sudo nvim /etc/paru.conf</code></p>
+<pre><code>BottomUp
+</code></pre><h4 id="代理">代理</h4>
 <p><code>clash proxychains-ng</code></p>
 <h4 id="通讯">通讯</h4>
 <p><code>telegram-desktop</code></p>
@@ -186,8 +190,6 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>youtube-dl vdhcoapp</code></p>
 <h4 id="网盘">网盘</h4>
 <p><code>nutstore</code></p>
-<h4 id="局域网http媒体中心">局域网http媒体中心</h4>
-<p><code>nginx</code></p>
 <h4 id="壁纸">壁纸</h4>
 <p><code>hsetroot</code></p>
 <h4 id="面板">面板</h4>
