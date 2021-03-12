@@ -40,8 +40,7 @@ sudo nvim /usr/share/X11/xorg.conf.d/40-libinput.conf
 Option &amp;quot;Tapping&amp;quot; &amp;quot;on&amp;quot; Option &amp;quot;NaturalScrolling&amp;quot; &amp;quot;true&amp;quot; reboot
 自动挂载Windows分区及资料分区 sudo mkdir /media &amp;amp;&amp;amp; sudo mkdir /media/Windows &amp;amp;&amp;amp; sudo mkdir /media/Data
 sudo vim /etc/fstab
-/dev/sda3 /media/Windows ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0 /dev/sdb1 /media/Data ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0
-修改所有者及权限 设置所有文件权限为644：
+/dev/sda3 /media/Windows ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0 /dev/sdb1 /media/Data ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0 修改所有者及权限 设置所有文件权限为644：
 sudo find ./ -type f -exec chmod 644 {} \;
 设置所有目录权限为755：
 sudo find ./ -type d -exec chmod 755 {} \;</description>

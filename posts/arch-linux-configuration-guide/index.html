@@ -39,9 +39,9 @@ Option &quot;NaturalScrolling&quot; &quot;true&quot;
 <h3 id="自动挂载windows分区及资料分区">自动挂载Windows分区及资料分区</h3>
 <p><code>sudo mkdir /media &amp;&amp; sudo mkdir /media/Windows &amp;&amp; sudo mkdir /media/Data</code></p>
 <p><code>sudo vim /etc/fstab</code></p>
-<p>/dev/sda3 /media/Windows ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0
-/dev/sdb1 /media/Data ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0</p>
-<h3 id="修改所有者及权限">修改所有者及权限</h3>
+<pre><code>/dev/sda3 /media/Windows ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0
+/dev/sdb1 /media/Data ntfs-3g uid=huizhi,gid=wheel,dmask=022,fmask=133 0 0
+</code></pre><h3 id="修改所有者及权限">修改所有者及权限</h3>
 <p>设置所有文件权限为644：</p>
 <p><code>sudo find ./ -type f -exec chmod 644 {} \;</code></p>
 <p>设置所有目录权限为755：</p>
