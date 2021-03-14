@@ -37,6 +37,8 @@
 <p><code>git clone ssh://aur@aur.archlinux.org/yesplaymusic-appimage.git</code></p>
 <p>再之后，创建PKGBUILD文件并生成.SRCINFO文件。</p>
 <p><code>nvim PKGBUILD</code></p>
+<p>计算得到sha512sum结果一例：</p>
+<p><code>echo 2ZJgTaSyWK/M0EB7/+moedCaOGnYYp+daHh5FPzEBFt0wlyot90wRhp7hoVvYb1O7pxyXtyEL3k3FP3U5YaiKg== | base64 -d | xxd -c256 -ps</code></p>
 <p><code>makepkg --printsrcinfo &gt; .SRCINFO</code></p>
 <p>最后，提交修改即可。</p>
 <p>经过半个上午的研究学习与实践，现在，每个Arch用户都可以执行<code>paru -S yesplaymusic-appimage</code>从而一条命令安装YesPlayMusic啦！</p>
