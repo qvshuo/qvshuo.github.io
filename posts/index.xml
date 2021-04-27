@@ -36,8 +36,9 @@ makepkg --printsrcinfo &amp;gt; .SRCINFO
       <pubDate>Sun, 25 Oct 2020 20:48:55 +0800</pubDate>
       
       <guid>https://qvshuo.faith/posts/arch-linux-configuration-guide/</guid>
-      <description>更新于2021.3
- 硬件 配置触控板 proxychains paru -S ruby-fusuma ruby-fusuma-plugin-sendkey
+      <description>更新于2021.4
+ 硬件 配置触控板 proxychains paru -S libinput-gestures wmctrl xdotool
+libinput-gestures-setup autostart &amp;amp;&amp;amp; libinput-gestures-setup start
 sudo nvim /usr/share/X11/xorg.conf.d/40-libinput.conf
 Option &amp;quot;Tapping&amp;quot; &amp;quot;on&amp;quot; Option &amp;quot;NaturalScrolling&amp;quot; &amp;quot;true&amp;quot; reboot
 自动挂载Windows分区及资料分区 sudo mkdir /media &amp;amp;&amp;amp; sudo mkdir /media/Windows &amp;amp;&amp;amp; sudo mkdir /media/Data
@@ -54,7 +55,7 @@ sudo find ./ -type d -exec chmod 755 {} \;</description>
       <pubDate>Fri, 25 Sep 2020 20:05:25 +0800</pubDate>
       
       <guid>https://qvshuo.faith/posts/arch-linux-installation-guide/</guid>
-      <description>更新于2021.3
+      <description>更新于2021.4
  一、基本系统安装 前置准备 Disable BIOS Secure Boot
 设置tty字体 setfont ter-132n
 首次连接网络 iwctl

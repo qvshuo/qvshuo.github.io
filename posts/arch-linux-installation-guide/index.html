@@ -27,7 +27,7 @@
     
     <div id="content">
         <blockquote>
-<p>更新于2021.3</p>
+<p>更新于2021.4</p>
 </blockquote>
 <h2 id="一基本系统安装">一、基本系统安装</h2>
 <h3 id="前置准备">前置准备</h3>
@@ -71,14 +71,14 @@
 ja_JP.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
 </code></pre><p><code>locale-gen</code></p>
-<p><code>echo LANG=en_US.UTF-8 &gt; /etc/locale.conf</code></p>
+<p><code>localectl set-locale LANG=en_US.UTF-8</code></p>
 <h3 id="主机名">主机名</h3>
-<p><code>echo matebook &gt; /etc/hostname</code></p>
+<p><code>hostnamectl set-hostname mrcw50</code></p>
 <h3 id="hosts">hosts</h3>
 <p><code>nvim /etc/hosts</code></p>
 <pre><code>127.0.0.1	localhost
 ::1		localhost
-127.0.0.1	matebook.localdomain	matebook
+127.0.0.1	mrcw50.localdomain	mrcw50
 </code></pre><h3 id="配置initramfs参数">配置initramfs参数</h3>
 <p><code>nvim /etc/mkinitcpio.conf</code></p>
 <pre><code>HOOKS=(rm fsck &amp; add btrfs)
@@ -142,7 +142,6 @@ NameResolvingService=systemd
 </code></pre><h3 id="xinitrc">xinitrc</h3>
 <p><code>nvim ~/.xinitrc</code></p>
 <pre><code>xrdb -merge ~/.Xresources
-export LANG=zh_CN.UTF-8
 exec bspwm
 </code></pre><h3 id="基础配置文件">基础配置文件</h3>
 <p><code>mkdir -p .config/bspwm</code></p>
@@ -183,7 +182,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>clash proxychains-ng</code></p>
 <h4 id="通讯">通讯</h4>
 <p><code>telegram-desktop</code></p>
-<p><code>wechat-nativefier</code>（AUR）</p>
+<p><code>wechat-uos</code>或<code>wechat-nativefier</code>（AUR）</p>
 <h4 id="在线音乐">在线音乐</h4>
 <p><code>yesplaymusic-appimage</code>（AUR）</p>
 <h4 id="下载工具">下载工具</h4>
@@ -225,8 +224,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>xclip</code></p>
 <p><code>rofi-greenclip</code>（AUR）</p>
 <h4 id="办公">办公</h4>
-<p><code>wps-office wps-office-mui-zh-cn wps-office-mime</code>（AUR）</p>
-<p><code>ttf-wps-fonts</code></p>
+<p><code>libreoffice-still</code></p>
 <h4 id="流程图">流程图</h4>
 <p><code>drawio-desktop-bin</code></p>
 <h4 id="笔记">笔记</h4>
