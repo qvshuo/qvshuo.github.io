@@ -6,7 +6,39 @@
     <description>Recent content in Posts on 首页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 30 Jan 2021 11:42:46 +0800</lastBuildDate><atom:link href="https://qvshuo.faith/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Apr 2021 23:26:56 +0800</lastBuildDate><atom:link href="https://qvshuo.faith/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>拥抱Gnome</title>
+      <link>https://qvshuo.faith/posts/%E6%8B%A5%E6%8A%B1gnome/</link>
+      <pubDate>Tue, 27 Apr 2021 23:26:56 +0800</pubDate>
+      
+      <guid>https://qvshuo.faith/posts/%E6%8B%A5%E6%8A%B1gnome/</guid>
+      <description>title: &amp;ldquo;Arch Linux Installation Guide&amp;rdquo; date: 2020-09-25T20:05:25+08:00 draft: false 一、基本系统安装 前置准备 Disable BIOS Secure Boot
+首次连接网络 iwctl
+device list
+station wlan0 scan
+station wlan0 get-networks
+station wlan0 connect SSID
+quit
+开启时间同步 timedatectl set-ntp true
+格式化并挂载分区 lsblk
+格式化根分区：
+mkfs.btrfs -f -L Arch /dev/nvme0n1pX
+挂载根分区：
+mount /dev/nvme0n1pX /mnt
+格式化ESP分区：
+mkfs.vfat /dev/nvme0n1pY
+挂载ESP分区：
+mkdir /mnt/boot
+mount /dev/nvme0n1pY /mnt/boot
+格式化资料分区：
+mkfs.vfat /dev/nvme0n1pZ
+挂载ESP分区：
+mkdir /mnt/home
+mount /dev/nvme0n1pZ /mnt/home
+安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware dosfstools btrfs-progs intel-ucode efibootmgr fish networkmanager neovim man-db man-pages texinfo</description>
+    </item>
+    
     <item>
       <title>记第一次向AUR提交软件包</title>
       <link>https://qvshuo.faith/posts/%E8%AE%B0%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%90%91aur%E6%8F%90%E4%BA%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/</link>
