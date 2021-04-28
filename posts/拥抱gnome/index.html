@@ -26,11 +26,7 @@
         </div>
     
     <div id="content">
-        <hr>
-<h2 id="draft-false">title: &ldquo;Arch Linux Installation Guide&rdquo;
-date: 2020-09-25T20:05:25+08:00
-draft: false</h2>
-<h2 id="一基本系统安装">一、基本系统安装</h2>
+        <h2 id="一基本系统安装">一、基本系统安装</h2>
 <h3 id="前置准备">前置准备</h3>
 <p>Disable BIOS Secure Boot</p>
 <h3 id="首次连接网络">首次连接网络</h3>
@@ -54,7 +50,7 @@ draft: false</h2>
 <p><code>mkdir /mnt/boot</code></p>
 <p><code>mount /dev/nvme0n1pY /mnt/boot</code></p>
 <p>格式化资料分区：</p>
-<p><code>mkfs.vfat /dev/nvme0n1pZ</code></p>
+<p><code>mkfs.ext4 /dev/nvme0n1pZ</code></p>
 <p>挂载ESP分区：</p>
 <p><code>mkdir /mnt/home</code></p>
 <p><code>mount /dev/nvme0n1pZ /mnt/home</code></p>
@@ -85,7 +81,9 @@ zh_CN.UTF-8 UTF-8
 </code></pre><h3 id="设置root密码">设置root密码</h3>
 <p><code>passwd</code></p>
 <h3 id="安装引导程序">安装引导程序</h3>
-<p>可在nvim中执行<code>:r !blkid -s PARTUUID -o value /dev/sdaX</code>以获取根分区PARTUUID</p>
+<blockquote>
+<p>可在nvim中行<code>:r !blkid -s PARTUUID -o value /dev/sdaX</code>以获取根分区PARTUUID</p>
+</blockquote>
 <p><code>bootctl --path=/boot install</code></p>
 <p><code>nvim /boot/loader/loader.conf</code></p>
 <pre><code>timeout  0
@@ -165,6 +163,9 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>olive-appimage</code>（AUR）</p>
 <h4 id="剪贴板管理器">剪贴板管理器</h4>
 <h4 id="办公">办公</h4>
+<p><code>wps-office wps-office-mui-zh-cn wps-office-mime</code>（AUR）</p>
+<p><code>ttf-wps-fonts</code></p>
+<p>或者</p>
 <p><code>libreoffice-still</code></p>
 <h4 id="流程图">流程图</h4>
 <p><code>drawio-desktop-bin</code></p>
@@ -174,7 +175,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>hugo</code></p>
 <h4 id="开发">开发</h4>
 <p><code>git code</code></p>
-<p><code>xxd-standalone</code></p>
+<p><code>xxd-standalone</code>（AUR）</p>
 <h4 id="android">Android</h4>
 <p><code>android-tools scrcpy</code></p>
 <h4 id="可启动u盘制作">可启动U盘制作</h4>
@@ -186,9 +187,21 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>neofetch</code></p>
 <h4 id="自动化">自动化</h4>
 <p><code>cronie</code></p>
-<h4 id="主题美化">主题美化</h4>
+<h4 id="tweaks">tweaks</h4>
 <p><code>gnome-tweaks</code></p>
-<h2 id="配置">配置</h2>
+<p><code>chrome-gnome-shell</code></p>
+<p><code>gtk-engine-murrine imagemagick dialog optipng inkscape</code></p>
+<p><code>git clone git@github.com:vinceliuice/WhiteSur-gtk-theme.git</code></p>
+<pre><code>/home/huizhi/Desktop/WhiteSur-gtk-theme/src/assets/gnome-shell/common-assets
+
+convert -blur 0x50 -brightness-contrast -25,0% background-default.png background-blur.png
+
+./install.sh -t grey -i arch
+sudo ./tweaks.sh -g -b default
+</code></pre><p>GDM scale</p>
+<pre><code>sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/
+sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
+</code></pre><h2 id="配置">配置</h2>
 <h3 id="加快关机速度">加快关机速度</h3>
 <p><code>sudo nvim /etc/systemd/system.conf</code></p>
 <pre><code>DefaultTimeoutStopSec=3s

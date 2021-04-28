@@ -13,7 +13,7 @@
       <pubDate>Tue, 27 Apr 2021 23:26:56 +0800</pubDate>
       
       <guid>https://qvshuo.faith/posts/%E6%8B%A5%E6%8A%B1gnome/</guid>
-      <description>title: &amp;ldquo;Arch Linux Installation Guide&amp;rdquo; date: 2020-09-25T20:05:25+08:00 draft: false 一、基本系统安装 前置准备 Disable BIOS Secure Boot
+      <description>一、基本系统安装 前置准备 Disable BIOS Secure Boot
 首次连接网络 iwctl
 device list
 station wlan0 scan
@@ -32,7 +32,7 @@ mkfs.vfat /dev/nvme0n1pY
 mkdir /mnt/boot
 mount /dev/nvme0n1pY /mnt/boot
 格式化资料分区：
-mkfs.vfat /dev/nvme0n1pZ
+mkfs.ext4 /dev/nvme0n1pZ
 挂载ESP分区：
 mkdir /mnt/home
 mount /dev/nvme0n1pZ /mnt/home
