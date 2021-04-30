@@ -109,6 +109,8 @@ options  root=PARTUUID=hhh rw rootflags=subvol=/
 <p><code>pacman -S bluez bluez-utils</code></p>
 <h3 id="de">DE</h3>
 <p><code>pacman -S gnome</code></p>
+<h3 id="完善de">完善DE</h3>
+<p><code>pacman -S  gnome-software-packagekit-plugin dconf-editor gnome-tweaks chrome-gnome-shell webp-pixbuf-loader</code></p>
 <h3 id="字体">字体</h3>
 <p><code>sudo pacman -S ttf-sarasa-gothic adobe-source-han-serif-otc-fonts</code></p>
 <h4 id="输入法">输入法</h4>
@@ -138,83 +140,79 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p>反转搜索顺序</p>
 <p><code>sudo nvim /etc/paru.conf</code></p>
 <pre><code>BottomUp
-</code></pre><h4 id="gnome软件中心适配">Gnome软件中心适配</h4>
-<p><code>gnome-software-packagekit-plugin</code></p>
-<h4 id="代理">代理</h4>
+</code></pre><h3 id="代理">代理</h3>
 <p><code>clash proxychains-ng</code></p>
-<h4 id="通讯">通讯</h4>
+<h3 id="通讯">通讯</h3>
 <p><code>telegram-desktop</code></p>
 <p><code>wechat-uos</code></p>
 <p><code>wechat-nativefier</code>（AUR）</p>
-<h4 id="在线音乐">在线音乐</h4>
+<h3 id="电子邮件">电子邮件</h3>
+<p><code>evolution</code></p>
+<h3 id="远程桌面">远程桌面</h3>
+<p><code>gnome-connections</code></p>
+<h3 id="在线音乐">在线音乐</h3>
 <p><code>netease-cloud-music-gtk</code></p>
 <p><code>yesplaymusic-appimage</code>（AUR）</p>
-<h4 id="下载工具">下载工具</h4>
+<h3 id="下载工具">下载工具</h3>
 <p><code>you-get vdhcoapp</code></p>
-<h4 id="文件同步">文件同步</h4>
+<h3 id="文件同步">文件同步</h3>
 <p><code>nutstore syncthing rsync</code></p>
-<h4 id="文件压缩">文件压缩</h4>
+<h3 id="文件压缩">文件压缩</h3>
 <p><code>p7zip unrar</code></p>
-<h4 id="录屏">录屏</h4>
+<h3 id="录屏">录屏</h3>
 <p><code>obs-studio</code></p>
-<h4 id="图像编辑">图像编辑</h4>
+<h3 id="图像编辑">图像编辑</h3>
 <p><code>gimp</code></p>
-<h4 id="视频剪辑">视频剪辑</h4>
+<h3 id="视频剪辑">视频剪辑</h3>
 <p><code>flowshade</code></p>
-<h4 id="办公">办公</h4>
+<h3 id="办公">办公</h3>
 <p><code>wps-office wps-office-mui-zh-cn wps-office-mime</code>（AUR）</p>
 <p><code>ttf-wps-fonts</code></p>
-<h4 id="流程图">流程图</h4>
+<h3 id="流程图">流程图</h3>
 <p><code>drawio-desktop-bin</code></p>
-<h4 id="笔记">笔记</h4>
+<h3 id="笔记">笔记</h3>
 <p><code>typora</code></p>
-<h4 id="博客">博客</h4>
+<h3 id="博客">博客</h3>
 <p><code>hugo</code></p>
-<h4 id="开发">开发</h4>
-<p><code>git nvim-coc</code></p>
+<h3 id="开发">开发</h3>
+<p><code>git code</code></p>
 <p><code>xxd-standalone</code>（AUR）</p>
-<h4 id="android">Android</h4>
+<h3 id="android">Android</h3>
 <p><code>android-tools scrcpy</code></p>
-<h4 id="虚拟机">虚拟机</h4>
+<h3 id="虚拟机">虚拟机</h3>
 <p><code>virtualbox</code></p>
 <p>如内核为<code>linux</code> ，内核模块应安装<code>virtualbox-host-modules-arch</code></p>
-<h4 id="系统信息">系统信息</h4>
+<h3 id="系统信息">系统信息</h3>
 <p><code>neofetch</code></p>
-<h4 id="自动化">自动化</h4>
+<h3 id="自动化">自动化</h3>
 <p><code>cronie</code></p>
-<h4 id="gnome优化">Gnome优化</h4>
-<p><code>gnome-tweaks chrome-gnome-shell</code></p>
-<h4 id="主题美化">主题美化</h4>
-<p><code>git clone git@github.com:vinceliuice/WhiteSur-gtk-theme.git</code></p>
+<h3 id="主题美化">主题美化</h3>
+<p><code>materia-gtk-theme</code></p>
+<p><code>boston-icon-theme</code>（AUR）</p>
 <p>主题依赖：</p>
-<p><code>gtk-engine-murrine imagemagick dialog optipng inkscape</code></p>
-<p>资源地址：</p>
-<p><code>/home/huizhi/Desktop/WhiteSur-gtk-theme/src/assets/gnome-shell/common-assets</code></p>
-<p>创建背景：</p>
-<p><code>convert -blur 0x50 -brightness-contrast -25,0% background-default.png background-blur.png</code></p>
-<p>安装主题：</p>
-<p><code>./install.sh -t blue -i arch</code></p>
-<p><code>sudo ./tweaks.sh -g -b default</code></p>
-<h4 id="gdm-缩放">GDM 缩放</h4>
-<pre><code>sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/
-sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
-</code></pre><h2 id="配置">配置</h2>
-<h4 id="加快关机速度">加快关机速度</h4>
+<p><code>gtk-engine-murrine</code></p>
+<h3 id="gdm-缩放">GDM 缩放</h3>
+<p><code>sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/</code></p>
+<p><code>sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml</code></p>
+<h3 id="gnome-拓展">Gnome 拓展</h3>
+<p><code>https://extensions.gnome.org/extension/779/clipboard-indicator/</code></p>
+<p><code>https://extensions.gnome.org/extension/2820/ibus-tweaker/</code></p>
+<p><code>https://extensions.gnome.org/extension/3193/blur-my-shell/</code></p>
+<h2 id="四配置">四、配置</h2>
+<h3 id="加快关机速度">加快关机速度</h3>
 <p><code>sudo nvim /etc/systemd/system.conf</code></p>
 <pre><code>DefaultTimeoutStopSec=5s
-</code></pre><h4 id="proxychains">proxychains</h4>
+</code></pre><h3 id="proxychains">proxychains</h3>
 <p><code>sudo nvim /etc/proxychains.conf</code></p>
 <pre><code>quiet_mode
 # proxy_dns
 http    127.0.0.1   7890
-</code></pre><h4 id="git">git</h4>
+</code></pre><h3 id="git">git</h3>
 <p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
-<h4 id="ssh-key">ssh key</h4>
+<h3 id="ssh-key">ssh key</h3>
 <p><code>ssh-keygen -t rsa -C qvshuo@foxmail.com</code></p>
 <p><code>cat ~/.ssh/id_rsa.pub</code></p>
 <p><code>ssh -T git@github.com</code></p>
-<h4 id="coc">coc</h4>
-<p><code>:CocInstall coc-highlight coc-html coc-css coc-json</code></p>
 <h3 id="fish">fish</h3>
 <p>取消欢迎语：</p>
 <p><code>set -g fish_greeting</code></p>
@@ -244,12 +242,7 @@ sync_dir: /media/Data/我的坚果云
 <p><code>sudo adb devices</code></p>
 <p>无线:</p>
 <p><code>sudo adb tcpip 5556 &amp;&amp; adb connect 192.168.3.120:5556</code></p>
-<h3 id="cron">cron</h3>
-<p><code>sudo systemctl enable --now cronie.service</code></p>
-<p><code>crontab -e</code></p>
-<pre><code>45 6 * * 3,0 export DISPLAY=:0 &amp;&amp; alacritty -e mpv --no-config --loop ~/Videos/alarm.mp4 &amp;
-0 7 * * 2,4 export DISPLAY=:0 &amp;&amp; alacritty -e mpv --no-config --loop ~/Videos/alarm.mp4 &amp;
-</code></pre><h3 id="获取中文字体列表">获取中文字体列表</h3>
+<h3 id="获取中文字体列表">获取中文字体列表</h3>
 <p><code>fc-list :lang=zh</code></p>
 <pre><code>Sarasa Gothic SC
 
@@ -257,7 +250,7 @@ Source Han Serif SC
 
 Sarasa Mono SC
 </code></pre><h3 id="安装windows字体">安装Windows字体</h3>
-<p><code>sudo mkdir /usr/share/fonts/WindowsFonts &amp;&amp; sudo cp /media/Windows/Windows/Fonts/* /usr/share/fonts/WindowsFonts &amp;&amp; sudo chmod 755 /usr/share/fonts/WindowsFonts/* &amp;&amp; fc-cache -f</code></p>
+<p><code>sudo mkdir /usr/share/fonts/WindowsFonts &amp;&amp; sudo cp ~/Desktop/Fonts/* /usr/share/fonts/WindowsFonts &amp;&amp; sudo chmod 755 /usr/share/fonts/WindowsFonts/* &amp;&amp; fc-cache -f</code></p>
 
     </div>
 
