@@ -75,7 +75,7 @@ zh_CN.UTF-8 UTF-8
 <h3 id="hosts">hosts</h3>
 <p><code>nvim /etc/hosts</code></p>
 <pre><code>127.0.0.1	localhost
-::1			localhost
+:: 1        localhost
 127.0.0.1	nuc.localdomain	nuc
 </code></pre><h3 id="设置root密码">设置root密码</h3>
 <p><code>passwd</code></p>
@@ -112,9 +112,9 @@ options  root=PARTUUID=hhh rw rootflags=subvol=/
 <h3 id="完善de">完善DE</h3>
 <p><code>pacman -S  gnome-software-packagekit-plugin dconf-editor gnome-tweaks chrome-gnome-shell webp-pixbuf-loader</code></p>
 <h3 id="字体">字体</h3>
-<p><code>sudo pacman -S ttf-sarasa-gothic adobe-source-han-serif-otc-fonts</code></p>
+<p><code>pacman -S ttf-sarasa-gothic adobe-source-han-serif-otc-fonts</code></p>
 <h4 id="输入法">输入法</h4>
-<p><code>ibus ibus-rime ibus-anthy</code></p>
+<p><code>pacman -S ibus ibus-rime ibus-anthy</code></p>
 <h3 id="启动相关服务">启动相关服务</h3>
 <p><code>systemctl enable gdm</code></p>
 <p><code>systemctl enable bluetooth</code></p>
@@ -141,22 +141,25 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>sudo nvim /etc/paru.conf</code></p>
 <pre><code>BottomUp
 </code></pre><h3 id="代理">代理</h3>
-<p><code>clash proxychains-ng</code></p>
-<h3 id="通讯">通讯</h3>
+<p><code>paru -S clash proxychains-ng</code></p>
+<p><code>sudo nvim /etc/proxychains.conf</code></p>
+<pre><code>quiet_mode
+# proxy_dns
+http    127.0.0.1   7890
+</code></pre><h3 id="通讯">通讯</h3>
 <p><code>telegram-desktop</code></p>
-<p><code>wechat-uos</code></p>
 <p><code>wechat-nativefier</code>（AUR）</p>
 <h3 id="电子邮件">电子邮件</h3>
-<p><code>evolution</code></p>
+<p><code>bubblemail</code>（AUR）</p>
 <h3 id="远程桌面">远程桌面</h3>
-<p><code>gnome-connections</code></p>
+<p>``</p>
 <h3 id="在线音乐">在线音乐</h3>
 <p><code>netease-cloud-music-gtk</code></p>
 <p><code>yesplaymusic-appimage</code>（AUR）</p>
 <h3 id="下载工具">下载工具</h3>
 <p><code>you-get vdhcoapp</code></p>
 <h3 id="文件同步">文件同步</h3>
-<p><code>nutstore syncthing rsync</code></p>
+<p><code>syncthing rsync</code></p>
 <h3 id="文件压缩">文件压缩</h3>
 <p><code>p7zip unrar</code></p>
 <h3 id="录屏">录屏</h3>
@@ -164,7 +167,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <h3 id="图像编辑">图像编辑</h3>
 <p><code>gimp</code></p>
 <h3 id="视频剪辑">视频剪辑</h3>
-<p><code>flowshade</code></p>
+<p><code>flowblade</code></p>
 <h3 id="办公">办公</h3>
 <p><code>wps-office wps-office-mui-zh-cn wps-office-mime</code>（AUR）</p>
 <p><code>ttf-wps-fonts</code></p>
@@ -184,8 +187,6 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p>如内核为<code>linux</code> ，内核模块应安装<code>virtualbox-host-modules-arch</code></p>
 <h3 id="系统信息">系统信息</h3>
 <p><code>neofetch</code></p>
-<h3 id="自动化">自动化</h3>
-<p><code>cronie</code></p>
 <h3 id="主题美化">主题美化</h3>
 <p><code>materia-gtk-theme</code></p>
 <p><code>boston-icon-theme</code>（AUR）</p>
@@ -196,26 +197,23 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml</code></p>
 <h3 id="gnome-拓展">Gnome 拓展</h3>
 <p><code>https://extensions.gnome.org/extension/779/clipboard-indicator/</code></p>
+<p><code>https://extensions.gnome.org/extension/97/coverflow-alt-tab/</code></p>
 <p><code>https://extensions.gnome.org/extension/2820/ibus-tweaker/</code></p>
-<p><code>https://extensions.gnome.org/extension/3193/blur-my-shell/</code></p>
+<p><code>https://extensions.gnome.org/extension/2236/night-theme-switcher/</code></p>
 <h2 id="四配置">四、配置</h2>
 <h3 id="加快关机速度">加快关机速度</h3>
 <p><code>sudo nvim /etc/systemd/system.conf</code></p>
 <pre><code>DefaultTimeoutStopSec=5s
-</code></pre><h3 id="proxychains">proxychains</h3>
-<p><code>sudo nvim /etc/proxychains.conf</code></p>
-<pre><code>quiet_mode
-# proxy_dns
-http    127.0.0.1   7890
 </code></pre><h3 id="git">git</h3>
 <p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
 <h3 id="ssh-key">ssh key</h3>
 <p><code>ssh-keygen -t rsa -C qvshuo@foxmail.com</code></p>
 <p><code>cat ~/.ssh/id_rsa.pub</code></p>
-<p><code>ssh -T git@github.com</code></p>
+<h3 id="恢复配置文件">恢复配置文件</h3>
+<p><code>git clone git@github.com:qvshuo/gdotfiles.git</code></p>
 <h3 id="fish">fish</h3>
 <p>取消欢迎语：</p>
-<p><code>set -g fish_greeting</code></p>
+<p><code>set -U fish_greeting</code></p>
 <h3 id="firefox">Firefox</h3>
 <p><code>about:config</code></p>
 <pre><code>退格键返回：（将值由2改成0）
@@ -235,8 +233,8 @@ media.ffvpx.enabled
 <p><code>https://raw.githubusercontent.com/danny0838/content-farm-terminator/gh-pages/files/blocklist/content-farms.txt</code></p>
 <h3 id="rime">Rime</h3>
 <p><code>nvim ~/.config/ibus/rime/installation.yaml</code></p>
-<pre><code>installation_id: &quot;rimesync&quot;
-sync_dir: /media/Data/我的坚果云
+<pre><code>installation_id: &quot;rime&quot;
+sync_dir: /path/to
 </code></pre><h3 id="scrcpy">scrcpy</h3>
 <p>有线:</p>
 <p><code>sudo adb devices</code></p>
