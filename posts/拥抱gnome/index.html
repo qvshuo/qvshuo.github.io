@@ -108,7 +108,7 @@ options  root=PARTUUID=hhh rw rootflags=subvol=/
 <h3 id="蓝牙">蓝牙</h3>
 <p><code>pacman -S bluez bluez-utils</code></p>
 <h3 id="de">DE</h3>
-<p><code>pacman -S gdm gnome gnome-shell gnome-terminal nautilus</code></p>
+<p><code>pacman -S gdm  gnome-shell gnome-control-center gnome-terminal nautilus xdg-user-dirs-gtk</code></p>
 <h3 id="字体">字体</h3>
 <p><code>pacman -S ttf-sarasa-gothic adobe-source-han-serif-otc-fonts</code></p>
 <h4 id="输入法">输入法</h4>
@@ -152,6 +152,10 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>you-get vdhcoapp</code></p>
 <h3 id="文件同步">文件同步</h3>
 <p><code>syncthing rsync</code></p>
+<h3 id="本地音乐播放器">本地音乐播放器</h3>
+<p><code>deadbeef</code></p>
+<h3 id="本地视频播放器">本地视频播放器</h3>
+<p><code>celluloid</code></p>
 <h3 id="图像编辑">图像编辑</h3>
 <p><code>gimp</code></p>
 <h3 id="屏幕录制">屏幕录制</h3>
@@ -181,7 +185,12 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>gtk-engine-murrine</code></p>
 <h2 id="四配置">四、配置</h2>
 <h3 id="完善de">完善DE</h3>
-<p><code>paru -S gnome-tweaks chrome-gnome-shell webp-pixbuf-loader p7zip unrar</code></p>
+<p><code>paru -S gnome-tweaks gnome-shell-extensions chrome-gnome-shell</code></p>
+<p><code>eog webp-pixbuf-loader</code></p>
+<p><code>p7zip unrar gvfs-gphoto2 gvfs-mtp gvfs-smb sushi</code></p>
+<p><code>gnome-calculator</code></p>
+<p><code>gnome-system-monitor</code></p>
+<p><code>gnome-weather</code></p>
 <h3 id="gdm-缩放">GDM 缩放</h3>
 <p><code>sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/ &amp;&amp; sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml</code></p>
 <h3 id="gnome-拓展">Gnome 拓展</h3>
