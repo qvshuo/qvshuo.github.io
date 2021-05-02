@@ -183,8 +183,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <h3 id="完善de">完善DE</h3>
 <p><code>paru -S gnome-tweaks chrome-gnome-shell webp-pixbuf-loader p7zip unrar</code></p>
 <h3 id="gdm-缩放">GDM 缩放</h3>
-<p><code>sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/</code></p>
-<p><code>sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml</code></p>
+<p><code>sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/ &amp;&amp; sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml</code></p>
 <h3 id="gnome-拓展">Gnome 拓展</h3>
 <p><code>https://extensions.gnome.org/extension/779/clipboard-indicator/</code></p>
 <p><code>https://extensions.gnome.org/extension/97/coverflow-alt-tab/</code></p>
@@ -198,7 +197,7 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <h3 id="恢复配置文件">恢复配置文件</h3>
 <p><code>git clone git@github.com:qvshuo/gdotfiles.git</code></p>
 <h3 id="用户服务自启">用户服务自启</h3>
-<p><code>systemctl --user enable clash</code></p>
+<p><code>systemctl --user enable clash &amp;&amp; systemctl --user enable syncthing</code></p>
 <h3 id="fish">fish</h3>
 <p>取消欢迎语：</p>
 <p><code>set -U fish_greeting</code></p>
