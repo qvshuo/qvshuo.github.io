@@ -26,7 +26,7 @@
         </div>
     
     <div id="content">
-        <h2 id="一基本系统安装">一、基本系统安装</h2>
+        <h2 id="一基本系统">一、基本系统</h2>
 <h3 id="首次连接网络">首次连接网络</h3>
 <p><code>iwctl</code></p>
 <p><code>device list</code></p>
@@ -102,15 +102,13 @@ options  root=PARTUUID=hhh rw rootflags=subvol=/
 <p><code>passwd huizhi</code></p>
 <p><code>nvim /etc/sudoers</code></p>
 <pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
-</code></pre><h2 id="二图形界面安装">二、图形界面安装</h2>
+</code></pre><h2 id="二安装图形界面">二、安装图形界面</h2>
 <h3 id="显示">显示</h3>
 <p><code>pacman -S mesa vulkan-intel libva-intel-driver</code></p>
 <h3 id="蓝牙">蓝牙</h3>
 <p><code>pacman -S bluez bluez-utils</code></p>
 <h3 id="de">DE</h3>
-<p><code>pacman -S gnome</code></p>
-<h3 id="完善de">完善DE</h3>
-<p><code>pacman -S  gnome-software-packagekit-plugin dconf-editor gnome-tweaks chrome-gnome-shell webp-pixbuf-loader</code></p>
+<p><code>pacman -S gdm gnome gnome-shell gnome-terminal nautilus</code></p>
 <h3 id="字体">字体</h3>
 <p><code>pacman -S ttf-sarasa-gothic adobe-source-han-serif-otc-fonts</code></p>
 <h4 id="输入法">输入法</h4>
@@ -120,10 +118,10 @@ options  root=PARTUUID=hhh rw rootflags=subvol=/
 <p><code>systemctl enable bluetooth</code></p>
 <h3 id="重启-1">重启</h3>
 <p><code>reboot</code></p>
-<h2 id="三软件清单">三、软件清单</h2>
-<h4 id="浏览器">浏览器</h4>
+<h2 id="三软件">三、软件</h2>
+<h3 id="浏览器">浏览器</h3>
 <p><code>sudo pacman -S firefox firefox-i18n-zh-cn</code></p>
-<h3 id="源">源</h3>
+<h3 id="软件源">软件源</h3>
 <p>修改镜像列表：</p>
 <p><code>sudo nvim /etc/pacman.d/mirrorlist</code></p>
 <pre><code>Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
@@ -141,18 +139,12 @@ Server = https://mirrors.xjtu.edu.cn/archlinuxcn/$arch
 <p><code>sudo nvim /etc/paru.conf</code></p>
 <pre><code>BottomUp
 </code></pre><h3 id="代理">代理</h3>
-<p><code>paru -S clash proxychains-ng</code></p>
-<p><code>sudo nvim /etc/proxychains.conf</code></p>
-<pre><code>quiet_mode
-# proxy_dns
-http    127.0.0.1   7890
-</code></pre><h3 id="通讯">通讯</h3>
+<p><code>clash</code></p>
+<h3 id="通讯">通讯</h3>
 <p><code>telegram-desktop</code></p>
 <p><code>wechat-nativefier</code>（AUR）</p>
 <h3 id="电子邮件">电子邮件</h3>
 <p><code>bubblemail</code>（AUR）</p>
-<h3 id="远程桌面">远程桌面</h3>
-<p>``</p>
 <h3 id="在线音乐">在线音乐</h3>
 <p><code>netease-cloud-music-gtk</code></p>
 <p><code>yesplaymusic-appimage</code>（AUR）</p>
@@ -160,12 +152,10 @@ http    127.0.0.1   7890
 <p><code>you-get vdhcoapp</code></p>
 <h3 id="文件同步">文件同步</h3>
 <p><code>syncthing rsync</code></p>
-<h3 id="文件压缩">文件压缩</h3>
-<p><code>p7zip unrar</code></p>
-<h3 id="录屏">录屏</h3>
-<p><code>obs-studio</code></p>
 <h3 id="图像编辑">图像编辑</h3>
 <p><code>gimp</code></p>
+<h3 id="屏幕录制">屏幕录制</h3>
+<p><code>obs-studio</code></p>
 <h3 id="视频剪辑">视频剪辑</h3>
 <p><code>flowblade</code></p>
 <h3 id="办公">办公</h3>
@@ -180,11 +170,8 @@ http    127.0.0.1   7890
 <h3 id="开发">开发</h3>
 <p><code>git code</code></p>
 <p><code>xxd-standalone</code>（AUR）</p>
-<h3 id="android">Android</h3>
+<h3 id="android投屏">Android投屏</h3>
 <p><code>android-tools scrcpy</code></p>
-<h3 id="虚拟机">虚拟机</h3>
-<p><code>virtualbox</code></p>
-<p>如内核为<code>linux</code> ，内核模块应安装<code>virtualbox-host-modules-arch</code></p>
 <h3 id="系统信息">系统信息</h3>
 <p><code>neofetch</code></p>
 <h3 id="主题美化">主题美化</h3>
@@ -192,6 +179,9 @@ http    127.0.0.1   7890
 <p><code>boston-icon-theme</code>（AUR）</p>
 <p>主题依赖：</p>
 <p><code>gtk-engine-murrine</code></p>
+<h2 id="四配置">四、配置</h2>
+<h3 id="完善de">完善DE</h3>
+<p><code>paru -S gnome-tweaks chrome-gnome-shell webp-pixbuf-loader p7zip unrar</code></p>
 <h3 id="gdm-缩放">GDM 缩放</h3>
 <p><code>sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/</code></p>
 <p><code>sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml</code></p>
@@ -200,17 +190,15 @@ http    127.0.0.1   7890
 <p><code>https://extensions.gnome.org/extension/97/coverflow-alt-tab/</code></p>
 <p><code>https://extensions.gnome.org/extension/2820/ibus-tweaker/</code></p>
 <p><code>https://extensions.gnome.org/extension/2236/night-theme-switcher/</code></p>
-<h2 id="四配置">四、配置</h2>
-<h3 id="加快关机速度">加快关机速度</h3>
-<p><code>sudo nvim /etc/systemd/system.conf</code></p>
-<pre><code>DefaultTimeoutStopSec=5s
-</code></pre><h3 id="git">git</h3>
+<h3 id="git">git</h3>
 <p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
 <h3 id="ssh-key">ssh key</h3>
 <p><code>ssh-keygen -t rsa -C qvshuo@foxmail.com</code></p>
 <p><code>cat ~/.ssh/id_rsa.pub</code></p>
 <h3 id="恢复配置文件">恢复配置文件</h3>
 <p><code>git clone git@github.com:qvshuo/gdotfiles.git</code></p>
+<h3 id="用户服务自启">用户服务自启</h3>
+<p><code>systemctl --user enable clash</code></p>
 <h3 id="fish">fish</h3>
 <p>取消欢迎语：</p>
 <p><code>set -U fish_greeting</code></p>
@@ -240,14 +228,7 @@ sync_dir: /path/to
 <p><code>sudo adb devices</code></p>
 <p>无线:</p>
 <p><code>sudo adb tcpip 5556 &amp;&amp; adb connect 192.168.3.120:5556</code></p>
-<h3 id="获取中文字体列表">获取中文字体列表</h3>
-<p><code>fc-list :lang=zh</code></p>
-<pre><code>Sarasa Gothic SC
-
-Source Han Serif SC
-
-Sarasa Mono SC
-</code></pre><h3 id="安装windows字体">安装Windows字体</h3>
+<h3 id="安装windows字体">安装Windows字体</h3>
 <p><code>sudo mkdir /usr/share/fonts/WindowsFonts &amp;&amp; sudo cp ~/Desktop/Fonts/* /usr/share/fonts/WindowsFonts &amp;&amp; sudo chmod 755 /usr/share/fonts/WindowsFonts/* &amp;&amp; fc-cache -f</code></p>
 
     </div>

@@ -13,7 +13,7 @@
       <pubDate>Tue, 27 Apr 2021 23:26:56 +0800</pubDate>
       
       <guid>https://qvshuo.faith/posts/%E6%8B%A5%E6%8A%B1gnome/</guid>
-      <description>一、基本系统安装 首次连接网络 iwctl
+      <description>一、基本系统 首次连接网络 iwctl
 device list
 station wlan0 scan
 station wlan0 get-networks
