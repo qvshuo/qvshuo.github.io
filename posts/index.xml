@@ -8,12 +8,12 @@
     <language>zh-CN</language>
     <lastBuildDate>Tue, 27 Apr 2021 23:26:56 +0800</lastBuildDate><atom:link href="https://qvshuo.faith/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>拥抱Gnome</title>
-      <link>https://qvshuo.faith/posts/%E6%8B%A5%E6%8A%B1gnome/</link>
+      <title>Gnome</title>
+      <link>https://qvshuo.faith/posts/gnome/</link>
       <pubDate>Tue, 27 Apr 2021 23:26:56 +0800</pubDate>
       
-      <guid>https://qvshuo.faith/posts/%E6%8B%A5%E6%8A%B1gnome/</guid>
-      <description>一、基本系统 首次连接网络 iwctl
+      <guid>https://qvshuo.faith/posts/gnome/</guid>
+      <description>前置准备 首次连接网络 iwctl
 device list
 station wlan0 scan
 station wlan0 get-networks
@@ -35,7 +35,7 @@ mkfs.ext4 /dev/nvme0n1pZ
 挂载资料分区：
 mkdir /mnt/home
 mount /dev/nvme0n1pZ /mnt/home
-安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware dosfstools btrfs-progs ntfs-3g intel-ucode efibootmgr fish networkmanager neovim man-db man-pages texinfo</description>
+安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware dosfstools btrfs-progs ntfs-3g intel-ucode efibootmgr fish networkmanager neovim man-db man-pages texinfo git</description>
     </item>
     
     <item>

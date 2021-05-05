@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Gnome | 杨蕙芷</title>
+    <link rel="shortcut icon" href="https://qvshuofaith-1253944953.cos.ap-chengdu.myqcloud.com/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+    <body>
+        <div id="header">
+    <span id="home">
+        <a href="/">首页</a> 
+    </span>
+    <span id="about">
+        <a href="/about/">关于</a>
+    </span>
+    <hr>
+</div>
+        <div class="main">
+        
+    <h1 id="singletitle">Gnome</h1>
+    
+        <div id="singledate">
+            2021/04/27
+        </div>
+    
+    <div id="content">
+        <h2 id="前置准备">前置准备</h2>
+<h3 id="首次连接网络">首次连接网络</h3>
+<p><code>iwctl</code></p>
+<p><code>device list</code></p>
+<p><code>station wlan0 scan</code></p>
+<p><code>station wlan0 get-networks</code></p>
+<p><code>station wlan0 connect SSID</code></p>
+<p><code>quit</code></p>
+<h3 id="开启时间同步">开启时间同步</h3>
+<p><code>timedatectl set-ntp true</code></p>
+<h3 id="格式化并挂载分区">格式化并挂载分区</h3>
+<p><code>lsblk</code></p>
+<p>格式化根分区：</p>
+<p><code>mkfs.btrfs -f -L 'Arch Linux' /dev/nvme0n1pX</code></p>
+<p>挂载根分区：</p>
+<p><code>mount -o compress=zstd /dev/nvme0n1pX /mnt</code></p>
+<p>格式化ESP分区：</p>
+<p><code>mkfs.vfat /dev/nvme0n1pY</code></p>
+<p>挂载ESP分区：</p>
+<p><code>mkdir /mnt/boot</code></p>
+<p><code>mount /dev/nvme0n1pY /mnt/boot</code></p>
+<p>格式化资料分区：</p>
+<p><code>mkfs.ext4 /dev/nvme0n1pZ</code></p>
+<p>挂载资料分区：</p>
+<p><code>mkdir /mnt/home</code></p>
+<p><code>mount /dev/nvme0n1pZ /mnt/home</code></p>
+<h3 id="安装系统基础软件包">安装系统基础软件包</h3>
+<p><code>pacstrap /mnt base base-devel linux linux-firmware dosfstools btrfs-progs ntfs-3g intel-ucode efibootmgr fish networkmanager neovim man-db man-pages texinfo git</code></p>
+<h3 id="生成并检验fstab">生成并检验fstab</h3>
+<p><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code></p>
+<p><code>cat /mnt/etc/fstab</code></p>
+<h3 id="进入新系统">进入新系统</h3>
+<p><code>arch-chroot /mnt</code></p>
+<h2 id="准自动化安装">准自动化安装</h2>
+<p><code>git clone git@github.com:qvshuo/archinstall.git</code></p>
+<p><code>./main.sh</code></p>
+<h3 id="设置root密码">设置root密码</h3>
+<p><code>passwd</code></p>
+<h3 id="完善引导程序">完善引导程序</h3>
+<p><code>nvim /boot/loader/entries/arch.conf </code></p>
+<p>执行<code>:r !blkid -s PARTUUID -o value /dev/sdaX</code>以获取根分区PARTUUID</p>
+<h3 id="重启">重启</h3>
+<p><code>exit</code></p>
+<p><code>reboot</code></p>
+<h3 id="重新连接网络">重新连接网络</h3>
+<p><code>systemctl enable --now NetworkManager</code></p>
+<p><code>nmtui</code></p>
+<h3 id="添加新用户">添加新用户</h3>
+<p><code>useradd -mG wheel huizhi</code></p>
+<p><code>passwd huizhi</code></p>
+<p><code>nvim /etc/sudoers</code></p>
+<pre><code>去掉# %wheel ALL=(ALL)ALL 之前的注释符#
+</code></pre><h2 id="安装桌面环境">安装桌面环境</h2>
+<p><code>./gnome.sh</code></p>
+<h3 id="重启-1">重启</h3>
+<p><code>reboot</code></p>
+<h2 id="安装软件">安装软件</h2>
+<p><code>./software.sh</code></p>
+<h2 id="配置">配置</h2>
+<h3 id="git">git</h3>
+<p><code>git config --global user.name &quot;qvshuo&quot; &amp;&amp; git config --global user.email qvshuo@foxmail.com</code></p>
+<h3 id="ssh-key">ssh key</h3>
+<p><code>ssh-keygen -t rsa -C qvshuo@foxmail.com</code></p>
+<p><code>cat ~/.ssh/id_rsa.pub</code></p>
+<h3 id="恢复配置文件">恢复配置文件</h3>
+<p><code>git clone git@github.com:qvshuo/gdotfiles.git</code></p>
+<h3 id="用户服务自启">用户服务自启</h3>
+<p><code>systemctl --user enable clash &amp;&amp; systemctl --user enable syncthing</code></p>
+<h3 id="pacman-颜色支持">pacman 颜色支持：</h3>
+<p><code>sudo nvim /etc/pacman.conf</code></p>
+<pre><code>Color
+</code></pre><h3 id="反转aur搜索顺序">反转AUR搜索顺序</h3>
+<p><code>sudo nvim /etc/paru.conf</code></p>
+<pre><code>BottomUp
+</code></pre><h3 id="gdm-缩放">GDM 缩放</h3>
+<p><code>sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/ &amp;&amp; sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml</code></p>
+<h3 id="gnome-拓展">Gnome 拓展</h3>
+<p><code>https://extensions.gnome.org/extension/779/clipboard-indicator/</code></p>
+<p><code>https://extensions.gnome.org/extension/97/coverflow-alt-tab/</code></p>
+<p><code>https://extensions.gnome.org/extension/2820/ibus-tweaker/</code></p>
+<p><code>https://extensions.gnome.org/extension/2236/night-theme-switcher/</code></p>
+<h3 id="fish">fish</h3>
+<p>取消欢迎语：</p>
+<p><code>set -U fish_greeting</code></p>
+<h3 id="firefox">Firefox</h3>
+<p><code>about:config</code></p>
+<pre><code>退格键返回：（将值由2改成0）
+browser.backspace_action
+
+双击关闭标签页：
+browser.tabs.closeTabByDblclick
+</code></pre><p>终结内容农场</p>
+<p><code>https://raw.githubusercontent.com/danny0838/content-farm-terminator/gh-pages/files/blocklist/content-farms.txt</code></p>
+<h3 id="rime">Rime</h3>
+<p><code>nvim ~/.config/ibus/rime/installation.yaml</code></p>
+<pre><code>installation_id: &quot;rime&quot;
+sync_dir: /path/to
+</code></pre><h3 id="scrcpy">scrcpy</h3>
+<p>有线:</p>
+<p><code>sudo adb devices</code></p>
+<p>无线:</p>
+<p><code>sudo adb tcpip 5556 &amp;&amp; adb connect 192.168.3.120:5556</code></p>
+<h3 id="安装windows字体">安装Windows字体</h3>
+<p><code>sudo mkdir /usr/share/fonts/WindowsFonts &amp;&amp; sudo cp ~/Desktop/Fonts/* /usr/share/fonts/WindowsFonts &amp;&amp; sudo chmod 755 /usr/share/fonts/WindowsFonts/* &amp;&amp; fc-cache -f</code></p>
+
+    </div>
+
+        </div>
+        <div id="footer">
+    <hr>
+    <div><span style="color: #555;">&copy 2016-2021 </span><a href="https://qvshuo.faith/">杨蕙芷</a></div>
+    <div><span style="color: #555;">Powered by </span><a href="https://gohugo.io/">Hugo</a> <span style="color: #f6f6f6;">| </span><span style="color: #555;">Theme by </span><a href="https://github.com/qvshuo/hugo-theme-flower">qvshuo</a></div>
+</div>
+
+    </body>
+</html>
