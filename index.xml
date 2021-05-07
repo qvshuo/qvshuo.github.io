@@ -6,38 +6,7 @@
     <description>Recent content on 首页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 27 Apr 2021 23:26:56 +0800</lastBuildDate><atom:link href="https://qvshuo.faith/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Gnome</title>
-      <link>https://qvshuo.faith/posts/gnome/</link>
-      <pubDate>Tue, 27 Apr 2021 23:26:56 +0800</pubDate>
-      
-      <guid>https://qvshuo.faith/posts/gnome/</guid>
-      <description>前置准备 首次连接网络 iwctl
-device list
-station wlan0 scan
-station wlan0 get-networks
-station wlan0 connect SSID
-quit
-开启时间同步 timedatectl set-ntp true
-格式化并挂载分区 lsblk
-格式化根分区：
-mkfs.btrfs -f -L &#39;Arch Linux&#39; /dev/nvme0n1pX
-挂载根分区：
-mount -o compress=zstd /dev/nvme0n1pX /mnt
-格式化ESP分区：
-mkfs.vfat /dev/nvme0n1pY
-挂载ESP分区：
-mkdir /mnt/boot
-mount /dev/nvme0n1pY /mnt/boot
-格式化资料分区：
-mkfs.ext4 /dev/nvme0n1pZ
-挂载资料分区：
-mkdir /mnt/home
-mount /dev/nvme0n1pZ /mnt/home
-安装系统基础软件包 pacstrap /mnt base base-devel linux linux-firmware dosfstools btrfs-progs ntfs-3g intel-ucode efibootmgr fish networkmanager neovim man-db man-pages texinfo git</description>
-    </item>
-    
+    <lastBuildDate>Sat, 30 Jan 2021 11:42:46 +0800</lastBuildDate><atom:link href="https://qvshuo.faith/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>记第一次向AUR提交软件包</title>
       <link>https://qvshuo.faith/posts/%E8%AE%B0%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%90%91aur%E6%8F%90%E4%BA%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/</link>
