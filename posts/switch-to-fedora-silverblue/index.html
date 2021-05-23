@@ -57,7 +57,7 @@
 </tr>
 <tr>
 <td>home</td>
-<td>/home</td>
+<td>/var/home</td>
 <td>ext4</td>
 <td>剩余空间</td>
 </tr>
@@ -67,18 +67,19 @@
 <p><a href="https://mirrors.sjtug.sjtu.edu.cn/docs/fedora-ostree">fedora-ostree</a></p>
 <p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/rpmfusion/">RPMFusion 镜像使用帮助</a></p>
 <h2 id="软件">软件</h2>
-<h3 id="uninstall-all-flatpak-software-from-fedora">Uninstall all flatpak software from fedora</h3>
+<h3 id="uninstall-some-flatpak-software-from-fedora">Uninstall some flatpak software from fedora</h3>
 <h3 id="gnome-software">Gnome Software</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo rpm-ostree install gnome-extensions-app gnome-tweaks materia-gtk-theme gtk-murrine-engine
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo rpm-ostree install gnome-extensions-app gnome-tweaks materia-gtk-theme
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo rpm-ostree install sushi file-roller p7zip unrar eog webp-pixbuf-loader gnome-calculator gnome-weather
 </code></pre></div><h3 id="other-software">Other Software</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo rpm-ostree install android-tools bubblemail clash ffmpeg-libs fish hugo ibus-rime neovim proxychains-ng  neofetch syncthing youtube-dl
-</code></pre></div><p>scrcpy?</p>
-<h3 id="flatpak">flatpak</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo rpm-ostree install bubblemail clash ffmpeg-libs fish hugo neovim proxychains-ng  neofetch syncthing youtube-dl
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo rpm-ostree install google-noto-serif-cjk-ttc-fonts
+</code></pre></div><h3 id="flatpak">flatpak</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo flatpak remote-modify flathub --url<span style="color:#f92672">=</span>https://mirror.sjtu.edu.cn/flathub
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo flatpak install flathub org.telegram.desktop
 sudo flatpak install flathub com.netease.CloudMusic
+sudo flatpak install flathub net.agalwood.Motrix
 sudo flatpak install flathub com.github.taiko2k.tauonmb
 sudo flatpak install flathub io.github.celluloid_player.Celluloid
 sudo flatpak install flathub org.gimp.GIMP
@@ -89,13 +90,11 @@ sudo flatpak install flathub com.jgraph.drawio.desktop
 sudo flatpak install flathub io.typora.Typora
 sudo flatpak install flathub com.visualstudio.code
 
-sudo flatpak install flathub org.gtk.Gtk3theme.Materia-dark
-sudo flatpak install flathub org.gtk.Gtk3theme.Materia-light
 </code></pre></div><h3 id="toolbox">Toolbox</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">toolbox create
 toolbox enter
 sudo dnf install nodejs
-sudo  npm config set registry https://registry.npm.taobao.org
+sudo npm config set registry https://registry.npm.taobao.org
 sudo npm install -g nativefier
 </code></pre></div><h2 id="config">Config</h2>
 <h3 id="fish">fish</h3>
@@ -103,7 +102,6 @@ sudo npm install -g nativefier
 </code></pre></div><h3 id="proxychains">proxychains</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo nvim /etc/proxychains.conf
 
-quiet_mode
 <span style="color:#75715e"># proxy_dns</span>
 http    127.0.0.1   <span style="color:#ae81ff">7890</span>
 </code></pre></div><h3 id="git">git</h3>
@@ -114,11 +112,14 @@ cat ~/.ssh/id_rsa.pub
 </code></pre></div><h3 id="恢复配置文件">恢复配置文件</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone git@github.com:qvshuo/fdotfiles.git
 ./rsync
-systemctl --user enable clash
-systemctl --user enable syncthing
+systemctl --user enable clash <span style="color:#f92672">&amp;&amp;</span> systemctl --user enable syncthing
+</code></pre></div><h3 id="theme-and-icon">Theme and icon</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp -r /usr/share/themes/Materia-light ~/.themes <span style="color:#f92672">&amp;&amp;</span> cp -r /usr/share/themes/Materia-dark ~/.themes
+git clone git@github.com:heychrisd/Boston-Icons.git
+sudo flatpak override --filesystem<span style="color:#f92672">=</span>~/.themes <span style="color:#f92672">&amp;&amp;</span> sudo flatpak override --filesystem<span style="color:#f92672">=</span>~/.local/share/icons
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo nvim /var/lib/flatpak/overrides/global
 </code></pre></div><h3 id="gdm-scale">GDM scale</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/
-sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/ <span style="color:#f92672">&amp;&amp;</span> sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
 </code></pre></div><h3 id="firefox">Firefox</h3>
 <pre><code>about:config
 
@@ -134,6 +135,7 @@ browser.tabs.closeTabByDblclick
 https://extensions.gnome.org/extension/97/coverflow-alt-tab/
 https://extensions.gnome.org/extension/2820/ibus-tweaker/
 https://extensions.gnome.org/extension/3843/just-perfection/
+https://extensions.gnome.org/extension/2236/night-theme-switcher/
 </code></pre>
     </div>
 
