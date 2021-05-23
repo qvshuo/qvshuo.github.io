@@ -15,7 +15,7 @@
       <guid>https://qvshuo.faith/posts/switch-to-fedora-silverblue/</guid>
       <description>分区方案    分区 挂载点 格式 大小     efi /boot/efi efi 512M   boot /boot ext4 1G   root / btrfs 256G   home /var/home ext4 剩余空间    镜像 fedora-ostree
 RPMFusion 镜像使用帮助
-软件 Uninstall some flatpak software from fedora Gnome Software sudo rpm-ostree install gnome-extensions-app gnome-tweaks materia-gtk-theme sudo rpm-ostree install sushi file-roller p7zip unrar eog webp-pixbuf-loader gnome-calculator gnome-weather Other Software sudo rpm-ostree install bubblemail clash ffmpeg-libs fish hugo neovim proxychains-ng neofetch syncthing youtube-dl sudo rpm-ostree install google-noto-serif-cjk-ttc-fonts flatpak sudo flatpak remote-add --if-not-exists flathub https://flathub.</description>
+软件 Uninstall some flatpak software from fedora Gnome Software sudo rpm-ostree install gnome-tweaks materia-gtk-theme sudo rpm-ostree install ffmpegthumbnailer p7zip unrar webp-pixbuf-loader Other Software sudo rpm-ostree install bubblemail clash ffmpeg-libs fish hugo neovim proxychains-ng neofetch syncthing youtube-dl sudo rpm-ostree install google-noto-serif-cjk-ttc-fonts flatpak sudo flatpak remote-add --if-not-exists flathub https://flathub.</description>
     </item>
     
     <item>
