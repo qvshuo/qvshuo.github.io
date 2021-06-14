@@ -16,7 +16,7 @@
       <description>分区方案    分区 挂载点 格式 大小     efi /boot/efi efi 512M   boot /boot ext4 1G   root / btrfs 256G   home /var/home ext4 剩余空间    配置镜像 fedora-ostree
 RPMFusion 镜像使用帮助
 sudo rpm-ostree update 基础软件 卸载冗余 首先卸载掉来自Fedora的所有flatpak包，之后覆写掉ostree上的如下包：
-sudo rpm-ostree override remove gnome-tour yelp google-noto-sans-cjk-ttc-fonts 向ostree增添包 sudo rpm-ostree install gnome-extensions-app gnome-tweaks sudo rpm-ostree install ffmpegthumbnailer file-roller p7zip unrar webp-pixbuf-loader eog gnome-weather ibus-rime sudo rpm-ostree install fish neovim clash proxychains-ng ffmpeg-libs gstreamer1-plugin-openh264 mozilla-openh264 hugo sudo sh -c &#39;echo -e &amp;quot;[code]\nname=Visual Studio Code\nbaseurl=https://packages.</description>
+sudo rpm-ostree override remove gnome-tour yelp google-noto-sans-cjk-ttc-fonts 向ostree增添包 sudo rpm-ostree install gnome-extensions-app gnome-tweaks sudo rpm-ostree install ffmpegthumbnailer file-roller p7zip unrar webp-pixbuf-loader eog gnome-weather ibus-rime sudo rpm-ostree install fish neovim clash proxychains-ng ffmpeg-libs gstreamer1-plugin-openh264 mozilla-openh264 hugo sudo rpm-ostree install google-noto-serif-cjk-ttc-fonts sudo sh -c &#39;echo -e &amp;quot;[code]\nname=Visual Studio Code\nbaseurl=https://packages.</description>
     </item>
     
     <item>
