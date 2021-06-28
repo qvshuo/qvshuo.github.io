@@ -17,7 +17,7 @@
 sudo rpm-ostree install https://mirrors.bfsu.edu.cn/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.bfsu.edu.cn/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm 增添VSCode源
 sudo sh -c &#39;echo -e &amp;quot;[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc&amp;quot; &amp;gt; /etc/yum.repos.d/vscode.repo&#39; 更新系统
 sudo rpm-ostree update 基础软件 卸载冗余 首先卸载掉来自Fedora的所有flatpak包，之后覆写掉ostree上的如下包：
-sudo rpm-ostree override remove gnome-tour google-noto-sans-cjk-ttc-fonts 向ostree增添包 sudo rpm-ostree install gnome-extensions-app gnome-tweaks sudo rpm-ostree install ffmpegthumbnailer file-roller p7zip unrar eog webp-pixbuf-loader ibus-rime sudo rpm-ostree install fish neovim clash proxychains-ng ffmpeg-libs mozilla-openh264 hugo syncthing sudo rpm-ostree install google-noto-serif-cjk-sc-fonts sudo rpm-ostree install code Toolbox toolbox create toolbox enter sudo dnf install --nogpgcheck https://mirrors.</description>
+sudo rpm-ostree override remove gnome-tour google-noto-sans-cjk-ttc-fonts 向ostree增添包 sudo rpm-ostree install gnome-extensions-app gnome-tweaks sudo rpm-ostree install ffmpegthumbnailer file-roller p7zip unrar eog webp-pixbuf-loader ibus-rime sudo rpm-ostree install fish neovim clash proxychains-ng ffmpeg-libs mozilla-openh264 hugo sudo rpm-ostree install google-noto-serif-cjk-sc-fonts sudo rpm-ostree install code Toolbox toolbox create toolbox enter sudo dnf install --nogpgcheck https://mirrors.</description>
     </item>
     
     <item>

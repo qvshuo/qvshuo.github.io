@@ -77,7 +77,7 @@
 </code></pre><h3 id="向ostree增添包">向ostree增添包</h3>
 <pre><code>sudo rpm-ostree install gnome-extensions-app gnome-tweaks
 </code></pre><pre><code>sudo rpm-ostree install ffmpegthumbnailer file-roller p7zip unrar eog webp-pixbuf-loader ibus-rime
-</code></pre><pre><code>sudo rpm-ostree install fish neovim clash proxychains-ng ffmpeg-libs mozilla-openh264 hugo syncthing
+</code></pre><pre><code>sudo rpm-ostree install fish neovim clash proxychains-ng ffmpeg-libs mozilla-openh264 hugo
 </code></pre><pre><code>sudo rpm-ostree install google-noto-serif-cjk-sc-fonts
 </code></pre><pre><code>sudo rpm-ostree install code
 </code></pre><h3 id="toolbox">Toolbox</h3>
@@ -102,7 +102,6 @@ cat ~/.ssh/id_rsa.pub
 <pre><code>git clone git@github.com:qvshuo/fdotfiles.git
 ./rsync
 systemctl --user enable clash
-systemctl --user enable syncthing
 </code></pre><h3 id="gdm缩放">GDM缩放</h3>
 <pre><code>sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/
 sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
