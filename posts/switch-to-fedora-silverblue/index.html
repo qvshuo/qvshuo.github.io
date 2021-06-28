@@ -76,7 +76,7 @@
 <pre><code>sudo rpm-ostree override remove gnome-tour google-noto-sans-cjk-ttc-fonts
 </code></pre><h3 id="向ostree增添包">向ostree增添包</h3>
 <pre><code>sudo rpm-ostree install gnome-extensions-app gnome-tweaks
-</code></pre><pre><code>sudo rpm-ostree install ffmpegthumbnailer file-roller p7zip unrar eog webp-pixbuf-loader ibus-rime
+</code></pre><pre><code>sudo rpm-ostree install ffmpegthumbnailer p7zip unrar webp-pixbuf-loader ibus-rime
 </code></pre><pre><code>sudo rpm-ostree install fish neovim clash proxychains-ng ffmpeg-libs mozilla-openh264 hugo
 </code></pre><pre><code>sudo rpm-ostree install google-noto-serif-cjk-sc-fonts
 </code></pre><pre><code>sudo rpm-ostree install code
@@ -132,7 +132,11 @@ browser.tabs.closeTabByDblclick
 flatpak --user override --env=LC_ALL=zh_CN.UTF-8
 flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak --user remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
-</code></pre><pre><code>flatpak install flathub org.telegram.desktop
+</code></pre><pre><code>flatpak install flathub org.gnome.FileRoller
+flatpak install flathub org.gnome.eog
+flatpak install flathub org.gnome.seahorse.Application
+
+flatpak install flathub org.telegram.desktop
 flatpak install flathub net.agalwood.Motrix
 
 flatpak install flathub io.mpv.Mpv
