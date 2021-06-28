@@ -63,21 +63,23 @@
 </tr>
 </tbody>
 </table>
-<h2 id="配置镜像">配置镜像</h2>
-<p><a href="https://mirrors.sjtug.sjtu.edu.cn/docs/fedora-ostree">fedora-ostree</a></p>
-<p><a href="https://mirrors.bfsu.edu.cn/help/rpmfusion/">RPMFusion 镜像使用帮助</a></p>
+<h2 id="配置软件源与执行首次系统更新">配置软件源与执行首次系统更新</h2>
+<p>增添RPMFusion源</p>
+<pre><code>sudo rpm-ostree install https://mirrors.bfsu.edu.cn/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.bfsu.edu.cn/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+</code></pre><p>增添VSCode源</p>
+<pre><code>sudo sh -c 'echo -e &quot;[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc&quot; &gt; /etc/yum.repos.d/vscode.repo'
+</code></pre><p>更新系统</p>
 <pre><code>sudo rpm-ostree update
 </code></pre><h2 id="基础软件">基础软件</h2>
 <h2 id="卸载冗余">卸载冗余</h2>
 <p>首先卸载掉来自Fedora的所有flatpak包，之后覆写掉ostree上的如下包：</p>
-<pre><code>sudo rpm-ostree override remove gnome-tour yelp google-noto-sans-cjk-ttc-fonts
+<pre><code>sudo rpm-ostree override remove gnome-tour google-noto-sans-cjk-ttc-fonts
 </code></pre><h3 id="向ostree增添包">向ostree增添包</h3>
 <pre><code>sudo rpm-ostree install gnome-extensions-app gnome-tweaks
-</code></pre><pre><code>sudo rpm-ostree install ffmpegthumbnailer file-roller p7zip unrar webp-pixbuf-loader eog gnome-weather ibus-rime
-</code></pre><pre><code>sudo rpm-ostree install fish neovim clash proxychains-ng ffmpeg-libs gstreamer1-plugin-openh264 mozilla-openh264 hugo
+</code></pre><pre><code>sudo rpm-ostree install ffmpegthumbnailer file-roller p7zip unrar eog webp-pixbuf-loader ibus-rime
+</code></pre><pre><code>sudo rpm-ostree install fish neovim clash proxychains-ng ffmpeg-libs mozilla-openh264 hugo
 </code></pre><pre><code>sudo rpm-ostree install google-noto-serif-cjk-sc-fonts
-</code></pre><pre><code>sudo sh -c 'echo -e &quot;[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc&quot; &gt; /etc/yum.repos.d/vscode.repo'
-sudo rpm install code
+</code></pre><pre><code>sudo rpm-ostree install code
 </code></pre><h3 id="toolbox">Toolbox</h3>
 <pre><code>toolbox create
 toolbox enter
@@ -101,9 +103,21 @@ cat ~/.ssh/id_rsa.pub
 ./rsync
 systemctl --user enable clash
 systemctl --user enable syncthing
-</code></pre><h3 id="gdm-缩放">GDM 缩放</h3>
+</code></pre><h3 id="gdm缩放">GDM缩放</h3>
 <pre><code>sudo cp ~/.config/monitors.xml /var/lib/gdm/.config/
 sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
+</code></pre><h3 id="grub定制">GRUB定制</h3>
+<pre><code>sudo rpm-ostree install grub2-tools-extra
+sudo su
+grub2-mkfont -s 32 -o /boot/grub2/DejaVuSansMono.pf2 /usr/share/fonts/dejavu-sans-mono-fonts/DejaVuSansMono.ttf
+
+nvim /etc/default/grub
+
+GRUB_TIMEOUT=3
+GRUB_TERMINAL=&quot;gfxterm&quot;
+GRUB_FONT=/boot/grub2/DejaVuSansMono.pf2
+
+grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
 </code></pre><h3 id="firefox">Firefox</h3>
 <pre><code>about:config
 
@@ -117,32 +131,20 @@ browser.tabs.closeTabByDblclick
 </code></pre><h3 id="flatpak">flatpak</h3>
 <pre><code>flatpak --user config --set languages &quot;zh;en&quot;
 flatpak --user override --env=LC_ALL=zh_CN.UTF-8
-flatpak --user override --filesystem=~/.themes
 flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak --user remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
-</code></pre><pre><code>flatpak install flathub org.gtk.Gtk3theme.Materia{,-dark,-light}{,-compact}
-
-flatpak install flathub org.telegram.desktop
+</code></pre><pre><code>flatpak install flathub org.telegram.desktop
 flatpak install flathub net.agalwood.Motrix
-flatpak install flathub com.thincast.client
 
-flatpak install flathub org.gnome.Lollypop
 flatpak install flathub io.github.celluloid_player.Celluloid
 
-flatpak install flathub com.github.huluti.Curtail
 flatpak install flathub org.gimp.GIMP
 
-flatpak install flathub org.gnome.EasyTAG
-flatpak install flathub org.soundconverter.SoundConverter
 
 flatpak install flathub com.obsproject.Studio
 flatpak install flathub org.blender.Blender
-flatpak install flathub fr.handbrake.ghb
 
-flatpak install flathub com.calibre_ebook.calibre
-flatpak install flathub org.onlyoffice.desktopeditors
 flatpak install flathub io.typora.Typora
-flatpak install flathub com.visualstudio.code
 </code></pre><h3 id="gnome-extensions">Gnome Extensions</h3>
 <pre><code>https://extensions.gnome.org/extension/3193/blur-my-shell/
 https://extensions.gnome.org/extension/779/clipboard-indicator/
@@ -153,9 +155,7 @@ https://extensions.gnome.org/extension/1007/window-is-ready-notification-remover
 <pre><code>cp fonts ~/.local/share/fonts
 chmod 644 fonts
 fc-cache -f
-</code></pre><h3 id="主题">主题</h3>
-<p><a href="https://github.com/nana-4/materia-theme/blob/master/INSTALL.md">materia-theme</a></p>
-
+</code></pre>
     </div>
 
         </div>
